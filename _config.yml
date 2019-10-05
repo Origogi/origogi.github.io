@@ -18,14 +18,14 @@ minimal_mistakes_skin    : #"air" # "air", "aqua", "contrast", "dark", "dirt", "
 locale                   : "ko-KR"
 title                    : "Origogi"
 title_separator          : "-"
-subtitle                 : 오리고기의 개발 블로그입니다.
+subtitle                 : "오리고기의 개발 블로그입니다".
 name                     : "Origogi"
 description              : "Origogi's blog."
 url                      : "https://origogi.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/image/banner.jpg"
-logo                     : "/assets/image/profile.jpg"
+teaser                   : "/assets/images/banner.jpg"
+logo                     : "/assets/images/profile.jpg"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -108,7 +108,7 @@ analytics:
 # Site Author
 author:
   name             : "김정태"
-  avatar           : "/assets/image/profile.jpg"
+  avatar           : "/assets/images/profile.jpg"
   bio              : "32살 안드로이드 개발자"
   location         : "경기도 고양시 행신동"
   email            : "rlawjdxo1212@naver.com"
