@@ -109,8 +109,8 @@ analytics:
 author:
   name             : "김정태"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "경기도 고양시 행싱동"
+  bio              : "32살 안드로이드 개발자"
+  location         : "경기도 고양시 행신동"
   email            :
   links:
     - label: "Email"
