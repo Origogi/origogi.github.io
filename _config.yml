@@ -108,10 +108,10 @@ analytics:
 # Site Author
 author:
   name             : "김정태"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/image/avatar.jpg"
   bio              : "32살 안드로이드 개발자"
   location         : "경기도 고양시 행신동"
-  email            :
+  email            : "rlawjdxo1212@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -127,7 +127,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://origogi.github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
