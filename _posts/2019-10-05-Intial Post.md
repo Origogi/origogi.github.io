@@ -4,7 +4,9 @@ layout: single
 title: "First posting"
 tags: github
 comments: true
-teaser: /assets/images/banner.jpg
+header:
+  image: /assets/images/banner.jpg
+  #teaser: assets/images/unsplash-gallery-image-2-th.jpg
 ---
 
 Github 블로그 첫 포스트 입니다.
