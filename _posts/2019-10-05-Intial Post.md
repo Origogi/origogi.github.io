@@ -2,10 +2,10 @@
 published: true
 layout: single
 title: "First posting"
-category: post
-tags:
+tags: github
 comments: true
 ---
+<img src="/assets/images/banner.jpg" alt="" class="full">
 
 Github 블로그 첫 포스트 입니다.
 
