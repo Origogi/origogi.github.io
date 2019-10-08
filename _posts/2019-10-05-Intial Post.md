@@ -4,8 +4,8 @@ layout: single
 title: "First posting"
 tags: github
 comments: true
+teaser: /assets/images/banner.jpg
 ---
-<img src="/assets/images/banner.jpg" alt="" class="full">
 
 Github 블로그 첫 포스트 입니다.
 
