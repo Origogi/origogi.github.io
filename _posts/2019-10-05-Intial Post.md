@@ -6,7 +6,7 @@ tags: github
 comments: true
 header:
   overlay_image: assets/images/flutter_dart.png
-  overlay_filter: 'rgba(255, 0, 0, 0.5)'
+  overlay_filter: 0.5
   caption: 'Photo credit: [**Unsplash**](https://unsplash.com)'
   actions:
     - label: More Info
