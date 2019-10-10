@@ -7,10 +7,6 @@ comments: true
 header:
   overlay_image: assets/images/flutter_dart.png
   overlay_filter: 0.5
-  caption: 'Photo credit: [**Unsplash**](https://unsplash.com)'
-  actions:
-    - label: More Info
-      url: 'https://unsplash.com'
 ---
 
 Github 블로그 첫 포스트 입니다.
