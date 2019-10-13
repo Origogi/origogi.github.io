@@ -25,7 +25,7 @@ description              : "Origogi's blog."
 url                      : "https://origogi.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/images/banner.jpg"
+teaser                   : #"/assets/images/banner.jpg"
 logo                     : #"/assets/images/profile.jpg"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
