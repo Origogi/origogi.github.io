@@ -110,8 +110,8 @@ analytics:
 author:
   name             : "김정태"
   avatar           : "/assets/images/profile.jpg"
-  bio              : "32살 안드로이드 개발자"
-  location         : "경기도 고양시 행신동"
+  bio              : "안드로이드 개발자"
+  location         : "Seoul, Korea"
   email            : "rlawjdxo1212@naver.com"
   links:
     - label: "Email"
