@@ -1,6 +1,6 @@
 ---
 published: true
-layout: single
+layout: wide
 title: First posting
 tags: github
 comments: true
