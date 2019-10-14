@@ -114,9 +114,6 @@ author:
   location         : "Seoul, Korea"
   email            : "rlawjdxo1212@naver.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:rlawjdxo1212@naver.com"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       url: "https://www.facebook.com/profile.php?id=100002180550466&ref=bookmarks"
@@ -273,6 +270,7 @@ defaults:
       type: posts
     values:
       layout: single
+      classes : wide
       author_profile: true
       read_time: true
       comments: true
