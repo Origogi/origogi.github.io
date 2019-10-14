@@ -123,3 +123,55 @@ This Draw Frame is intercepted by the Flutter Framework, which will look for any
 - If there is something to be drawn on the screen, it then sends the new Scene to be rendered to the Flutter Engine which will update the screen.
  - Then, the Flutter Framework executes all tasks to be run after the rendering is complete (= PostFrame callbacks) and any other sub-sequent other tasks not rendering related.
  - … and this flow starts again and again.
+
+### RenderView and RenderObject
+Before going into the details related to the flow of actions, it is the right time to introduce the notion of Rendering Tree.
+
+As previously said, everything eventually turns out to become a series of pixels to be displayed on the screen and the Flutter Framework converts the Widgets we are using to develop the application into visual parts which will be rendered on the screen.
+
+These visual parts which are rendered on the screen correspond to objects, called RenderObjects, which are used to:
+
+ - define some area of the screen in terms of dimensions, position, geometry but also in terms of “rendered content“
+ - identify zones of the screen potentially impacted by the gestures (= finger)
+The set of all the RenderObject forms a tree, called Render Tree. At the top of that tree (= root), we find a RenderView.
+
+The RenderView represents the total output surface of the Render Tree and is itself a special version of a RenderObject.
+
+Visually speaking we could represent all this as follows:
+
+![](https://www.didierboelens.com/images/internals_renderView.png)
+
+The relationship between Widgets and RenderObjects will be discussed later in this article.
+
+It is now time to go a bit deeper…
+
+First things first - initialization of the bindings
+When you start a Flutter application, the system invokes the main() method which will eventually call the runApp(Widget app) method.
+
+During that call to the runApp() method, Flutter Framework initializes the interfaces between the Flutter Framework and the Flutter Engine. These interfaces are called bindings.
+
+The Bindings - Introduction
+The bindings are meant to be some kind of glue between the Flutter Engine and the Flutter Framework. It is only through these bindings that data can be exchanged between the two Flutter parts (Engine and Framework).
+(There is only one exception to this rule: the RenderView but we will see this later).
+
+Each Binding is responsible for handling a set of specific tasks, actions, events, regrouped by domain of activities.
+
+### At time of writing this article, Flutter Framework counts 8 bindings.
+
+Below, the 4 ones that will be discussed in this article:
+
+- SchedulerBinding
+- GestureBinding
+- RendererBinding
+- WidgetsBinding
+- For sake of completeness, the last 4 ones (which will not be addressed in this article):
+
+- ServicesBinding: responsible for handling messages sent by the platform channel
+- PaintingBinding: responsible for handling the image cache
+- SemanticsBinding: reserved for later implementation of everything related to Semantics
+- TestWidgetsFlutterBinding: used by widgets tests library
+I could also mention the WidgetsFlutterBinding but the latter is not really a binding but rather some kind of “binding initializer”.
+
+The following diagram shows the interactions between the bindings I am going to cover a bit later in this article and the Flutter Engine.
+
+![](https://www.didierboelens.com/images/internals_bindings.png)
