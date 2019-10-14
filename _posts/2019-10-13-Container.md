@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Flutter : Container"
+title: "[Flutter] Widget 소개 - Container"
 excerpt : " "
 tags: 
   - Flutter
