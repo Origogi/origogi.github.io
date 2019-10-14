@@ -1,6 +1,7 @@
 ---
 published: true
-layout: splash
+layout: single
+classes: wide
 title: First posting
 tags: github
 comments: true
