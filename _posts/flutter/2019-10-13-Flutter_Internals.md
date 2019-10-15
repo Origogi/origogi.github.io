@@ -60,62 +60,60 @@ Widgets, Elements, BuildContext, RenderOject, Bindings이란 무엇일까..??
 
 화면의 이미지 렌더링은 하드웨어 (디스플레이 장치)에 의해 보장되며, 하드웨어 (디스플레이 장치)는 일정한 간격 (일반적으로 초당 60 회)으로 디스플레이를 새로 고칩니다. 이 새로 고침 빈도는 "새로 고침 빈도"라고도하며 Hz (Hertz)로 표시됩니다.
 
-The display device receives the information to be displayed on the screen from the GPU (Graphics Processing Unit), which is a specialized electronic circuit, optimized and designed to rapidly generate an image from some data (polygons and textures). The number of times per second the GPU is able to generate the “image” (=frame buffer) to be displayed and to send it to the hardware is called the frame rate. This is measured with the fps unit (e.g. 60 frames per second or 60 fps).
+디스플레이 장치는 GPU(Graphics Processing Unit)로부터 화면에 표시할 Data를 수신받으며, 일부 Model(폴리곤과 텍스처)를 신속하게 영상으로 생성하도록 최적화 및 설계되어 있다. 그리고  GPU가 표시할 "이미지"(Frame Buffer)를 생성하여 하드웨어에 전송할 수 있는 초당 횟수를 `Frame Rate` 이라고 한다. 이는 fps 단위로(예: 초당 60 frame 또는 60fps)으로 측정합니다..
 
-You will maybe ask me why did I start this article with the notions of 2-dimension flat image rendered by the GPU/hardware and the physical glass sensor… and what is the relationship with the usual Flutter Widgets?
+여기서 독자는 이 article에서  GPU/하드웨어와 물리적 유리센서에 의해 렌더링된 2차원 평면 이미지의 개념을 왜 다루는 지, 그리고 Flutter Widgets와의 관계는 무엇인지 궁금해 할 것입니다.
 
-Simply because one of the main objectives of a Flutter application is to compose that 2-dimensional flat image and to make it possible to interact with it, I think it might be easier to understand how Flutter actually works if we look at it from that perspective.
+Flutter 애플리케이션의 주요 목표 중 하나가 2차원 평면 이미지를 구성하고 상호작용하는 것이기 때문에, 나는 그 관점에서 본다면 Flutter가 실제로 어떻게 작동하는지 이해하는 것이 더 쉬울 수 있다고 생각합니다.
 
-…but also because in Flutter, believe it or not, almost everything is driven by the needs of having to refresh the screen… quickly and at the right moment !
+### Code와 물리적 장치 사이의 Interface
 
-### Interface between the code and the physical device
-One day or another, everyone interested in Flutter already saw the following picture which describes the Flutter high-level architecture.
+Flutter에 관심있는 사람이라면 아래 Flutter high-level architecture를 묘사한 그림을 본 적이 있을 것입니다.
 
 ![](https://www.didierboelens.com/images/internals_archi_overview.png)
 
-When we are writing an Flutter application, using Dart, we remain at the level of the Flutter Framework (in green).
+Dart를 사용하여 Flutter app을 작성할 때 Flutter Framework 수준 (녹색)으로 유지됩니다.
 
-The Flutter Framework interacts with the Flutter Engine (in blue), via an abstraction layer, called Window. This abstraction layer exposes a series of APIs to communicate, indirectly, with the device.
+Flutter Framework는 Window라는 추상화 계층을 통해 Flutter Engine (파란색)과 상호 작용합니다. 이 추상화 계층은 일련의 API를 노출하여 장치와 간접적으로 통신합니다.
 
-This is also via this abstraction layer that the Flutter Engine notifies the Flutter Framework when, among others:
+아래 경우에 대해서 Fluttter Engine은 Flutter Framework로 추상화 계층을 통해 이벤트를 전달한다.
 
- - an event of interest happens at the device level (orientation change, settings changes, memory issue, application running state…)
- -some event happens at the glass level (= gesture)
- - the platform channel sends some data
-- but also and mainly, when the Flutter Engine is ready to render a new frame
+ - 기기 레벨에서 특정 이벤트가 발생함(방향 변경, 설정 변경, 메모리 문제, 애플리케이션 실행 상태 등)
+- Grass 레벨에서 일부 이벤트가 발생함(= 제스처)
+- 플랫폼 채널에서 일부 데이터 전송
+- _하지만 무엇보다도 플로터 엔진이 새 프레임을 렌더링할 준비가 되었을 때_
 
-### Flutter Framework is driven by the Flutter Engine frame rendering
-This statement is quite hard to believe, but it is the truth.
+### Flutter Framework는 Flutter Engine 프레임 렌더링에 의해 구동됨
 
-Except in some cases (see below), no Flutter Framework code is executed without having been triggered by the Flutter Engine frame rendering.
 
-These exceptions are:
+이 항목은 믿기 어렵지만 사실입니다.
 
-- Gesture (= an event on the glass)
-- Platform messages (= messages that are emitted by the device, e.g. GPS)
-- Device messages (= messages that refer to a variation to the device state, e.g. orientation, application sent to background, memory warnings, device settings…)
+아래 경우를 제외하고 Flutter Engine Frame Renderring에 의해 트리거되지 않고 Flutter Framework 코드가 실행되지 않습니다.
+
+- Gesture (an event on the glass)
+- Platform messages (messages that are emitted by the device, e.g. GPS)
+- Device messages ( messages that refer to a variation to the device state, e.g. orientation, application sent to background, memory warnings, device settings…)
 - Future or http responses
 
-> The Flutter Framework will not apply any visual changes without having been requested by the Flutter Engine frame rendering.
+> Flutter Framework는 Flutter Engine Frame Renderring의 요청이 없으면 시각적 변화를 적용하지 않습니다.
 
-(between us, it is however possible to apply a visual change without having been invited by the Flutter Engine, but this is really not advised to do so)
+(Flutter Engine에 의해 트리거되지 않고 시각적 변화를 적용하는 것은 가능하지만 실제로 그렇게하지 않는 것이 좋습니다)
 
-But you will ask me, if some code related to the gesture is executed and causes a visual change to happen, or if I am using a timer to rythm some task, which leads to visual changes (such as an animation, for example), how does this work then?
+그러나 제스처와 관련된 일부 코드가 실행되어 시각적 변경을 하거나 또는 애니매이션 동작하는 경우 어떻게 내부적으로 동작하는 지 당신은 궁금해 할 것입니다.
 
-> If you want a visual change to happen, or if you want some code to be executed based on a timer, you need to tell the Flutter Engine that something needs to be rendered.
-Usually, at next refresh, the Flutter Engine will then request the Flutter Framework to run some code and eventually provide the new scene to render.
+> 만약 당신이 시각적 변경을 원할 경우 Flutter Engine에 무언가를 렌더링해야한다고 알려 주어야합니다.
+그 다음 Refresh할 때, Flutter Engine은 Flutter Framework가 코드를 실행하도록 요청하고 마침내 렌더링 할 새로운 장면을 제공합니다.
 
-Therefore, the big question is how does Flutter Engine orchestrate the whole application behavior, based on the rendering?
+그리고 가장 큰 문제는 Flutter Engine이 렌더링을 기반으로 전체 애플리케이션 동작을 어떻게 조정 하는가입니다.
 
-To give you a flavor of the internal mechanisms, have a look at the following animation…
+내부 매커니즘을 살펴보기 위해 아래 애니메이션을 참고 바랍니다.
 
 ![](https://www.didierboelens.com/images/internals_flow.gif)
 
-Short explanation (further details will come later):
 
- - Some external events (gesture, http responses, …) or even futures, can launch some tasks which lead to having to update the rendering. A message is sent to the Flutter Engine to notify it ( = Schedule Frame)
-- When the Flutter Engine is ready to proceed with the rendering update, it emits a Begin Frame request
- - This Begin Frame request is intercepted by the Flutter Framework, which runs any task mainly related to Tickers (such as Animations, e.g.)
+ 1. 일부 외부 이벤트(Gesture, http response, ...) 또는 Future 도 Rendering 업데이트 하기 위한  몇 가지 작업을 시작할 수 있습니다. 메시지를 Flutter Engine 에 전송하여 알려줍니다( = Schedule Frame)
+ 2. Flutter Engine이 렌더링 업데이트를 진행할 준비가 되면 프레임 시작 요청을 보냅니다.
+ 3. 이 프레임 시작 요청은 Flutter Framework에서 가로 채서 티커와 주로 관련된 모든 작업 (예 : 애니메이션)을 실행합니다.
 These tasks could re-emit a request for a later frame rendering… (example: an animation is not complete and to move forward, it will need to receive another Begin frame at a later stage)
  - Then, the Flutter Engine emits a Draw Frame.
 This Draw Frame is intercepted by the Flutter Framework, which will look for any tasks linked to updating the layout in terms of structure and size.
