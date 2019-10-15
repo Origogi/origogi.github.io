@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Flutter][번역] Flutter internals -  진행중"
+title: "[Flutter][번역] Flutter internals (1) -  진행중"
 excerpt : " "
 layout: single
 author_profile: true
@@ -173,3 +173,48 @@ I could also mention the WidgetsFlutterBinding but the latter is not really a bi
 The following diagram shows the interactions between the bindings I am going to cover a bit later in this article and the Flutter Engine.
 
 ![](https://www.didierboelens.com/images/internals_bindings.png)
+
+Let’s have a look at each of these “main” bindings.
+
+### SchedulerBinding
+This binding has 2 main responsibilities:
+
+- the first one is to tell the Flutter Engine: “Hey! next time you are not busy, wake me up so that I can work a bit and tell you either what to render or if I need you to call me again later…”;
+- the second one is to listen and react to such “wake up calls” (see later)
+When does the SchedulerBinding request for a wake-up call?
+
+- When a Ticker needs to tick
+  For example, suppose you have an animation and you start it. An animation is cadenced by a Ticker, which at regular interval (= tick) is called to run a callback. To run such callback, we need to tell the Flutter Engine to wake up us at next refresh (= Begin Frame). This will invoke the ticker callback to perform its task. At the end of that task, if the ticker still needs to move forward, it will call the SchedulerBinding to schedule another frame.
+
+- When a change applies to the layout
+  When for example, you are responding to an event that leads to a visual change (e.g. updating the color of a part of the screen, scrolling, adding/removing something to/from the screen), we need to take the necessary steps to eventually render it on the screen. In this case, when such change happens, the Flutter Framework will invoke the SchedulerBinding to schedule another frame with the Flutter Engine. (we will see later how it actually works)
+
+### GestureBinding
+This binding listens to interactions with the Engine in terms of “finger” (= gesture).
+
+In particular, it is responsible for accepting data related to the finger and to determine which part(s) of the screen is/are impacted by the gestures. It then notifies this/these parts accordingly.
+
+### RendererBinding
+This binding is the glue between the Flutter Engine and the Render Tree. It has 2 distinct responsibilities:
+
+- the first one is to listen to events, emitted by the Engine, to inform about changes applied by the user via the device settings, which impact the visuals and/or the semantics
+- the second one is to provide the Engine with the modifications to be applied to the display.
+
+In order to provide the modifications to be rendered on the screen, this Binding is responsible for driving the PipelineOwner and initializing the RenderView.
+
+The PipelineOwner is a kind of orchestrator that knows which RenderObject’s need to do something in relation with the layout and coordinates these actions.
+
+### WidgetsBinding
+This binding listens to changes applied by the user via the device settings, which impact the language (= locale) and the semantics.
+
+> Side note
+> At a later stage, I suppose that all events related to the Semantics will be migrated to the SemanticsBinding but at > time of writing this article, this is not yet the case.
+
+Besides this, the WidgetsBinding is the glue between the Widgets and the Flutter Engine. It has 2 distinct main responsibilities:
+
+- the first main one is to drive the process in charge of handling the Widgets structure changes
+- the second one is to trigger the rendering
+
+The handling of the Widgets Structure changes is done via the BuildOwner.
+
+The BuildOwner tracks which Widgets need rebuilding, and handles other tasks that apply to widget structures as a whole.
