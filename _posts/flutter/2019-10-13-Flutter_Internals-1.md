@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Flutter][번역] Flutter internals (1) -  진행중"
+title: "[Flutter][번역] Flutter internals (1)"
 excerpt : " "
 layout: single
 author_profile: true
@@ -110,7 +110,6 @@ Flutter Framework는 Window라는 추상화 계층을 통해 Flutter Engine (파
 
 ![](https://www.didierboelens.com/images/internals_flow.gif)
 
-
  1. 일부 외부 이벤트(Gesture, http response, ...) 또는 Future 도 Rendering 업데이트 하기 위한  몇 가지 작업을 시작할 수 있습니다. 메시지를 Flutter Engine 에 전송하여 알려줍니다( = Schedule Frame)
  2. Flutter Engine이 Rendering 업데이트를 진행할 준비가 되면 프레임 시작 요청을 보냅니다.
  3. 이 프레임 시작 요청은 Flutter Framework에서 가로 채서 티커와 주로 관련된 모든 작업 (예 : 애니메이션)을 실행합니다.
@@ -140,7 +139,6 @@ Flutter Framework는 Window라는 추상화 계층을 통해 Flutter Engine (파
 ![](https://www.didierboelens.com/images/internals_renderView.png)
 
 그리고 `Widget`과 `RenderObjects`의 관계는 이 기사의 뒷부분에서 설명합니다.
-
 
 이제 조금 더 깊이 알아 봅시다. ...
 
@@ -195,13 +193,14 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 - When a change applies to the layout
   예를 들어, 시각적 변경를 일으키는 이벤트에 응답하는 경우(예: 화면의 일부 색 업데이트, 스크롤, 화면 추가/제거), 필요한 단계를 수행하여 화면에 Rendering해야 합니다. 이 경우 Flutter Framework는 `SchedulerBinding`을 호출하여 Flutter Engine으로 다른 프레임을 예약합니다. (우리는 그것이 실제로 어떻게 작동하는지 나중에 볼 것입니다)
 
-
 ### GestureBinding
+
 
 이 `binding`은 "손가락"(= Gesture)의 관점에서 Engine과의 상호 작용을 수신합니다..
 특히, 손가락과 관련된 데이터를 받아들이고 Gesture의 영향을 받는 화면의 부분을 결정해야합니다. 그 다음 그 화면의 부분에 대해 알립니다.
 
 ### RendererBinding
+
 
 이 `binding`은 Flutter Engine과 Render Tree 사이의 접착제 입니다. 여기에는 두 가지 역할이 있습니다.
 
@@ -213,6 +212,8 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 `PipelineOwner`는 레이아웃과 관련하여 어떤 `RenderObject`가 어떤 작업을 수행해야하는지 알고 이러한 작업을 조정하는 일종의 orchestra 입니다.
 
 ### WidgetsBinding
+
+
 이 바인딩은 언어 (= locale) 및 Semantics에 영향을 주는 Device Setting 같이 사용자가 적용한 변경 사항을 수신합니다.
 
 이 외에도 `WidgetsBinding`은 Widget과 Flutter Engine 사이의 접착제입니다. 여기에는 두 가지 역할이 있습니다.
@@ -222,4 +223,4 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 
 Widget 구조 변경 처리는 `BuildOwner`를 통해 수행됩니다.
 
-`BuildOwner`는 Rebuild가 필요한 Widget을 추적하고 Widget 구조 전체에 적용되는 또 다른 작업을 처리한다.
+`BuildOwner`는 Rebuild가 필요한 Widget을 추적하고 Widget 구조 전체에 적용되는 또 다른 작업을 처리합니다.
