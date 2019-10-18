@@ -25,19 +25,19 @@ header:
 
 ## Part 2: from Widgets to pixels
 
-Now that we have introduced the basics of the internal mechanics, it is time to talk about Widgets.
+이제 내부 동작에 대한 기본을 소개 했으므로 이제 위젯에 대해 이야기 할 차례입니다.
 
-In all Flutter documentation, you will read that everything is Widgets.
+모든 Flutter 문서에서 모든 것이 Widget으로 통합니다. .
 
-Well, it is almost correct but in order to be a bit more precise, I would rather say:
+글쎄, 그것은 거의 정확하지만 좀 더 정확하기 위해서는 오히려 다음과 같이 말하고 싶습니다.
 
-> From a Developer perspective, everything related to the User Interface in terms of layout and interaction, is done via Widgets.
+> 개발자의 관점에서 레이아웃 및 상호 작용과 관련하여 사용자 인터페이스와 관련된 모든 것은 위젯을 통해 수행됩니다.
 
-Why this precision? Because a Widget allows a developer to define a part of the screen in terms of dimensions, content, layout and interaction BUT there is so much more. So what is a Widget, actually?
+위젯을 사용하면 개발자가 화면의 일부를 치수, 내용, 레이아웃 및 상호 작용 측면에서 정의 할 수 있기 때문에 훨씬 더 많은 기능이 있습니다. 실제로 위젯이란 무엇입니까?
 
 ### Immutable Configuration
 
-When you read the Flutter source code, you will notice the following definition of the Widget class.
+Flutter 소스 코드를 읽으면 Widget 클래스의 다음과 같이 정의되어 있습니다.
 
 ~~~dart
 @immutable
@@ -50,14 +50,9 @@ abstract class Widget extends DiagnosticableTree {
 }
 ~~~
 
-What does this mean?
+"@immutable"주석은 매우 중요하며 Widget 클래스의 모든 변수는 FINAL이어야합니다. 따라서 일단 인스턴스화되면 위젯은 더 이상 내부 변수를 조정할 수 없습니다.
 
-The annotation “@immutable” is very important and tells us that any variable in a Widget class has to be FINAL, in other words: “is defined and assigned ONCE FOR ALL”. So, once instantiated, the Widget will no longer be able to adapt its inner variables.
-
-> A Widget is a kind of constant configuration since it is IMMUTABLE
-
-The Widgets hierarchical structure
-When you develop with Flutter, you define the structure of your screen(s), using Widgets… Something like:
+Flutter로 개발할 때 아래와 같이 위젯을 사용하여 화면의 구조를 정의합니다…
 
 ~~~dart
 Widget build(BuildContext context){
@@ -76,15 +71,17 @@ Widget build(BuildContext context){
 }
 ~~~
 
-This sample uses 7 Widgets, which together form a hierarchical structure. The very simplified structure, based on the code, is the following:
+이 sample은 7 개의 위젯을 사용하며 계층 구조를 구성합니다. 위 코드를 다음 그림과 같이 단순화 시킬수 있습니다.
+
 
 ![](https://www.didierboelens.com/images/internals_widgets_tree.png)
 
-As you can see, this looks like a tree, where the SafeArea is the root of the tree.
+보다시피, SafeArea가 트리의 루트 인 것 처럼 보입니다.
 
 ### The forest behind the tree
 
-As a you already know, a Widget may itself be an aggregation of other Widgets. As an example, I could have written the previous code the following way:
+아시다시피 위젯 자체는 다른 위젯의 집합 일 수 있습니다. 예를 들어 이전 코드를 다음과 같이 작성할 수 있습니다.
+
 
 ~~~dart
 Widget build(BuildContext context){
@@ -92,88 +89,89 @@ Widget build(BuildContext context){
 }
 ~~~
 
-This assumes that the widget `MyOwnWidget` would itself render the SafeArea, Scaffold… but the most important with this example is that
+이것은 `MyOwnWidget`이라는 위젯 자체가 SafeArea, Scaffold를 렌더링한다고 가정하지만, 이 예에서 가장 중요한 것은
 
-> a Widget maybe a leaf, a node in a tree, even a tree itself or why not a forest of trees…
+> Widget은 입사귀나 Tree의 줄기, 또는 Tree가 될 수있지만. Tree가 모인 Forest가 될 수가 없을 까? 
 
-### The notion of Element in the tree
+### Tree에서 Element의 개념
 
-Why did I mention this?
+내가 왜 이것을 언급했는지 생각해 보았습니끼?
 
-As we will see later how, in order to be able to generate the pixels that compose the image to be rendered on the device, Flutter needs to know in details all the little parts that compose the screen and, to determine all the parts, it will request to inflate all the Widgets.
+나중에 알게 되겠지만, 장치에 렌더링할 이미지를 구성하는 픽셀을 생성하기 위해서는 화면을 구성하는 모든 작은 부분을 자세히 알아야 하고, 모든 부분을 결정하려면 모든 위젯을 전개(inflate)할 것을 요청해야 한다.
 
-In order to illustrate this, consider the russian dolls principle: closed you only see 1 doll but the latter contains another one which in turn contains another one and so on…
+이것을 설명하기 위해 러시아 인형의 원리를 생각해보면, 닫힌 인형 만 보이지만 다른 인형에는 다른 인형이 포함되어 있습니다.
+
 
 ![](https://www.didierboelens.com/images/internals_russian_dolls.png)
 
-When Flutter will have inflated all the widgets, part of the screen, it will be similar to obtaining all the different russian dolls, part of the whole.
+플러터가 일부에서 전체로 모든 위젯을 전개했을 때, 그것은 전체에서 일부인 다른 러시아 인형을 얻는 것과 유사할 것입니다.
 
-The following diagram shows a part of the final Widget hierarchical structure that corresponds to the previous code. In yellow, I have highlighted the Widgets that were mentioned in the code so that you can spot them in the resulting partial widgets tree.
+다음 diagram은 이전 코드에 해당하는 최종 위젯 계층 구조의 일부를 보여준다. 노란색으로 코드에 언급된 위젯을 강조하여 부분 위젯 트리에서 찾을 수 있도록 하였습니다.
 
 ![](https://www.didierboelens.com/images/internals_inflated_widgets.png)
 
-> Important clarification
+> **중요 설명**
 >
-> The wording “Widget tree” only exists for sake of making it easier to understand since programmers are using Widgets but, in Flutter there is NO Widget tree!<br><br>
->In fact, to be correct, we should rather say: “tree of Elements“
+> "위젯 트리"라는 말은 프로그래머들이 위젯을 사용하기 때문에 이해하기 쉽게 하기 위해서 사용되지만,실제 플러터에는 위젯 트리가 없습니다!<br><br>
+>그 대신 "Tree의 Element"라고 말해야 합니다..
 
-It is now time to introduce the notion of Element…
 
-> To each widget corresponds one element. Elements are linked to each other and form a tree. Therefore an element is a reference of something in the tree.
+이제 Element의 개념에 대해 알아볼 시간입니다.
 
-At first, think of an element as a node which has a parent and potentially a child. Linked together via the parent relationship, we obtain a tree structure.
+> 각 위젯마다 하나의 요소에 해당합니다. 요소는 서로 연결되어 트리를 형성합니다. 따라서 요소는 트리에서 무언가를 참조합니다.
+
+요소를 부모와 잠재적으로 자식이있는 노드로 생각하십시오. 부모 관계를 통해 서로 연결되어 트리 구조를 얻습니다.
+
 
 ![](https://www.didierboelens.com/images/internals_element.png)
 
-As you can see in the picture above, the Element points to one Widget and may also point to a RenderObject.
+위 그림에서 볼 수 있듯이 요소는 하나의 위젯을 가리키고 RenderObject를 가리킬 수도 있습니다.
 
 > Even better… the Element points to the Widget which created the element !
 
-Let me recap…
-- there is no Widgets tree but a tree of Elements
-- Elements are created by the Widgets
-- an Element references the Widget that created it
-- Elements are linked together with the parent relationship
-Elements could have a child or children
-- Elements could also point to a RenderObject
+정리를 하자면
+- 위젯 트리는 없지만 요소 트리가 있습니다.
+- 위젯에 의해 요소가 생성됩니다.
+- 요소는 그것을 만든 위젯을 참조
+- 요소는 부모와 연결이 되어 있습니다. 그리고 요소에는 어린이가있을 수 있습니다
+- 요소는 RenderObject를 참조 할 수도 있습니다.
 
-> Elements define how parts of the visuals are linked to each other
+> 요소는 비주얼의 일부가 서로 연결되는 방식을 정의합니다.
 
-In order to better visualize where the notion of element fits, let’s consider the following visual representation:
 
 ![](https://www.didierboelens.com/images/internals_3_trees.png)
 
-As you can see the elements tree is the actual link between the Widgets and the RenderObjects.
+보시다시피 요소 트리는 위젯과 RenderObject 사이를 연결해 줍니다..
 
-But, why does the Widget create the Element?
+하지만 위젯이 요소를 왜 생성할 까요?
 
 ### 3 main categories of Widgets
 
-In Flutter, Widgets are split into 3 main categories, I personally call these categories:
-(but this is only my way of categorizing them)
 
-- the proxies
+Flutter에서 위젯은 3 가지 주요 범주로 나뉩니다. 개인적으로이 범주를 다음과 같이 부릅니다.
 
+- The proxies
 
   The main role of these Widgets is to hold some piece of information which needs to be made available to the Widgets, part of the tree structure, rooted by the proxies. A typical example of such Widgets is the InheritedWidget or LayoutId.
 
   These Widgets do not directly take part of the User Interface but are used by others to fetch the information they can provide.
 
-- the renderers
+- The renderers
 
-  These Widgets have a direct involvement with the layout of the screen as they define (or are used to infer) either:
+   이 위젯들은 화면 Layout과 직접 관련이 있습니다.
 
   - the dimensions;
   - the position;
   - the layout, rendering.
 
-  Typical examples are: Row, Column, Stack but also Padding, Align, Opacity, RawImage…
+  일반적인 예는 다음과 같습니다. 
+    - 행, 열, 스택 및 패딩, 정렬, 불투명도, RawImage…
 
 - the components.
 
-  These are the other Widgets which are not directly providing the final information related to dimensions, positions, look but rather data (or hint) which will be used to obtain the final information. These Widgets are commonly named components.
+  이들은 치수, 위치, 모양과 관련된 최종 정보를 직접 제공하지 않고 최종 정보를 얻는 데 사용될 데이터 (또는 힌트) 위젯입니다. 이 위젯은 일반적으로 컴포넌트라고합니다
 
-  Examples are: RaisedButton, Scaffold, Text, GestureDetector, Container…
+  Example: RaisedButton, Scaffold, Text, GestureDetector, Container…
 ![](https://www.didierboelens.com/images/internals_widgets_categories.png)
 
 The following PDF lists most of the Widgets, regrouped by categories.
