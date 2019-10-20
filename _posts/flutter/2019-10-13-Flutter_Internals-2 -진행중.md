@@ -19,6 +19,9 @@ header:
   overlay_image: assets/images/flutter_dart.png
   overlay_filter: 0.5
   teaser: assets/images/flutter-header.png
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 > Original Source : <https://www.didierboelens.com/2019/09/flutter-internals>
 > <br>Author : boeledi
