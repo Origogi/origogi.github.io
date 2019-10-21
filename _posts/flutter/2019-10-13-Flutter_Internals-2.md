@@ -345,7 +345,7 @@ abstract class Element extends DiagnosticableTree implements `BuildContext` {
 
 ### How useful the `BuildContext` can be?
 
-`BuildContext`는 Widget과 관련된 Element뿐만 아니라 Tree의 Widget 위치에도 해당하므로이 `BuildContext`는 다음과 같은 경우에 매우 유용합니다.
+`BuildContext`는 Widget과 관련된 Element뿐만 아니라 Tree의 Widget 위치에도 해당하므로 `BuildContext`는 다음과 같은 경우에 매우 유용합니다.
 
 - Widget에 해당하는 RenderObject의 참조를 얻습니다 (또는 Widget이 렌더러가 아닌 경우 하위 Widget).
 - RenderObject의 사이즈를 얻을 때
@@ -397,7 +397,7 @@ setState() 메소드를 호출 할 때  _element.markNeedsBuild()와 같은 일�
 
 ## 결론
 
-저는 Flutter가 어떻게 구성되었는지 아는 것이 흥미로울 수 있다고 생각했습니다. 그리고 모든 것이 효율적이고 확장 가능하도록 설계되었음을 기억하기를 바랍니다.
-그리고 Widget, Element, `BuildContext`, RenderObject와 같은 핵심 개념들이 항상 이해하기 쉽지는 않습ㄴ;다..
+저는 Flutter가 어떻게 구성되었는지 아는 것이 흥미로울 수 있다고 생각했습니다. 그리고 모든 것이 효율적이고 확장 가능하도록 설계되었음을 기억하기를 바랍니다.<br>
+그리고 Widget, Element, `BuildContext`, RenderObject와 같은 핵심 개념들이 항상 이해하기 쉽지는 않습니다.
 
 이 기사가 도움이 되었기를 바라며 나는 당신에게 행복한 코딩을 하기를 기원합니다.
