@@ -119,7 +119,7 @@ Flutter가 일부에서 전체로 모든 Widget을 전개했을 때, 그것은 �
 
 > 각 Widget마다 하나의 Element에 해당합니다. Element는 서로 연결되어 Tree를 형성합니다. 따라서 Element는 Tree에서 무언가를 참조합니다.
 
-Element를 Parrent와 잠재적으로 child가 있는 Node로 생각하십시오. Parrent 관계를 통해 서로 연결되어 Tree 구조를 얻습니다.
+Element를 parent와 잠재적으로 child가 있는 Node로 생각하십시오. parent 관계를 통해 서로 연결되어 Tree 구조를 얻습니다.
 
 ![](https://www.didierboelens.com/images/internals_element.png)
 
@@ -131,7 +131,7 @@ Element를 Parrent와 잠재적으로 child가 있는 Node로 생각하십시오
 - Widget Tree는 없지만 Element Tree가 있습니다.
 - Widget에 의해 Element가 생성됩니다.
 - Element는 그것을 만든 Widget을 참조합니다.
-- Element는 Parrent와 연결이 되어 있습니다. 그리고 Element에는 child가 있을 수 있습니다
+- Element는 parent와 연결이 되어 있습니다. 그리고 Element에는 child가 있을 수 있습니다
 - Element는 RenderObject를 참조 할 수도 있습니다.
 
 ![](https://www.didierboelens.com/images/internals_3_trees.png)
@@ -219,7 +219,6 @@ Flutter Engine이 SchedulerBinding을 깨워 마술 같은 일이 발생합니�
 
 아래의 Sequence Diagram 은 SchedulerBinding이 Flutter Engine으로부터 `onDrawFrame()` 요청을 수신 할 때 발생하는 상황을 보여줍니다.
 
-
 ![](https://www.didierboelens.com/images/internals_ondrawframe.png)
 
 **Step 1: the elements**
@@ -232,11 +231,11 @@ BuildOwner가 Element Tree 처리를 담당하므로 WidgetsBinding은 buildOwne
 rebuild() 메소드의 주요 역할은 다음과 같습니다.
 
 1. Element를 rebuild()하도록 요청하면 대부분의 경우 해당 Element가 참조하는 Widget의 build() 메소드를 호출합니다. (= method Widget build(`BuildContext` context){…}). build() 메소드는 새로운 Widget를 반환합니다.
-2. Element에 자식이 없으면 새 Widget이 Inflate 되고 그렇지 않으면
-3. 새로운 Widget은 Element의 자식이 참조한 Widget과 비교합니다.
+2. Element에 child이 없으면 새 Widget이 Inflate 되고 그렇지 않으면
+3. 새로운 Widget은 Element의 child이 참조한 Widget과 비교합니다.
     - 만약 Widget 간의 Type과 Key가 동일하다면 Child element는 유지된 채로 업데이트 됩니다.
     - 만약 Widget 간의 Type과 Key가 동일하지 않는다면, Child element는 버려지고 새로운 widget이 inflate 됩니다.
-4. Widget의 Inflate 은 새로운 Element를 생성합니다, 그리고 Element의 새 자식으로 mount됩니다. (mounted = Element Tree에 삽입)
+4. Widget의 Inflate 은 새로운 Element를 생성합니다, 그리고 Element의 새 child으로 mount됩니다. (mounted = Element Tree에 삽입)
 
 다음 애니메이션은이 위 과정을 좀 더 시각적으로 표현합니다.
 
@@ -280,7 +279,7 @@ RendererBinding은 Rendering Tree 처리를 담당하므로 WidgetsBinding은 Re
 - Dirty로 표시된 각 RenderObject는 레이아웃을 수행하도록 요청됩니다.(dimensions, geometry를 계산하는 것을 의미)
 - 다시 그릴 필요가 있다고 표시된 RenderObject는 RenderObject의 레이어를 사용하여 다시 그리게 됩니다.
 
-- 결과 씬(scene)을 생성하여 플로터 엔진으로 전송하여 Device 화면으로 전송하도록 한다.
+- 결과 씬(scene)을 생성하여 Flutter 엔진으로 전송하여 Device 화면으로 전송하도록 한다.
 
 - 마지막으로 Semantics도 업데이트되어 Flutter Engine으로 전송된다.
 
@@ -304,12 +303,12 @@ Flutter Engine이 Guesture 관련 이벤트와 관련된 정보를 window.onPoin
 
 애니메이션을 시작할 때 일반적으로 AnimationController 또는 이와 유사한 Widget 또는 구성 Element를 사용합니다.
 
-Flutter에서 애니메이션과 관련된 모든 것은 Ticker의 개념을 참고합니다.
+Flutter에서 애니메이션과 관련된 모든 것은 `Ticker`의 개념을 참고합니다.
 
 Ticker는 활성화 된 경우 단 한 가지만 수행합니다. SchedulerBinding이 콜백을 등록하도록 요청하고 다음에 사용 가능한 경우 Flutter Engine에 다시 호출하도록 요청합니다".
-Flutter Engine이 준비되면 "onBeginFrame"요청을 통해 SchedulerBinding을 호출합니다.
+Flutter Engine이 준비되면 `onBeginFrame` 요청을 통해 SchedulerBinding을 호출합니다.
 
-SchedulerBinding은 이 요청을 가로 챈 다음 Ticker callback 목록을 순회하고 각각을 호출합니다.
+SchedulerBinding은 이 요청을 가로 챈 다음 Ticker callback 목록을 순회하고 각각 item을 호출합니다.
 
 각 tikcer tick 은 이 이벤트에 관심이 있는 모든 컨트롤러에 의해 intercepted 처리됩니다. 애니메이션이 완료되면 Ticker가 "비활성화"되고, 그렇지 않으면 Ticker가 다른 콜백을 예약하도록 SchedulerBinding을 요청합니다.
 
