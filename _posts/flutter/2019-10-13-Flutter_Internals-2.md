@@ -32,11 +32,11 @@ sitemap :
 
 모든 Flutter 문서에서 모든 것이 Widget으로 통합니다.
 
-글쎄, 그것은 거의 정확하지만 좀 더 정확하기 위해서는 오히려 다음과 같이 말하고 싶습니다.
+그것은 거의 정확하지만 좀 더 정확하기 위해서는 오히려 다음과 같이 말하고 싶습니다.
 
 > 개발자의 관점에서 레이아웃 및 유저와 상호작용 관련된 모든 것은 Widget을 통해 수행됩니다.
 
-Widget을 사용하면 개발자가 화면의 일부를 치수, 내용, 레이아웃 및 상호 작용 측면에서 정의 할 수 있기 때문에 훨씬 더 많은 기능이 있습니다. <br>
+Widget을 사용하면 개발자가 화면의 일부를 dimensions, content, layout 및 상호 작용 측면에서 정의 할 수 있기 때문에 훨씬 더 많은 기능이 있습니다. <br>
 실제로 Widget이란 정확히 무엇일까요?
 
 ### Immutable Configuration
@@ -112,8 +112,8 @@ Flutter가 일부에서 전체로 모든 Widget을 전개했을 때, 그것은 �
 
 > **중요 설명**
 >
-> "Widget Tree"라는 말은 프로그래머들이 Widget을 사용하기 때문에 이해하기 쉽게 하기 위해서 사용되지만 실제 Flutter에는 Widget Tree가 없습니다!<br><br>
->그 대신 "Element Tree"라고 말해야 합니다.
+> `Widget Tree`라는 말은 프로그래머들이 Widget을 사용하기 때문에 이해하기 쉽게 하기 위해서 사용되지만 실제 Flutter에는 Widget Tree가 없습니다!<br><br>
+>그 대신 `Element Tree`라고 말해야 합니다.
 
 이제 Element의 개념에 대해 알아볼 시간입니다.
 
@@ -177,7 +177,7 @@ Flutter에서 Widget은 3 가지 main Category로 나뉩니다. 개인적으로 
 
 Category 별로 Widget을 나누는 것이 중요한 이유는 Element의 Type과 연관이 되어 있기 때문입니다.
 
-### The Element types
+### Element types
 
 Element는 아래 그림과 같이 나눌수 있습니다.
 
@@ -186,14 +186,14 @@ Element는 아래 그림과 같이 나눌수 있습니다.
 Elements는 크게 두 가지 타입으로 나눌수 있습니다.
 
 - ComponentElement
-    이 Element는 시각적 Render링 부분과 직접적으로 일치하지 않습니다.
+    이 Element는 시각적 Rendering부분과 직접적으로 일치하지 않습니다.
 
 - RenderObjectElement
-    이 Element는 Render링 된 화면의 일부에 해당합니다.
+    이 Element는 Rendering 된 화면의 일부에 해당합니다.
 
 ### Widget가 Element는 어떻게 연동이 되는 지
 
-> Flutter에서 Mechanism 은 Element 또는 RenderObject를 Invalidate 하는 데 의존합니다.
+> Flutter 전체 Mechanism 은 Element 또는 RenderObject를 Invalidate 하는 데 의존합니다.
 
 Element를 Invalidate 하는 방법은 아래와 같습니다.
 
@@ -207,7 +207,7 @@ RenderObject를 Invalidate하면 Element 구조에 변경 사항이 적용되지
 - dimensions, position, geometry 변경
 - 다시 그려야 하는 경우 예를 들어 배경색을 변경하거나 폰트 변경
 
-이러한 Invalidate의 결과는 해당 RenderObject가 다시 작성되거나 다시 그려 져야하는 RenderObject 목록에서 참조가 됩니다.
+이러한 Invalidate의 결과는 해당 RenderObject가 다시 작성되거나 다시 그려 져야하는 RenderObject List에서 참조가 됩니다.
 
 Invalidate 유형에 관계없이 SchedulerBinding은 Flutter Engine에 새 프레임을 예약하도록 요청합니다.
 
@@ -227,7 +227,7 @@ Flutter Engine이 SchedulerBinding을 깨워 마술 같은 일이 발생합니�
 WidgetsBinding이 호출 된 후 먼저 Element와 관련된 변경 사항을 체크합니다.
 
 BuildOwner가 Element Tree 처리를 담당하므로 WidgetsBinding은 buildOwner의 buildScope 메소드를 호출합니다.
-이 메소드는 Invalidate 된 Element 목록 (= dirty)을 반복하고 rebuild 하도록 요청합니다.
+이 메소드는 Invalidate 된 Element 목록 (= dirty)을 순회하고 rebuild 하도록 요청합니다.
 
 rebuild() 메소드의 주요 역할은 다음과 같습니다.
 
@@ -284,7 +284,7 @@ RendererBinding은 Rendering Tree 처리를 담당하므로 WidgetsBinding은 Re
 
 - 마지막으로 Semantics도 업데이트되어 Flutter Engine으로 전송된다.
 
-이러한 동작의 flow가 끝나면 Device 화면이 업데이트된다.
+이러한 동작의 flow가 끝나면 Device 화면이 업데이트됩니다.
 
 ## Part 3: Gesture 처리
 
