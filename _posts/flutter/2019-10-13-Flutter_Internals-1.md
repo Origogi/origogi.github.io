@@ -176,7 +176,7 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 
 다음 Diagram 은 이 기사에서 나중에 다루게 될 `binding`과 Flutter Engine 간의 상호 작용을 보여줍니다.
 
-![](https://www.didierboelens.com/images/internals_binding.png)
+![](https://www.didierboelens.com/images/internals_bindings.png)
 
 이게 각각 주요 `binding`에 대해 알아 봅시다.
 
