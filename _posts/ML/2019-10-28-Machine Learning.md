@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 교육 정리"
+title: "Machine Learning 을 위한 Pre Processing"
 excerpt : " "
 layout: single
 # classes : wide
@@ -24,9 +24,9 @@ sitemap :
   changefreq : daily
   priority : 1.0
 ---
-
-
 # Machine Learning(ML)
+
+Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## Data 주요 개념
 
@@ -42,9 +42,9 @@ sitemap :
 2. Jetbrain PyCharm 설치
 3. Python 설치
 
-## Python
+# Python
 
-### 기본 특성
+## 기본 특성
 
 - 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
 - 간략화된 문법(배우기가 쉽다)
@@ -65,13 +65,13 @@ hello_wordl = hello + ', ' + world
 // 링크드 리스트 연결이 됨
 ~~~
   
-### Jupyter notebook
+## Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
-### 문자열
+## 문자열
 
 ~~~python
 s = 'Good morning'
@@ -88,9 +88,9 @@ e = '%10.3f'%(323.323323323) // '   323.323'
 '{:10.3f}'.format(323.3233232323)  // '   323.323'
 ~~~
 
-### 자료구조
+## 자료구조
 
-1. List
+### 1. List
   
   > 참고로 List는 Linked List 를 사용한다.
   > 대용량 데이터를 처리 할 때 느리다.
@@ -108,7 +108,7 @@ a.sort()
 a // [0,1,4,5]
 ~~~
   
-2. Tuple
+### 2. Tuple
 
   > List와 비슷하나 수정이 불가능 하다.
 
@@ -130,7 +130,7 @@ three // 3
 name, age, address = 'kim', 30 , 'seoul'
 ~~~
 
-3. Dictionary
+### 3. Dictionary
 
 - Key 값과 Value를 쌍으로 저장
 - Key는 Set으로 구현이 되어있고 Value는 Collection으로 구현이 되어 있다.
@@ -144,7 +144,7 @@ name, age, address = 'kim', 30 , 'seoul'
  data.items() // dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
 ~~~
   
-4. Set
+### 4. Set
 
 - 저장된 순서 보장하지 않는다.
 - 접근 속도가 빠르다.
