@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing"
+title: "Machine Learning 을 위한 Pre Processing (1)"
 excerpt : " "
 layout: single
 classes : wide
