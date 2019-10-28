@@ -28,6 +28,8 @@ sitemap :
 
 ## Part 2: from Widgets to pixels
 
+---
+
 이제 내부 동작에 대한 기본을 소개 했으므로 이제 Widget에 대해 이야기 할 차례입니다.
 
 모든 Flutter 문서에서 모든 것이 Widget으로 통합니다.
@@ -77,7 +79,7 @@ Widget build(`BuildContext` context){
 
 이 sample은 7 개의 Widget을 사용하며 계층 구조를 구성합니다. 위 코드를 다음 그림과 같이 단순화 시킬수 있습니다.
 
-![](https://www.didierboelens.com/images/internals_widgets_tree.png)
+![dd](https://www.didierboelens.com/images/internals_widgets_tree.png)
 
 위 그림과 같이 SafeArea가 Tree의 root 인 것 처럼 보입니다.
 
@@ -101,14 +103,13 @@ Widget build(`BuildContext` context){
 
 이것을 설명하기 위해 러시아 인형의 원리를 생각해보면, 처음에는 닫힌 인형 만 보이지만 뚜껑을 열어보면 다른 인형에는 다른 인형이 포함 되어 있는 것을 볼수 있습니다.
 
-
-![](https://www.didierboelens.com/images/internals_russian_dolls.png)
+![dd](https://www.didierboelens.com/images/internals_russian_dolls.png)
 
 Flutter가 일부에서 전체로 모든 Widget을 전개했을 때, 그것은 전체에서 일부인 다른 러시아 인형을 얻는 것과 유사할 것입니다.
 
 다음 diagram은 이전 코드에 해당하는 Full Widget 계층 구조의 일부를 보여 줍니다. 노란색으로 코드에 언급된 Widget을 강조하여 Partial Widget Tree에서 찾을 수 있도록 하였습니다.
 
-![](https://www.didierboelens.com/images/internals_inflated_widgets.png)
+![dd](https://www.didierboelens.com/images/internals_inflated_widgets.png)
 
 > **중요 설명**
 >
@@ -121,13 +122,14 @@ Flutter가 일부에서 전체로 모든 Widget을 전개했을 때, 그것은 �
 
 Element를 parent와 잠재적으로 child가 있는 Node로 생각하십시오. parent 관계를 통해 서로 연결되어 Tree 구조를 얻습니다.
 
-![](https://www.didierboelens.com/images/internals_element.png)
+![dd](https://www.didierboelens.com/images/internals_element.png)
 
 위 그림에서 볼 수 있드시 Element는 하나의 Widget을 가리키고 RenderObject를 가리킬 수도 있습니다.
 
 > 참고로 Element는 Element를 생성한 Widget를 참조합니다.
 
 정리를 하자면
+
 - Widget Tree는 없지만 Element Tree가 있습니다.
 - Widget에 의해 Element가 생성됩니다.
 - Element는 그것을 만든 Widget을 참조합니다.
@@ -160,18 +162,18 @@ Flutter에서 Widget은 3 가지 main Category로 나뉩니다. 개인적으로 
   - Position
   - Layout, rendering
 
-  일반적인 예는 다음과 같습니다. 
-    - Row, Column, Stack but also Padding, Align, Opacity, RawImage…
+  일반적인 예는 다음과 같습니다.
+  - Row, Column, Stack but also Padding, Align, Opacity, RawImage…
 
 - Components.
 
   Components 는 dimensions, positions과 관련된 최종 정보를 직접 제공하는 것이 아니라 최종 정보를 얻기 위해 사용될 데이터(또는 힌트)를 제공하는 Widget입니다.
 
-  일반적인 예는 다음과 같습니다. 
+  일반적인 예는 다음과 같습니다.
 
-   - RaisedButton, Scaffold, Text, GestureDetector, Container…
+  - RaisedButton, Scaffold, Text, GestureDetector, Container…
 
-![](https://www.didierboelens.com/images/internals_widgets_categories.png)
+![dd](https://www.didierboelens.com/images/internals_widgets_categories.png)
 
 다음 [PDF](http://www.example.com/)에는 Category 별로 로 재구성한 Widget들이 나열 되어 있습니다.
 
@@ -181,7 +183,7 @@ Category 별로 Widget을 나누는 것이 중요한 이유는 Element의 Type�
 
 Element는 아래 그림과 같이 나눌수 있습니다.
 
-![](https://www.didierboelens.com/images/internals_element_types.png)
+![dd](https://www.didierboelens.com/images/internals_element_types.png)
 
 Elements는 크게 두 가지 타입으로 나눌수 있습니다.
 
@@ -219,7 +221,7 @@ Flutter Engine이 SchedulerBinding을 깨워 마술 같은 일이 발생합니�
 
 아래의 Sequence Diagram 은 SchedulerBinding이 Flutter Engine으로부터 `onDrawFrame()` 요청을 수신 할 때 발생하는 상황을 보여줍니다.
 
-![](https://www.didierboelens.com/images/internals_ondrawframe.png)
+![dd](https://www.didierboelens.com/images/internals_ondrawframe.png)
 
 **Step 1: the elements**
 
@@ -239,7 +241,7 @@ rebuild() 메소드의 주요 역할은 다음과 같습니다.
 
 다음 애니메이션은이 위 과정을 좀 더 시각적으로 표현합니다.
 
-![](https://www.didierboelens.com/images/internals_ondrawframe.gif)
+![dd](https://www.didierboelens.com/images/internals_ondrawframe.gif)
 
 **Widget inflating 참고사항**
 
@@ -272,7 +274,7 @@ RendererBinding은 Rendering Tree 처리를 담당하므로 WidgetsBinding은 Re
 
 아래 Diagram은 drawFrame() 요청 중에 수행되는 일련의 동작을 보여줍니다.
 
-![](https://www.didierboelens.com/images/internals_drawframe_rendering.png)
+![dd](https://www.didierboelens.com/images/internals_drawframe_rendering.png)
 
 이 단계 동안 다음 동작이 수행됩니다.
 
@@ -287,6 +289,8 @@ RendererBinding은 Rendering Tree 처리를 담당하므로 WidgetsBinding은 Re
 
 ## Part 3: Gesture 처리
 
+---
+
 Guesture (= 유리 위의 손가락 관련 이벤트)는 Guesture Binding에 의해 처리됩니다.
 
 Flutter Engine이 Guesture 관련 이벤트와 관련된 정보를 window.onPointerDataPacket API를 통해 보내면 GestureBinding이 이를 가로 채고 버퍼링을 진행하며 다음 과정을 수행합니다.
@@ -299,6 +303,9 @@ Flutter Engine이 Guesture 관련 이벤트와 관련된 정보를 window.onPoin
 이 설명에서 RenderObjects가 얼마나 중요한지 직접 확인할 수 있습니다.
 
 ## Part 4: Animations
+
+---
+
 이 기사의 마지막 부분은 애니메이션 개념, 특히 `Ticker` 개념에 중점을 둡니다.
 
 애니메이션을 시작할 때 일반적으로 AnimationController 또는 이와 유사한 Widget 또는 구성 Element를 사용합니다.
@@ -314,11 +321,15 @@ SchedulerBinding은 이 요청을 가로 챈 다음 Ticker callback 목록을 �
 
 ## Global Picture
 
+---
+
 이제 Flutter 내부의 작동 방식을 살펴 봤으므로 다음은 전체적인 그림입니다.
 
-![](https://www.didierboelens.com/images/internals_big_picture.png)
+![dd](https://www.didierboelens.com/images/internals_big_picture.png)
 
 ## `BuildContext`
+
+---
 
 다른 Element 유형을 표시하는 Diagram을 기억한다면 대부분 기본 Element의 signature를 알 수 있습니다.
 
@@ -396,7 +407,9 @@ setState() 메소드를 호출 할 때  _element.markNeedsBuild()와 같은 일�
 
 ## 결론
 
-저는 Flutter가 어떻게 구성되었는지 아는 것이 흥미로울 수 있다고 생각했습니다. 그리고 모든 것이 효율적이고 확장 가능하도록 설계되었음을 기억하기를 바랍니다.<br>
+---
+
+저는 Flutter가 어떻게 구성되었는지 아는 것이 흥미로울 수 있다고 생각했습니다. 그리고 모든 것이 효율적이고 확장 가능하도록 설계되었음을 기억하기를 바랍니다.
 그리고 Widget, Element, `BuildContext`, RenderObject와 같은 핵심 개념들이 항상 이해하기 쉽지는 않습니다.
 
 이 기사가 도움이 되었기를 바라며 나는 당신에게 행복한 코딩을 하기를 기원합니다.

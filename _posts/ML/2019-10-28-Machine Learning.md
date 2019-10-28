@@ -3,7 +3,7 @@ published: true
 title: "Machine Learning 을 위한 Pre Processing"
 excerpt : " "
 layout: single
-# classes : wide
+ classes : wide
 author_profile: true
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
@@ -18,13 +18,14 @@ tags:
   - Python
 comments: true
 header:
-  overlay_image: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
   overlay_filter: 0.5
+  overlay_image: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
   teaser: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
 sitemap :
   changefreq : daily
   priority : 1.0
 ---
+
 # Machine Learning(ML)
 
 Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
@@ -285,4 +286,110 @@ def add (*data) :
 
 add(4,5,1) #10
 add(2,3) # 5
+
+def print_team(**players) :
+    for k in players.keys() :
+        print('{} = {}'.format(k, players[k]))
+
+print_team(카시야스='GK', 호날두='FW', 알론소='MF', 페페='DF')
+# 카시야스 = GK
+# 호날두 = FW
+# 알론소 = MF
+# 페페 = DF
+~~~
+
+### 힘수 포인터
+
+~~~python
+def plus(a,b) :
+    return a + b
+def minus(a,b) :
+    return a- b
+
+func = [plus, minus]
+func[0](2,3) # 5
+
+func[1](2,3) # -1
+
+def hello_korean() :
+    print('안녕하세요')
+
+def hello_english() :
+    print('hello')
+
+def get_greeting(where) :
+    if where == 'K' :
+        return hello_korean
+    else :
+        return hello_english
+
+hello = get_greeting('K')
+hello() # 안녕하세요
+
+hello = get_greeting('E')
+hello() # hello
+~~~
+
+## 객제 지향 프로그래밍
+
+- 생성자
+
+~~~python
+class Car :
+  # 생성자는 __init__
+  # 자기 자신(this)은 self
+def __init__(self):
+    print('init call')
+    self.color = 'RED'
+    self.wheel_size = 16
+    self.displacement = 2000
+def info_print(self) :
+  print('color : {}, wheel size : {}'.format  (self.color, self.wheel_size))
+
+a = Car() # init call
+a.info_print() # color : RED, wheel size : 16
+~~~
+
+만약 맴버 변수를 `__init__` 이 아닌 바깥 스코프에 선언하면 어떻게 동작할까?
+
+~~~python
+class InstanceC :
+    text_list = []
+    
+    def __init__(self) :
+        print('init')
+    def add(self, text):
+        self.text_list.append(text)
+    def print_list(self) :
+        print(self.text_list)
+
+a = InstanceC()
+a.add('kim')
+a.print_list() # ['kim']
+
+b = InstanceC()
+b.add('Lee')
+b.print_list() # ['kim', 'Lee']
+# text_list 가 static 으로 동작한다.
+~~~
+
+위 코드를 아래와 같이 수정하면 의도대로 동작한다.
+
+~~~python
+class InstanceC :
+    def __init__(self) :
+        self.text_list = []
+        print('init')
+    def add(self, text):
+        self.text_list.append(text)
+    def print_list(self) :
+        print(self.text_list)
+
+a = InstanceC()
+a.add('kim')
+a.print_list() # ['kim']
+
+b = InstanceC()
+b.add('Lee')
+b.print_list() # ['Lee']
 ~~~
