@@ -45,9 +45,11 @@ Widgets, Elements, BuildContext, RenderOject, binding이란 무엇일까..??
 하지만 당신은 Widget이 실제로 어떻게 작동하는지 궁금하지 않으셨습니까? 시스템은 화면이 언제 업데이트 되는 지와 업데이트 해야 하는 부분을 어떻게 알 수 있습니까?
 
 ## 1부: 사전 지식
+
 이 글의 첫 부분은 이 게시물의 두 번째 부분을 더 잘 이해하기 위해 몇 가지 핵심 개념을 소개합니다.
 
 ### Device로 돌아 가기
+
 일단 기본부터 생각해 봅시다.
 
 만약 Device에서 app을 실행하게 되면 Device에서 실행중인 app은 화면으로 표시가 됩니다.
@@ -81,7 +83,7 @@ Flutter Framework는 Window라는 추상화 계층을 통해 Flutter Engine (파
 
 아래 경우에 대해서 Fluttter Engine은 Flutter Framework로 추상화 계층을 통해 이벤트를 전달한다.
 
- - Device 레벨에서 특정 이벤트가 발생함(방향 변경, 설정 변경, 메모리 문제, 애플리케이션 실행 상태 등)
+- Device 레벨에서 특정 이벤트가 발생함(방향 변경, 설정 변경, 메모리 문제, 애플리케이션 실행 상태 등)
 - Grass 레벨에서 일부 이벤트가 발생함(= Gesture)
 - 플랫폼 채널에서 일부 데이터 전송
 - _하지만 무엇보다도 플로터 Engine이 새 프레임을 Rendering할 준비가 되었을 때_
@@ -121,9 +123,10 @@ Gesture와 관련된 일부 코드가 실행되어 시각적 변경을 하거나
 6.  이 모든 작업이 완료되면 painting 측면에서 레이아웃 업데이트와 관련된 작업을 계속 진행한다.
 7. 화면에 그려야 할 것이 있으면 새 Scean을 Flutter Engine으로 Rendering 하여 화면을 업데이트합니다.
 8. Flutter Framework 는 렌더링이 완료된 후 (= PostFrame 콜백 ) 렌더링과 관련이없는 다른 후속 작업 이 실행 된 후 실행할 모든 작업을 실행합니다 .
-9. … 그리고 위 순서를 다시 반복을 합니다.
+9. 그리고 위 순서를 다시 반복을 합니다.
 
 ### RenderView 및 RenderObject
+
 동작 흐름과 관련된 세부 사항을 살펴보기 전에 Rendering tree 개념을 알아볼 차례입니다.
 
 앞에서 언급했듯이 모든 것은 화면에 표시되는 일련의 픽셀이되고 Flutter Framework는 응용 프로그램을 개발하는 데 사용하는 Widget을 화면에 Rendering하여 시각적 부분으로 변환시킵니다.
@@ -139,7 +142,7 @@ Gesture와 관련된 일부 코드가 실행되어 시각적 변경을 하거나
 
 위 내용을 다음 그림으로 표현할 수 있다.
 
-![](https://www.didierboelens.com/images/internals_renderView.png)
+![gr](https://www.didierboelens.com/images/internals_renderView.png)
 
 그리고 `Widget`과 `RenderObjects`의 관계는 이 기사의 뒷부분에서 설명합니다.
 
@@ -176,7 +179,7 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 
 다음 Diagram 은 이 기사에서 나중에 다루게 될 `binding`과 Flutter Engine 간의 상호 작용을 보여줍니다.
 
-![](https://www.didierboelens.com/images/internals_bindings.png)
+![GR](https://www.didierboelens.com/images/internals_bindings.png)
 
 이게 각각 주요 `binding`에 대해 알아 봅시다.
 
@@ -204,7 +207,6 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 
 ### RendererBinding
 
-
 이 `binding`은 Flutter Engine과 Render Tree 사이의 접착제 입니다. 여기에는 두 가지 역할이 있습니다.
 
 1. 엔진에서 발생하는 이벤트를 듣고 장치 설정을 통해 사용자가 적용한 변경 사항을 시각적/의미적 으로 나타내는 것입니다.
@@ -215,7 +217,6 @@ runApp() 메서드를 호출 중에 Flutter Framework는 Flutter Framework와 Fl
 `PipelineOwner`는 레이아웃과 관련하여 어떤 `RenderObject`가 어떤 작업을 수행해야하는지 알고 이러한 작업을 조정하는 일종의 orchestra 역할을 수행합니다.
 
 ### WidgetsBinding
-
 
 이 `binding`은 언어 (= locale) 및 Semantics에 영향을 주는 Device Setting 같이 사용자가 적용한 변경 사항을 수신합니다.
 

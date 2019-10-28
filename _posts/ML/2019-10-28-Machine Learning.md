@@ -15,10 +15,11 @@ categories :
 tags: 
   - ML
   - Machine Learning
+  - Python
 comments: true
 header:
   overlay_image: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
-  #overlay_filter: 0.5
+  overlay_filter: 0.5
   teaser: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
 sitemap :
   changefreq : daily
@@ -30,6 +31,8 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## Data 주요 개념
 
+---
+
 - Data 가 가장 중요하다.
 - Data 에 대해서 전처리 과정을 통해 의미 있는 Data를 학습을 해야 ML의 예측 성능이 높아진다.
 - Data를 모을수록 좋다. (좋은 Data)
@@ -38,13 +41,18 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## 환경 셋업
 
+---
+
 1. 아나콘다 설치
 2. Jetbrain PyCharm 설치
 3. Python 설치
 
+---
 # Python
 
 ## 기본 특성
+
+---
 
 - 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
 - 간략화된 문법(배우기가 쉽다)
@@ -67,11 +75,15 @@ hello_wordl = hello + ', ' + world
   
 ## Jupyter notebook
 
+---
+
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https:#user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
 ## 문자열
+
+---
 
 ~~~python
 s = 'Good morning'
@@ -90,6 +102,8 @@ e = '%10.3f'%(323.323323323) # '   323.323'
 
 ## 자료구조
 
+---
+
 ### 1. List
   
   > 참고로 List는 Linked List 를 사용한다.
@@ -97,7 +111,7 @@ e = '%10.3f'%(323.323323323) # '   323.323'
   
 ~~~python
 a = ['jone' , 'kim', 'aaa']
-b = b = [ 1, 2.0, 'kim', True, False] # 타입에 구애 받지 않는다. 
+b = b = [ 1, 2.0, 'kim', True, False] # 타입에 구애 받지 않는다.
 b[2:] # ['kim', True, False]  #String 과 마찬가지로 슬라이싱이 가능하다.
 a + b # ['jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
 a * 2 + b * 1 # ['jone', 'kim', 'aaa', 'jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
@@ -154,4 +168,121 @@ name, age, address = 'kim', 30 , 'seoul'
 setA = {11, 1 ,2 ,3 ,3 ,11}
 type(setA) ## set
 setA #{1, 2, 3, 11}
+~~~
+
+## 흐름 제어
+
+---
+
+- `None` : 값이 없음(empty)을 의미
+  
+### 코드 블록(Code Block)
+  
+- 여러 코드가 이루는 일정한 구역
+
+> python은 들여쓰기로 구분 되기 때문에 들여쓰기를 유의해서 작성하자
+
+~~~python
+print('수를 입력하시오')
+
+a = int(input())
+
+if a == 0:
+    print('0은 나눗셈에 이용할 수 없습니다.')
+else :
+    print('3/', a, '=', 3/a)
+
+num = int(input('숫자를 입력하시오'))
+
+if (num > 90) :
+    print('num >90')
+elif (num > 80):
+    print('num >80')
+else :
+    print('num<=80')
+~~~
+
+### 반복문
+
+> for `반복변수` in `순서열` :
+> `코드 블록`
+>
+> `순서열`은 `List`, `Tuple`, `Dictionary` 가 될수 있다.
+
+~~~python
+for i in ['one', 'two', 'three', 'for'] :
+  print(i)
+
+for i in 'name', 'age', 'address' :
+    print(i)
+
+# (초기값, 종료값, 증강값)
+for i in range(0,10,1) :
+  print(i)
+
+# 초기값, 증강값 생략 가능
+for i in range(7) :
+    print(i)
+
+dic = {'애플' : 'www.apple.com',
+      '파이썬' : 'www.python.org',
+      '마이크로소프트' : 'www.microsoft.com'}
+
+for k,v in dic.items() :
+    print('{} : {}'.format(k,v))
+
+~~~
+
+## 함수
+
+---
+
+- 함수를 정의할 때 `def` 키워드를 사용한다.
+
+~~~python
+def hello() :
+  print('hello')
+
+def add(a,b) :
+    return a +b
+
+add(10,20) #30
+add ('hello ' , 'world') # hello world
+
+def print_personnel(name, position = 'staff', nationality = 'Korea') :
+    print('name = {}'.format(name))
+    print('position = {}'.format(position))
+    print('nationality = {}'.format(nationality))
+
+print_personnel(name = '박상현')
+# name = 박상현
+# position = staff
+# nationality = Korea
+
+print_personnel(name = '박상현', position = '인턴')
+# name = 박상현
+# position = 인턴
+# nationality = Korea
+
+# 인자의 순서도 변경 가능
+print_personnel(position = '인턴', name = '박상현' )
+# name = 박상현
+# position = 인턴
+# nationality = Korea
+~~~
+
+> Python은 리턴 타입을 명시 하지 않는다. 왜냐하면 변수 자체에 타입이 없기 때문
+> 함수 인자 타입에 따른 함수 오버로드도 의미가 없다. 함수 인자도 타입이 없기 때문
+
+### 가변 매개변수
+
+~~~python
+def add (*data) :
+    result = 0
+    for d in data :
+        result += d
+    return result
+
+add(4,5,1) #10
+add(2,3) # 5
 ~~~
