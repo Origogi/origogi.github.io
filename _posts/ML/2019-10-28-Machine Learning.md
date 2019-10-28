@@ -80,7 +80,7 @@ hello_wordl = hello + ', ' + world
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
-![notebook-2](https:#user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
+![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
 ## 문자열
 
