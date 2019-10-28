@@ -3,7 +3,7 @@ published: true
 title: "Machine Learning 을 위한 Pre Processing"
 excerpt : " "
 layout: single
- classes : wide
+classes : wide
 author_profile: true
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
@@ -393,3 +393,26 @@ b = InstanceC()
 b.add('Lee')
 b.print_list() # ['Lee']
 ~~~
+
+
+### Class Private Member
+
+~~~python
+class HasPrivate :
+    def __init__(self) :
+        self.pubValue = 'public value'
+        self.__priValue = 'private value'
+        
+    def print_data(self) :
+        print(self.pubValue)
+        print(self.__priValue)
+
+obj = HasPrivate()
+obj.print_data()
+# public value
+# private value
+
+obj.pubValue
+obj.__priValue # error 발생!!
+~~~
+
