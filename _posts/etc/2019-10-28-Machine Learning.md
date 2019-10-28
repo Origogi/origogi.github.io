@@ -26,7 +26,7 @@ sitemap :
 
 # Machine Learning(ML)
 
-##Data 주요 개념
+## Data 주요 개념
 
 - Data 가 가장 중요하다.
 - Data 에 대해서 전처리 과정을 통해 의미 있는 Data를 학습을 해야 ML의 예측 성능이 높아진다.
@@ -43,10 +43,49 @@ sitemap :
 ## Python 
 
 1. 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
+  
+  ~~~python
+  a = 10
+  // 변수 타입을 따로 지정하지 않음
+  // 인스턴스 주소만 저장함
+  ~~~
 2. 간략화된 문법(배우기가 쉽다)
-3. ML 관련 유명 라이브러리
+3. 배열이 없다.
+4. ML 관련 유명 라이브러리
   - Numpy
   - Pandas(데이터 join)
   - 크롤링
   - Matplotlib(그래프)
+5. 문자와 문자열 구분이 없다. (문자열은 Linked List 형태로 저장)
+  - Operator
+  ~~~python
+  hello = 'hello'
+  world = 'world'
+
+  hello_wordl = hello + ', ' + world
+  // 링크드 리스트 연결이 됨
+  ~~~
+  - 문자열 기본
+  ~~~ python
+  s = 'Good morning'
+  s[0:4]  // 'Good'
+  s[-1] // 'g' 맨 마지막 글자
+  s[2:] // 'od morning'
+  s[:5] // 'Good '
+  len(s) // 12 , 문자열 길이
+  
+  //Format api
+  a = 'My name is {}. I am {} years old'.format('Mario', 20)
+  // 'My name is Mario. I am 20 years old'
+  e = '%10.3f'%(323.323323323) // '   323.323'
+  '{:10.3f}'.format(323.3233232323)  // '   323.323'
+
+  ~~~
+ 
+
+  
+  
+
+  
+  ## Jupyter notebook
 
