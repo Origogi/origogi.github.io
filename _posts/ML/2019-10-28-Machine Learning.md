@@ -4,7 +4,7 @@ title: "Machine Learning 을 위한 Pre Processing"
 excerpt : " "
 layout: single
 # classes : wide
-author_profile: false
+author_profile: true
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
 toc_label: "My Table of Contents" # toc 이름 정의
@@ -17,9 +17,9 @@ tags:
   - Machine Learning
 comments: true
 header:
-  overlay_image: https://images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
+  overlay_image: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
   #overlay_filter: 0.5
-  teaser: https://images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
+  teaser: https:#images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
 sitemap :
   changefreq : daily
   priority : 1.0
@@ -62,30 +62,30 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 hello = 'hello'
 world = 'world'
 hello_wordl = hello + ', ' + world
-// 링크드 리스트 연결이 됨
+# 링크드 리스트 연결이 됨
 ~~~
   
 ## Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
-![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
+![notebook-2](https:#user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
 ## 문자열
 
 ~~~python
 s = 'Good morning'
-s[0:4]  // 'Good'
-s[-1] // 'g' 맨 마지막 글자
-s[2:] // 'od morning'
-s[:5] // 'Good '
-len(s) // 12 , 문자열 길이
+s[0:4]  # 'Good'
+s[-1] # 'g' 맨 마지막 글자
+s[2:] # 'od morning'
+s[:5] # 'Good '
+len(s) # 12 , 문자열 길이
 
-//Format api
+#Format api
 a = 'My name is {}. I am {} years old'.format('Mario', 20)
-// 'My name is Mario. I am 20 years old'
-e = '%10.3f'%(323.323323323) // '   323.323'
-'{:10.3f}'.format(323.3233232323)  // '   323.323'
+# 'My name is Mario. I am 20 years old'
+e = '%10.3f'%(323.323323323) # '   323.323'
+'{:10.3f}'.format(323.3233232323)  # '   323.323'
 ~~~
 
 ## 자료구조
@@ -97,15 +97,15 @@ e = '%10.3f'%(323.323323323) // '   323.323'
   
 ~~~python
 a = ['jone' , 'kim', 'aaa']
-b = b = [ 1, 2.0, 'kim', True, False] // 타입에 구애 받지 않는다. 
-b[2:] // ['kim', True, False]  //String 과 마찬가지로 슬라이싱이 가능하다.
-a + b // ['jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
-a * 2 + b * 1 // ['jone', 'kim', 'aaa', 'jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
-a.pop() // 'aaa'
+b = b = [ 1, 2.0, 'kim', True, False] # 타입에 구애 받지 않는다. 
+b[2:] # ['kim', True, False]  #String 과 마찬가지로 슬라이싱이 가능하다.
+a + b # ['jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
+a * 2 + b * 1 # ['jone', 'kim', 'aaa', 'jone', 'kim', 'aaa', 1, 2.0, 'kim', True, False]
+a.pop() # 'aaa'
 
 a = [5, 4, 1, 0]
 a.sort()
-a // [0,1,4,5]
+a # [0,1,4,5]
 ~~~
   
 ### 2. Tuple
@@ -113,20 +113,20 @@ a // [0,1,4,5]
   > List와 비슷하나 수정이 불가능 하다.
 
 ~~~python
-a = (1,2,3,4) // 소괄호 생략 가능
-type(a) // tuple
-a[1] = 10 // Error 발생
-b = 1, // 원소가 하나인 경우
-type(b) // tuple
-// 패킹
+a = (1,2,3,4) # 소괄호 생략 가능
+type(a) # tuple
+a[1] = 10 # Error 발생
+b = 1, # 원소가 하나인 경우
+type(b) # tuple
+# 패킹
 a  = 1,2,3
 one, two ,three = a
 
-//언패킹
-one // 1
-two // 2
-three // 3
-// 패킹, 언패킹은 List에서도 동일하게 적용이 된다.
+#언패킹
+one # 1
+two # 2
+three # 3
+# 패킹, 언패킹은 List에서도 동일하게 적용이 된다.
 name, age, address = 'kim', 30 , 'seoul'
 ~~~
 
@@ -137,11 +137,11 @@ name, age, address = 'kim', 30 , 'seoul'
   
 ~~~python
  data = {'name' : 'Kim', 'age' : 30, 'address' : 'seoul'}
- data['age'] // 30
- data['height'] = 180 // 새로운 값 삽입
- data.keys() // dict_keys(['name', 'age', 'address', 'height'])
- data.values() // dict_values(['Kim', 30, 'seoul', 180])
- data.items() // dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
+ data['age'] # 30
+ data['height'] = 180 # 새로운 값 삽입
+ data.keys() ## dict_keys(['name', 'age', 'address', 'height'])
+ data.values() ## dict_values(['Kim', 30, 'seoul', 180])
+ data.items() ## dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
 ~~~
   
 ### 4. Set
@@ -152,6 +152,6 @@ name, age, address = 'kim', 30 , 'seoul'
 
 ~~~python
 setA = {11, 1 ,2 ,3 ,3 ,11}
-type(setA) // set
-setA //{1, 2, 3, 11}
+type(setA) ## set
+setA #{1, 2, 3, 11}
 ~~~
