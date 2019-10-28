@@ -32,8 +32,6 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## Data 주요 개념
 
----
-
 - Data 가 가장 중요하다.
 - Data 에 대해서 전처리 과정을 통해 의미 있는 Data를 학습을 해야 ML의 예측 성능이 높아진다.
 - Data를 모을수록 좋다. (좋은 Data)
@@ -42,18 +40,14 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## 환경 셋업
 
----
-
 1. 아나콘다 설치
 2. Jetbrain PyCharm 설치
 3. Python 설치
 
----
-# Python
 
-## 기본 특성
+## Python
 
----
+### 기본 특성
 
 - 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
 - 간략화된 문법(배우기가 쉽다)
@@ -74,17 +68,13 @@ hello_wordl = hello + ', ' + world
 # 링크드 리스트 연결이 됨
 ~~~
   
-## Jupyter notebook
-
----
+### Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
-## 문자열
-
----
+### 문자열
 
 ~~~python
 s = 'Good morning'
@@ -101,11 +91,10 @@ e = '%10.3f'%(323.323323323) # '   323.323'
 '{:10.3f}'.format(323.3233232323)  # '   323.323'
 ~~~
 
-## 자료구조
+### 자료구조
 
----
 
-### 1. List
+#### 1. List
   
   > 참고로 List는 Linked List 를 사용한다.
   > 대용량 데이터를 처리 할 때 느리다.
@@ -123,7 +112,7 @@ a.sort()
 a # [0,1,4,5]
 ~~~
   
-### 2. Tuple
+#### 2. Tuple
 
   > List와 비슷하나 수정이 불가능 하다.
 
@@ -145,7 +134,7 @@ three # 3
 name, age, address = 'kim', 30 , 'seoul'
 ~~~
 
-### 3. Dictionary
+#### 3. Dictionary
 
 - Key 값과 Value를 쌍으로 저장
 - Key는 Set으로 구현이 되어있고 Value는 Collection으로 구현이 되어 있다.
@@ -159,7 +148,7 @@ name, age, address = 'kim', 30 , 'seoul'
  data.items() ## dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
 ~~~
   
-### 4. Set
+#### 4. Set
 
 - 저장된 순서 보장하지 않는다.
 - 접근 속도가 빠르다.
@@ -171,13 +160,12 @@ type(setA) ## set
 setA #{1, 2, 3, 11}
 ~~~
 
-## 흐름 제어
+### 흐름 제어
 
----
 
 - `None` : 값이 없음(empty)을 의미
   
-### 코드 블록(Code Block)
+#### 1. 코드 블록(Code Block)
   
 - 여러 코드가 이루는 일정한 구역
 
@@ -203,7 +191,7 @@ else :
     print('num<=80')
 ~~~
 
-### 반복문
+#### 2. 반복문
 
 > for `반복변수` in `순서열` :
 > `코드 블록`
@@ -234,9 +222,8 @@ for k,v in dic.items() :
 
 ~~~
 
-## 함수
+### 함수
 
----
 
 - 함수를 정의할 때 `def` 키워드를 사용한다.
 
@@ -275,7 +262,7 @@ print_personnel(position = '인턴', name = '박상현' )
 > Python은 리턴 타입을 명시 하지 않는다. 왜냐하면 변수 자체에 타입이 없기 때문
 > 함수 인자 타입에 따른 함수 오버로드도 의미가 없다. 함수 인자도 타입이 없기 때문
 
-### 가변 매개변수
+#### 1. 가변 매개변수
 
 ~~~python
 def add (*data) :
@@ -298,7 +285,7 @@ print_team(카시야스='GK', 호날두='FW', 알론소='MF', 페페='DF')
 # 페페 = DF
 ~~~
 
-### 힘수 포인터
+#### 2. 함수 포인터
 
 ~~~python
 def plus(a,b) :
@@ -330,9 +317,10 @@ hello = get_greeting('E')
 hello() # hello
 ~~~
 
-## 객제 지향 프로그래밍
+### 객제 지향 프로그래밍
 
-- 생성자
+
+#### 1. 생성자
 
 ~~~python
 class Car :
@@ -355,7 +343,7 @@ a.info_print() # color : RED, wheel size : 16
 ~~~python
 class InstanceC :
     text_list = []
-    
+
     def __init__(self) :
         print('init')
     def add(self, text):
@@ -394,15 +382,14 @@ b.add('Lee')
 b.print_list() # ['Lee']
 ~~~
 
-
-### Class Private Member
+#### 2. Class Private Member
 
 ~~~python
 class HasPrivate :
     def __init__(self) :
         self.pubValue = 'public value'
         self.__priValue = 'private value'
-        
+
     def print_data(self) :
         print(self.pubValue)
         print(self.__priValue)
@@ -416,3 +403,79 @@ obj.pubValue
 obj.__priValue # error 발생!!
 ~~~
 
+#### 3. Inheritance
+
+~~~python
+class AA :
+    def __init__(self):
+        print('AA init call')
+
+class BB(AA) :
+    def __init__(self):
+        print('BB init call')
+
+bb = BB() # BB init call
+~~~
+
+위 코드와 같이 부모 클래스의 생성자를 명시적으로 호출하지 않으면 자식 클래스의 생성자만 호출이 된다.
+
+~~~python
+class BB(AA) :
+    def __init__(self):
+        super().__init__()
+        print('BB init call')
+
+bb = BB()
+
+# AA init call
+# BB init call
+~~~
+
+귀찮더라도 부모 생성자를 꼭 호출하도록 하자
+
+#### 4. Iteration
+
+~~~python
+iterator = range(3).__iter__()
+
+iterator.__next__() # 0
+iterator.__next__() # 1
+iterator.__next__() # 2
+iterator.__next__() # exception!!
+
+~~~
+
+##### Custom Iteration
+
+~~~python
+class MyRange:
+    def __init__(self, start, end):
+        self.current = start
+        self.end = end
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.current < self.end :
+            current = self.current;
+            self.current += 1
+            return current
+        else :
+            raise StopIteration()
+
+for i in MyRange(0,5):
+    print(i) # o 1 2 3 4
+~~~
+
+#### 5. Generator
+
+~~~python
+def YourRange(start, end):
+    current = start
+    while current <end:
+        yield current
+        current += 1
+    return
+
+for i in YourRange(0,5) :
+    print(i)
+~~~
