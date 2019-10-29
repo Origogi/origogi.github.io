@@ -26,7 +26,7 @@ sitemap :
   priority : 1.0
 ---
 
-# Machine Learning(ML)
+## Machine Learning(ML)
 
 Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 

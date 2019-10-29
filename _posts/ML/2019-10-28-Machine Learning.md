@@ -26,7 +26,7 @@ sitemap :
   priority : 1.0
 ---
 
-# Machine Learning(ML)
+## Machine Learning(ML)
 
 Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
@@ -43,7 +43,6 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 1. 아나콘다 설치
 2. Jetbrain PyCharm 설치
 3. Python 설치
-
 
 ## Python
 
@@ -92,7 +91,6 @@ e = '%10.3f'%(323.323323323) # '   323.323'
 ~~~
 
 ### 자료구조
-
 
 #### 1. List
   
@@ -162,7 +160,6 @@ setA #{1, 2, 3, 11}
 
 ### 흐름 제어
 
-
 - `None` : 값이 없음(empty)을 의미
   
 #### 1. 코드 블록(Code Block)
@@ -223,7 +220,6 @@ for k,v in dic.items() :
 ~~~
 
 ### 함수
-
 
 - 함수를 정의할 때 `def` 키워드를 사용한다.
 
@@ -318,7 +314,6 @@ hello() # hello
 ~~~
 
 ### 객제 지향 프로그래밍
-
 
 #### 1. 생성자
 
@@ -418,6 +413,7 @@ bb = BB() # BB init call
 ~~~
 
 위 코드와 같이 부모 클래스의 생성자를 명시적으로 호출하지 않으면 자식 클래스의 생성자만 호출이 된다.
+귀찮더라도 아래와 같이 부모 생성자를 꼭 호출하도록 하자
 
 ~~~python
 class BB(AA) :
@@ -430,8 +426,6 @@ bb = BB()
 # AA init call
 # BB init call
 ~~~
-
-귀찮더라도 부모 생성자를 꼭 호출하도록 하자
 
 #### 4. Iteration
 
