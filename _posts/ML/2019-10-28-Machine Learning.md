@@ -26,11 +26,11 @@ sitemap :
   priority : 1.0
 ---
 
-## Machine Learning(ML)
+# Machine Learning(ML)
 
 Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
-## Data 주요 개념
+## 1. Data 주요 개념
 
 - Data 가 가장 중요하다.
 - Data 에 대해서 전처리 과정을 통해 의미 있는 Data를 학습을 해야 ML의 예측 성능이 높아진다.
@@ -38,15 +38,15 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 - Data가 편향될 수록 성능이 떨어진다.(Overfiting)
 - Data를 그래프화하여 특성을 파악하는 것이 중요하다.
 
-## 환경 셋업
+## 2. 환경 셋업
 
 1. 아나콘다 설치
 2. Jetbrain PyCharm 설치
 3. Python 설치
 
-## Python
+## 3. Python
 
-### 기본 특성
+### 3.1 기본 특성
 
 - 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
 - 간략화된 문법(배우기가 쉽다)
@@ -67,13 +67,13 @@ hello_wordl = hello + ', ' + world
 # 링크드 리스트 연결이 됨
 ~~~
   
-### Jupyter notebook
+### 3.2 Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
-### 문자열
+### 3.3 문자열
 
 ~~~python
 s = 'Good morning'
@@ -90,9 +90,9 @@ e = '%10.3f'%(323.323323323) # '   323.323'
 '{:10.3f}'.format(323.3233232323)  # '   323.323'
 ~~~
 
-### 자료구조
+### 3.4 자료구조
 
-#### 1. List
+#### 3.4.1 List
   
   > 참고로 List는 Linked List 를 사용한다.
   > 대용량 데이터를 처리 할 때 느리다.
@@ -110,7 +110,7 @@ a.sort()
 a # [0,1,4,5]
 ~~~
   
-#### 2. Tuple
+#### 3.4.2 Tuple
 
   > List와 비슷하나 수정이 불가능 하다.
 
@@ -132,7 +132,7 @@ three # 3
 name, age, address = 'kim', 30 , 'seoul'
 ~~~
 
-#### 3. Dictionary
+#### 3.4.3 Dictionary
 
 - Key 값과 Value를 쌍으로 저장
 - Key는 Set으로 구현이 되어있고 Value는 Collection으로 구현이 되어 있다.
@@ -146,7 +146,7 @@ name, age, address = 'kim', 30 , 'seoul'
  data.items() ## dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
 ~~~
   
-#### 4. Set
+#### 3.4.4 Set
 
 - 저장된 순서 보장하지 않는다.
 - 접근 속도가 빠르다.
@@ -158,11 +158,11 @@ type(setA) ## set
 setA #{1, 2, 3, 11}
 ~~~
 
-### 흐름 제어
+### 3.5 흐름 제어
 
 - `None` : 값이 없음(empty)을 의미
   
-#### 1. 코드 블록(Code Block)
+#### 3.5.1 코드 블록(Code Block)
   
 - 여러 코드가 이루는 일정한 구역
 
@@ -188,7 +188,7 @@ else :
     print('num<=80')
 ~~~
 
-#### 2. 반복문
+#### 3.5.2 반복문
 
 > for `반복변수` in `순서열` :
 > `코드 블록`
@@ -219,7 +219,7 @@ for k,v in dic.items() :
 
 ~~~
 
-### 함수
+### 3.6 함수
 
 - 함수를 정의할 때 `def` 키워드를 사용한다.
 
@@ -258,7 +258,7 @@ print_personnel(position = '인턴', name = '박상현' )
 > Python은 리턴 타입을 명시 하지 않는다. 왜냐하면 변수 자체에 타입이 없기 때문
 > 함수 인자 타입에 따른 함수 오버로드도 의미가 없다. 함수 인자도 타입이 없기 때문
 
-#### 1. 가변 매개변수
+#### 3.6.1 가변 매개변수
 
 ~~~python
 def add (*data) :
@@ -281,7 +281,7 @@ print_team(카시야스='GK', 호날두='FW', 알론소='MF', 페페='DF')
 # 페페 = DF
 ~~~
 
-#### 2. 함수 포인터
+#### 3.6.2 함수 포인터
 
 ~~~python
 def plus(a,b) :
@@ -313,9 +313,9 @@ hello = get_greeting('E')
 hello() # hello
 ~~~
 
-### 객제 지향 프로그래밍
+### 3.7 객제 지향 프로그래밍
 
-#### 1. 생성자
+#### 3.7.1 생성자
 
 ~~~python
 class Car :
@@ -377,7 +377,7 @@ b.add('Lee')
 b.print_list() # ['Lee']
 ~~~
 
-#### 2. Class Private Member
+#### 3.7.2 Class Private Member
 
 ~~~python
 class HasPrivate :
@@ -398,7 +398,7 @@ obj.pubValue
 obj.__priValue # error 발생!!
 ~~~
 
-#### 3. Inheritance
+#### 3.7.3 Inheritance
 
 ~~~python
 class AA :
@@ -427,7 +427,7 @@ bb = BB()
 # BB init call
 ~~~
 
-#### 4. Iteration
+### 3.8 Iteration
 
 ~~~python
 iterator = range(3).__iter__()
@@ -439,7 +439,7 @@ iterator.__next__() # exception!!
 
 ~~~
 
-##### Custom Iteration
+#### 3.8.1 Custom Iteration
 
 ~~~python
 class MyRange:
@@ -460,7 +460,7 @@ for i in MyRange(0,5):
     print(i) # o 1 2 3 4
 ~~~
 
-#### 5. Generator
+### 3.9 Generator
 
 ~~~python
 def YourRange(start, end):

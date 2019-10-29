@@ -26,22 +26,22 @@ sitemap :
   priority : 1.0
 ---
 
-## Machine Learning(ML)
+# Machine Learning(ML)
 
 Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
-## PyCharm
+## 1. PyCharm
 
-![ss](2019-10-29-08-29-13.png)
+![ss](2019-10-29-08-29-13.png){: .align-center}
 
-### 프로젝트 생성 방법
+### 1.1 프로젝트 생성 방법
 
 1. File -> New Project
 2. `more` 메뉴 클릭
-![ㅇㅇ](2019-10-29-08-30-45.png)
+![ㅇㅇ](2019-10-29-08-30-45.png){: .align-center}
 
 3. 미리 설치한 `interpreter`를 선택
-![ㅇㅇ](2019-10-29-08-33-32.png)
+![ㅇㅇ](2019-10-29-08-33-32.png){: .align-center}
 
 4. `create` 클릭
 
@@ -49,17 +49,19 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 6. 코드 작성 후 `run`을 하기 위해서 `Alt` + `Shift` + `F10`
 
-#### Sample code
+## 2. Iterator
+
+### 2.1 Comprehension
 
 ~~~python
 result = []
 
-# List를 생성하는 방법
+# For loop 방식
 for i in range(10) :
     result.append(i)
 print(result)
 
-# Compression 방식
+# Comprehension 방식
 result2 = [i  for i in range(10)]
 print(result2)
 
@@ -93,3 +95,88 @@ print(result7)
 
 > Compression 방식을 사용하면 가독성이 떨어지지만 처리 속도가 빨라진다.
 
+### 2.2 Emurate
+
+~~~python
+for i,v in enumerate(data) :
+    print(i,v)
+
+str = 'Team is an academic institude located in south korea'.split()
+
+result = {i:j for i,j in enumerate(str)}
+print(result)
+~~~
+
+### 2.3 Zip
+
+~~~python
+a = (1,2,3)
+b = 10,20,30
+c = 100, 200, 300
+
+result2 = [x+y+z for x,y,z in zip(a,b,c)]
+print(result2)
+
+# x는 tuple로 받고 x를 sum 함수를 통해 tuple의 합을 구한다.
+result3 = [sum(x) for x in zip(a,b,c)]
+print(result3)
+~~~
+
+## 3. File 입출력
+
+### 3.1 File read/write 기본
+
+~~~python
+file = open('text.txt', 'w')
+
+file.write('hello')
+file.close()
+
+file2 = open('text.txt', 'r')
+
+str = file2.read()
+print(str)
+file2.close()
+~~~
+
+### 3.2 Iterator 사용
+
+~~~python
+def displayForLoop(file) :
+    infile = open(file, 'r')
+    for line in infile :
+        print(line, end= '')
+    infile.close()
+
+def displayWithComprehension(file) :
+    infile = open(file,'r')
+    # new line 제거
+    listData = [line.rstrip() for line in infile]
+    infile.close()
+    return listData
+
+filepath = 'FirstPresidents.txt'
+displayForLoop(filepath)
+print(displayWithComprehension(filepath))
+~~~
+
+### file을 list로 read 한 후 정렬한다음 write
+
+~~~python
+def readListFromFile(file) :
+    infile = open(file,'r')
+    # new line 제거
+    listData = [line for line in infile]
+    infile.close()
+    return listData
+
+def writeListToFile(list, file) :
+    outfile = open(file + '_sorted','w')
+    outfile.writelines(list) # 한번에 list를 write 할 수 있음
+    outfile.close()
+
+file = 'States.txt'
+list = readListFromFile(file)
+list.sort()
+writeListToFile(list,file)
+~~~
