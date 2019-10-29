@@ -32,16 +32,16 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## 1. PyCharm
 
-![ss](2019-10-29-08-29-13.png)
+![ss](assets/images/2019-10-29-08-29-13.png)
 
 ### 1.1 프로젝트 생성 방법
 
 1. `File` -> `New Project`
 2. `more` 메뉴 클릭
-![ㅇㅇ](2019-10-29-08-30-45.png)
+![ㅇㅇ](assets/images/2019-10-29-08-30-45.png)
 
 3. 미리 설치한 `interpreter`를 선택
-![ㅇㅇ](2019-10-29-08-33-32.png)
+![ㅇㅇ](assets/images/2019-10-29-08-33-32.png)
 
 4. `create` 클릭
 
@@ -223,3 +223,19 @@ ex = [1,2,3,4,5]
 print(list(map(lambda x:x**2, ex)))
 ~~~
 
+## 6. 바이너리 파일
+
+### 6.1 pack(), unpack()
+
+~~~python
+import struct
+
+packed = struct.pack('i', 256) # data => bytes
+
+# integer는 4byte이고 byte 단위로 출력한다.
+for i in packed:
+    print(i)
+
+unpacked = struct.unpack('i',packed) # bytes => tuple(data)
+print(unpacked) # (256,)
+~~~
