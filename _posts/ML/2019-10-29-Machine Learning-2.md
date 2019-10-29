@@ -240,9 +240,9 @@ unpacked = struct.unpack('i',packed) # bytes => tuple(data)
 print(unpacked) # (256,)
 ~~~
 
-#### 6.2 Pickle library
+### 6.2 Pickle library
 
-- pickle library를 이용하여 쉽게 바이너리 파일을 read/write 할 수
+- Pickle library를 이용하여 쉽게 바이너리 파일을 read/write 할 수 있다.
 
 ~~~python
 import pickle
@@ -258,14 +258,14 @@ rData = pickle.load(infile)
 print(rData)
 ~~~
 
-## Numpy
+## 7. Numpy
 
 고성능의 과학 계산 컴퓨팅과 데이터 분석에 필요한 패키지이다.
 
 - 빠르고 메모리를 효율적으로 사용하며, 벡터 산술 연산과 세련된 브로드캐스팅 기능을 제공한다.
 - 선형 대수, 난수 발생기, 푸리에 변환이 가능하다.
 
-### ndarray
+### 7.1 ndarray
 
 N 차원을 배열을 생성 할 때 사용
 > ndarray를 생성할 때 같은 데이터 타입만 허용한다.
@@ -303,7 +303,7 @@ arr4 = arr4.astype(np.float32)
 print(arr4) # [ 1.23 -9.6  42.  ]
 ~~~
 
-### 배열과 스칼라간의 연산
+### 7.2 배열과 스칼라간의 연산
 
 numpy 배열은 for문을 작성하지 않고 데이터를 일괄 처리 할 수 있는 벡터화를 지원한다.
 
@@ -379,7 +379,7 @@ print(arr2[:, :2])
 
 ~~~
 
-### 불리언 색인
+### 7.3 불리언 색인
 
 ~~~python
 import numpy as np
@@ -426,7 +426,7 @@ print('\n', data[names == 'Bob',])
 '''
 ~~~
 
-### 유니버셜 함수
+### 7.4 유니버셜 함수
 
 데이터 요소 별로 수학적 함수를 적용하는 것
 
@@ -485,7 +485,7 @@ modf:
 '''
 ~~~
 
-### 재형성
+### 7.5 재형성
 
 ~~~python
 import numpy as np
@@ -528,7 +528,7 @@ print(result)
 
 ~~~
 
-### 수학 메소드와 통계 메소드
+### 7.6 수학 메소드와 통계 메소드
 
 ~~~python
 import numpy as np
