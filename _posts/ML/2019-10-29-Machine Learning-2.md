@@ -32,16 +32,16 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 
 ## 1. PyCharm
 
-![ss](2019-10-29-08-29-13.png){: .align-center}
+![ss](2019-10-29-08-29-13.png)
 
 ### 1.1 프로젝트 생성 방법
 
-1. File -> New Project
+1. `File` -> `New Project`
 2. `more` 메뉴 클릭
-![ㅇㅇ](2019-10-29-08-30-45.png){: .align-center}
+![ㅇㅇ](2019-10-29-08-30-45.png)
 
 3. 미리 설치한 `interpreter`를 선택
-![ㅇㅇ](2019-10-29-08-33-32.png){: .align-center}
+![ㅇㅇ](2019-10-29-08-33-32.png)
 
 4. `create` 클릭
 
@@ -180,3 +180,46 @@ list = readListFromFile(file)
 list.sort()
 writeListToFile(list,file)
 ~~~
+
+## 4. 집합 API(Set)
+
+~~~python
+infile = open('File1.txt', 'r')
+
+firstSet = {line for line in infile}
+infile.close()
+
+infile = open('File2.txt', 'r')
+
+secondSet = {line for line in infile}
+infile.close()
+
+# 합집합
+outfile = open('Union.txt', 'w')
+outfile.writelines(firstSet.union(secondSet))
+
+# 교집합
+outfile = open('Intersection.txt', 'w')
+outfile.writelines(firstSet.intersection(secondSet))
+
+# 차집합
+outfile = open('Difference.txt', 'w')
+outfile.writelines(firstSet.difference(secondSet))
+~~~
+
+## 5. Lambda
+
+~~~python
+#람다 식을 이용해 함수를 축약해서 사용 가능하다.
+f = lambda x,y : x+y
+
+def f2(x,y) :
+    return x+ y
+
+print(f(10,20))
+print(f2(10,20))
+
+ex = [1,2,3,4,5]
+print(list(map(lambda x:x**2, ex)))
+~~~
+
