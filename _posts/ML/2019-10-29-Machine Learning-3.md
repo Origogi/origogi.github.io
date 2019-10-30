@@ -530,3 +530,86 @@ print('\n',tot[:10])
 
 ### 5.1. 데이터베이스 스타일로 DataFrame 합치기
 
+#### 5.1.1 merge()
+
+- DB의 `join`연산과 동작 방식이 동일 하다.
+
+~~~python
+import pandas as pd
+import numpy as np
+import json
+
+df1 = pd.DataFrame({'key' : ['b','b','a', 'c', 'a', 'a', 'b'], 'data1' :range(7)})
+
+df2 = pd.DataFrame({'key' : ['a', 'b', 'd'], 'data2' :range(3)})
+
+print('\n',df1, '\n')
+print('\n',df2, '\n')
+
+print('\n',pd.merge(df1, df2), '\n')
+print('\n',pd.merge(df1, df2, on = 'key'), '\n') 
+# join 기본으로 inner join이다.
+
+#how를 통하여 어떤 join을 할 지를 선택 할 수 있다.
+print('\n how')
+print('\n',pd.merge(df1, df2, how = 'outer'), '\n') # outer join
+print('\n',pd.merge(df1, df2, how = 'left'), '\n') # left join
+print('\n',pd.merge(df1, df2, how = 'right'), '\n') # right join
+print('\n',pd.merge(df1, df2, how = 'inner'), '\n') # inner join
+
+left = pd.DataFrame({
+    'key1' :['foo', 'foo','bar'],
+    'key2': ['one', 'two', 'one'],
+    'lval': [1,2,3]
+})
+
+right = pd.DataFrame({
+    'key1' :['foo','foo', 'bar','bar'],
+    'key2': ['one', 'one', 'one', 'two'],
+    'rval': [4,5,6,7]
+})
+
+print('\n',left, '\n')
+print('\n',right, '\n')
+print('\n',pd.merge(left, right, on =['key1', 'key2'], how='outer'), '\n')
+
+df1 = pd.DataFrame({'아이디' : [12,13,14,15,16],
+                    '이름' : ['a','b','c','d','e'],
+                    '생일' : [1111,2222,3333,4444,5555],
+                    '취미' : ['h1','h2','h3','h4','h5'],
+                    '주소' : ['add1','add2','add3','add4','add5']})
+
+df2 = pd.DataFrame({'부모 생일' : [22,33,44,55,66],
+                    '성명' : ['a','b','c','d','e'],
+                    '동생' : [True,False,True,False,True],
+                    '좌우명' : ['h1','h2','h3','h4','h5'],
+                    '특기' : ['add1','add2','add3','add4','add5']})
+
+print('\n',df1)
+print('\n',df2)
+
+print('\n',pd.merge(df1, df2, left_on='이름', right_on="성명", how='outer'), '\n')  
+# join을 할 때 사용될 key를 left_on, right_on으로 직접 지정 할 수 있다.
+~~~
+
+#### 5.1.2 concat()
+
+~~~python
+s1 = pd.Series([0,1], index=list('ab'))
+s2 = pd.Series([2,3,4], index=list('cde'))
+s3 = pd.Series([5,6], index=list('fg'))
+
+print(s1,'\n')
+print(s2,'\n')
+print(s3,'\n')
+
+print(pd.concat([s1,s2,s3]))
+print(pd.concat([s1,s2,s3], axis=1, sort= False))
+
+s4= pd.concat([s1*5, s3])
+print(s4,'\n')
+print(pd.concat([s1,s4], axis=1, sort= False))
+print(pd.concat([s1,s4], axis=1, join='inner'))
+~~~
+
+> DataFrame을 붙일 때 index가 블일치 하는 경우 NaN 값이 들어가기 때문에 주의하여 사용해야 한다.
