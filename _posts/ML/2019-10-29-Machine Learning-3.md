@@ -250,3 +250,168 @@ print('\n', data.drop(['Colorado', 'Ohio']))
 print('\n',data.drop('two', axis=1))
 print('\n',data.drop(['two', 'four'], axis='columns'))
 ~~~
+
+### 2.4 색인, 선택, 거르기
+
+- Series의 색인은 정수로 접근이 가능하고 column name으로 도 접근이 가능하다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+obj = pd.Series(np.arange(4.), index=['a', 'b', 'c', 'd'])
+
+print('\n', obj)
+print('\n', obj['b'])
+print('\n', obj[1])
+print('\n', obj[2:4])
+print('\n', obj[['b','a','d']])
+print('\n', obj[[1,3]])
+print('\n', obj[obj<2])
+
+print('\n', obj['b':'c'])
+obj['b':'c'] = 5
+print('\n', obj)
+
+'''
+ a    0.0
+b    1.0
+c    2.0
+d    3.0
+dtype: float64
+
+ 1.0
+
+ 1.0
+
+ c    2.0
+d    3.0
+dtype: float64
+
+ b    1.0
+a    0.0
+d    3.0
+dtype: float64
+
+ b    1.0
+d    3.0
+dtype: float64
+
+ a    0.0
+b    1.0
+dtype: float64
+
+ b    1.0
+c    2.0
+dtype: float64
+
+ a    0.0
+b    5.0
+c    5.0
+d    3.0
+dtype: float64
+'''
+~~~
+
+### 2.4.1 iloc[]
+
+~~~python
+data = pd.DataFrame(np.arange(16).reshape(4,4),
+                    index=['Ohio', 'Colorado', 'Utah', 'New york'],
+                    columns=['one', 'two', 'three','four'])
+
+print(data)
+print('\n', data.iloc[1,2]) # Data만 가져 온다. 색인은 제외
+print('\n', data.iloc[1,[0,2,3]]) # Series를 가져 온다
+print('\n', data[data['three'] > 5])
+
+print('\n', data.iloc[:, :3][data['three'] >5])
+# 앞의 대괄호 연산부터 수행하고 그 결과 값을 뒤의 대괄호가 처리한다
+~~~
+
+## 2.5 산술 연산
+
+- Pandas에서 중요한 기능은 다른 객체간의 산술 연산이다.
+- 객체를 연산 할 때 짝이 맞지 않는 색인 있다면 결과에 두 색인이 통합된다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+df1 = pd.DataFrame(np.arange(12.).reshape((3, 4)), columns=list('abcd'))
+
+df2 = pd.DataFrame(np.arange(20).reshape(4, 5), columns=list('abcde'))
+
+print('\n', df1, '\n')
+print('\n', df2, '\n')
+print('\n', df1 + df2, '\n')
+
+# 짝이 맞지 않은 색인에 대해서는 NaN으로 셋이 된다.
+'''
+      a     b     c     d   e
+0   0.0   2.0   4.0   6.0 NaN
+1   9.0  11.0  13.0  15.0 NaN
+2  18.0  20.0  22.0  24.0 NaN
+3   NaN   NaN   NaN   NaN NaN
+'''
+
+print('\n', df1.add(df2, fill_value = 0), '\n')
+# 짝이 맞지 않은 색인에 대해서 fill_value로 set이 된다.
+~~~
+
+## 2.5 함수 적용과 맵핑
+
+- Pandas 객체에도 유니버셜 함수를 적용할 수 있다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+np.random.seed(12345)
+
+frame = pd.DataFrame(np.random.randn(4,3),
+                     columns=list('bde'),
+                     index=['Utah', 'Ohio', 'Oregon', 'Texas'])
+
+print(frame)
+
+f = lambda x : x.max() - x.min()
+print('\n', frame.apply(f))
+print('\n', frame.apply(f, axis=1))
+
+def f1(x):
+    return pd.Series([x.min(), x.max()], index=['min','max'])
+
+print('\n', frame.apply(f1))
+print('\n', frame.apply(f1 ,axis=1))
+
+'''
+              b         d         e
+Utah   -0.204708  0.478943 -0.519439
+Ohio   -0.555730  1.965781  1.393406
+Oregon  0.092908  0.281746  0.769023
+Texas   1.246435  1.007189 -1.296221
+
+ b    1.802165
+d    1.684034
+e    2.689627
+dtype: float64
+
+ Utah      0.998382
+Ohio      2.521511
+Oregon    0.676115
+Texas     2.542656
+dtype: float64
+
+             b         d         e
+min -0.555730  0.281746 -1.296221
+max  1.246435  1.965781  1.393406
+
+              min       max
+Utah   -0.519439  0.478943
+Ohio   -0.555730  1.965781
+Oregon  0.092908  0.769023
+Texas  -1.296221  1.246435
+'''
+~~~
+
