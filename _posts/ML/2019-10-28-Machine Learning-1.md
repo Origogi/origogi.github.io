@@ -41,10 +41,13 @@ Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
 ## 2. 환경 셋업
 
 1. 아나콘다 설치
-2. Jetbrain PyCharm 설치
-3. Python 설치
+2. Python 설치
+3. Jetbrain PyCharm 설치
+4. conda console를 실행하여 `Pandas`, `Numpy library` 설치
 
 ## 3. Python
+
+![logo](https://i.redd.it/qvlxqyp8x1311.png)
 
 ### 3.1 기본 특성
 

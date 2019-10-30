@@ -19,14 +19,16 @@ tags:
 comments: true
 header:
   overlay_filter: 0.5
-  overlay_image: https://images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
-  teaser: https://images.velog.io/post-images/leejh3224/bcb7de70-fc50-11e8-a0af-6d805f1eb60b/-2018-12-10-4.53.32.png
+  overlay_image: http://mathalope.co.uk/wp-content/uploads/2017/09/python-numpy-logo-672x263.png
+  teaser: http://mathalope.co.uk/wp-content/uploads/2017/09/python-numpy-logo-672x263.png
 sitemap :
   changefreq : daily
   priority : 1.0
 ---
 
 # Numpy
+
+![logo](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlfNPTD2PVjwNWbsXM_VDSFW7xcxtS4W-k33zoqb4L3AleRCNM&s)
 
 고성능의 과학 계산 컴퓨팅과 데이터 분석에 필요한 패키지이다.
 
