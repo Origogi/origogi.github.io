@@ -154,7 +154,9 @@ Name: three, dtype: object
 ...
 ~~~
 
-### 2.2 Reindexing
+## 3. 핵심 기능
+
+### 3.1 Reindexing
 
 ~~~python
 import pandas as pd
@@ -224,7 +226,7 @@ d      7   NaN     6
 
 ~~~
 
-### 2.3 데이터 삭제(제외)
+### 3.2 데이터 삭제(제외)
 
 - Row나 Column을 제외하기 위해 Drop api를 사용한다.
 - 원본은 변경이 되지 않는다.
@@ -251,7 +253,7 @@ print('\n',data.drop('two', axis=1))
 print('\n',data.drop(['two', 'four'], axis='columns'))
 ~~~
 
-### 2.4 색인, 선택, 거르기
+### 3.3 색인, 선택, 거르기
 
 - Series의 색인은 정수로 접근이 가능하고 column name으로 도 접근이 가능하다.
 
@@ -313,7 +315,7 @@ dtype: float64
 '''
 ~~~
 
-### 2.4.1 iloc[]
+### 3.3.1 iloc[]
 
 ~~~python
 data = pd.DataFrame(np.arange(16).reshape(4,4),
@@ -329,7 +331,7 @@ print('\n', data.iloc[:, :3][data['three'] >5])
 # 앞의 대괄호 연산부터 수행하고 그 결과 값을 뒤의 대괄호가 처리한다
 ~~~
 
-## 2.5 산술 연산
+## 3.4 산술 연산
 
 - Pandas에서 중요한 기능은 다른 객체간의 산술 연산이다.
 - 객체를 연산 할 때 짝이 맞지 않는 색인 있다면 결과에 두 색인이 통합된다.
@@ -359,7 +361,7 @@ print('\n', df1.add(df2, fill_value = 0), '\n')
 # 짝이 맞지 않은 색인에 대해서 fill_value로 set이 된다.
 ~~~
 
-## 2.5 함수 적용과 맵핑
+## 3.5 함수 적용과 맵핑
 
 - Pandas 객체에도 유니버셜 함수를 적용할 수 있다.
 
@@ -414,4 +416,117 @@ Oregon  0.092908  0.769023
 Texas  -1.296221  1.246435
 '''
 ~~~
+
+## 3.6 Sorting
+
+~~~python
+import pandas as pd
+import numpy as np
+
+obj = pd.Series(np.arange(4) , index=list('dabc'))
+print(obj)
+print('\n', obj.sort_index())
+
+frame = pd.DataFrame(
+    np.arange(8).reshape(2,4),
+    index=['three','one'],
+    columns= list('dabc')
+)
+
+print('\n', frame)
+print('\n', frame.sort_index())
+print('\n', frame.sort_index(axis=1,  ascending = False))
+
+obj = pd.Series([4,7,-5,2])
+print('\n', obj.sort_values())
+
+frame2 = pd.DataFrame({'b' : [4,7,5,-2], 'a' : [0,1,0,1]})
+
+print('\n', frame2.sort_values(by='b'))
+print('\n', frame2.sort_values(by=['a', 'b']))
+ # a 기준으로 먼저 소팅 한 후 같은 a에 대해서 b 값 기준으로 다시 소팅
+
+
+~~~
+
+## 3.7 기술 통계 계산과 요약
+
+~~~python
+import pandas as pd
+import numpy as np
+
+np.random.seed(12345)
+data = pd.DataFrame(
+    np.random.rand(100, 2),
+    columns=['one', 'two'])
+
+print(data.sum())
+print('\n', data.sum(axis=1))
+print('\n', data.describe())
+print('\n', data.info())
+print('\n', data.head(5)) # 맨 앞 5개
+print('\n', data.tail(5)) # 맨 뒤 5개
+~~~
+
+## 3.8 누락된 데이터 처리
+
+- Pandas의 설계 목표 증 하나는 누락 데이터를 쉽게 처리하는 것이다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.Series([1,np.nan,3, np.nan,7])
+print(data)
+print('\n',data.dropna())
+
+df = pd.DataFrame(np.random.randn(7,3))
+df.iloc[:4,1] = np.nan
+df.iloc[:2,2] = np.nan
+print('\n', df)
+print('\n', df.fillna(0))
+print('\n', df.fillna({1:0.5, 2:-1})) # Dictionary를 이용하여
+print('\n', df.fillna(method='backfill')) # 뒤에 있는 값을 대치
+~~~
+
+## 4. Data Loading
+
+### 4.1 CSV
+
+~~~python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('ex1.csv')
+print(df)
+
+df1 = pd.read_csv('ex2.csv', header=None) # Header를 자동 생성
+print('\n',df1)
+
+df2 = pd.read_csv('ex2.csv',names=['one', 'two', 'three', 'four', 'five'])
+print('\n',df2)
+
+df3 = pd.read_csv('ex2.csv',names=['one', 'two', 'three', 'four', 'five'],
+                  index_col='five')
+print('\n',df3)
+
+df4 = pd.read_csv('csv_mindex.csv', index_col=['key1', 'key2']) # 멀티 인덱스
+print('\n',df4)
+
+df5 = pd.read_csv('ex4.csv', skiprows=[0,2,3]) # 특정 열을 skip
+print('\n', df5)
+
+chunker = pd.read_csv('ex6.csv', chunksize=1000)
+
+
+tot = pd.Series([])
+for piece in chunker:
+    tot = tot.add(piece['key'].value_counts(), fill_value =0)
+tot = tot.sort_values(ascending=False)
+print('\n',tot[:10])
+~~~
+
+## 5. Data 변형 및 치환
+
+### 5.1. 데이터베이스 스타일로 DataFrame 합치기
 
