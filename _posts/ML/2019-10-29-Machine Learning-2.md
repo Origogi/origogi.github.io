@@ -26,246 +26,14 @@ sitemap :
   priority : 1.0
 ---
 
-# Machine Learning(ML)
-
-Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
-
-## 1. PyCharm
-
-![ss](/assets/images/2019-10-29-08-29-13.png)
-
-### 1.1 프로젝트 생성 방법
-
-1. `File` -> `New Project`
-2. `more` 메뉴 클릭
-![ㅇㅇ](/assets/images/2019-10-29-08-30-45.png)
-
-3. 미리 설치한 `interpreter`를 선택
-![ㅇㅇ](/assets/images/2019-10-29-08-33-32.png)
-
-4. `create` 클릭
-
-5. `File` -> `Python File`
-
-6. 코드 작성 후 `run`을 하기 위해서 `Alt` + `Shift` + `F10`
-
-## 2. Iterator
-
-### 2.1 Comprehension
-
-~~~python
-result = []
-
-# For loop 방식
-for i in range(10) :
-    result.append(i)
-print(result)
-
-# Comprehension 방식
-result2 = [i  for i in range(10)]
-print(result2)
-
-result3 = []
-for i in range(10) :
-    if i % 2 == 0 :
-        result3.append(i)
-print(result3)
-
-result4 = [i  for i in range(10) if i %2 ==0]
-print(result4)
-
-result5 =[]
-# else 문이 사용할 경우 if else 문을 앞에서 선언해야 한다.
-result5 = [i  if i %2 ==0 else 10 for i in range(10) ]
-print(result5)
-# [0, 10, 2, 10, 4, 10, 6, 10, 8, 10]
-
-
-data1 = 'hello'
-data2 = 'world'
-result6 = [i+j for i in data1 for j in data2 if not (i==j)]
-print(result6)
-
-words = 'the quick brown for jumps over the lazy dog'.split()
-print(words)
-
-result7 = [[w.upper(), w.lower(), len(w) ] for w in words]
-print(result7)
-~~~
-
-> Compression 방식을 사용하면 가독성이 떨어지지만 처리 속도가 빨라진다.
-
-### 2.2 Emurate
-
-~~~python
-for i,v in enumerate(data) :
-    print(i,v)
-
-str = 'Team is an academic institude located in south korea'.split()
-
-result = {i:j for i,j in enumerate(str)}
-print(result)
-~~~
-
-### 2.3 Zip
-
-~~~python
-a = (1,2,3)
-b = 10,20,30
-c = 100, 200, 300
-
-result2 = [x+y+z for x,y,z in zip(a,b,c)]
-print(result2)
-
-# x는 tuple로 받고 x를 sum 함수를 통해 tuple의 합을 구한다.
-result3 = [sum(x) for x in zip(a,b,c)]
-print(result3)
-~~~
-
-## 3. File 입출력
-
-### 3.1 File read/write 기본
-
-~~~python
-file = open('text.txt', 'w')
-
-file.write('hello')
-file.close()
-
-file2 = open('text.txt', 'r')
-
-str = file2.read()
-print(str)
-file2.close()
-~~~
-
-### 3.2 Iterator 사용
-
-~~~python
-def displayForLoop(file) :
-    infile = open(file, 'r')
-    for line in infile :
-        print(line, end= '')
-    infile.close()
-
-def displayWithComprehension(file) :
-    infile = open(file,'r')
-    # new line 제거
-    listData = [line.rstrip() for line in infile]
-    infile.close()
-    return listData
-
-filepath = 'FirstPresidents.txt'
-displayForLoop(filepath)
-print(displayWithComprehension(filepath))
-~~~
-
-### 3.2.1 file을 list로 read 한 후 정렬한다음 write
-
-~~~python
-def readListFromFile(file) :
-    infile = open(file,'r')
-    # new line 제거
-    listData = [line for line in infile]
-    infile.close()
-    return listData
-
-def writeListToFile(list, file) :
-    outfile = open(file + '_sorted','w')
-    outfile.writelines(list) # 한번에 list를 write 할 수 있음
-    outfile.close()
-
-file = 'States.txt'
-list = readListFromFile(file)
-list.sort()
-writeListToFile(list,file)
-~~~
-
-## 4. 집합 API(Set)
-
-~~~python
-infile = open('File1.txt', 'r')
-
-firstSet = {line for line in infile}
-infile.close()
-
-infile = open('File2.txt', 'r')
-
-secondSet = {line for line in infile}
-infile.close()
-
-# 합집합
-outfile = open('Union.txt', 'w')
-outfile.writelines(firstSet.union(secondSet))
-
-# 교집합
-outfile = open('Intersection.txt', 'w')
-outfile.writelines(firstSet.intersection(secondSet))
-
-# 차집합
-outfile = open('Difference.txt', 'w')
-outfile.writelines(firstSet.difference(secondSet))
-~~~
-
-## 5. Lambda
-
-~~~python
-#람다 식을 이용해 함수를 축약해서 사용 가능하다.
-f = lambda x,y : x+y
-
-def f2(x,y) :
-    return x+ y
-
-print(f(10,20))
-print(f2(10,20))
-
-ex = [1,2,3,4,5]
-print(list(map(lambda x:x**2, ex)))
-~~~
-
-## 6. 바이너리 파일
-
-### 6.1 pack(), unpack()
-
-~~~python
-import struct
-
-packed = struct.pack('i', 256) # data => bytes
-
-# integer는 4byte이고 byte 단위로 출력한다.
-for i in packed:
-    print(i)
-
-unpacked = struct.unpack('i',packed) # bytes => tuple(data)
-print(unpacked) # (256,)
-~~~
-
-### 6.2 Pickle library
-
-- Pickle library를 이용하여 쉽게 바이너리 파일을 read/write 할 수 있다.
-
-~~~python
-import pickle
-
-outfile = open('list.pickle', 'wb')
-data = [1,2,3,4,5]
-pickle.dump(data,outfile)
-outfile.close()
-
-infile = open('list.pickle', 'rb')
-rData = pickle.load(infile)
-
-print(rData)
-~~~
-
-## 7. Numpy
+# Numpy
 
 고성능의 과학 계산 컴퓨팅과 데이터 분석에 필요한 패키지이다.
 
 - 빠르고 메모리를 효율적으로 사용하며, 벡터 산술 연산과 세련된 브로드캐스팅 기능을 제공한다.
 - 선형 대수, 난수 발생기, 푸리에 변환이 가능하다.
 
-### 7.1 ndarray
+## 1. ndarray
 
 N 차원을 배열을 생성 할 때 사용
 > ndarray를 생성할 때 같은 데이터 타입만 허용한다.
@@ -303,7 +71,7 @@ arr4 = arr4.astype(np.float32)
 print(arr4) # [ 1.23 -9.6  42.  ]
 ~~~
 
-### 7.2 배열과 스칼라간의 연산
+## 2. 배열과 스칼라간의 연산
 
 numpy 배열은 for문을 작성하지 않고 데이터를 일괄 처리 할 수 있는 벡터화를 지원한다.
 
@@ -379,7 +147,7 @@ print(arr2[:, :2])
 
 ~~~
 
-### 7.3 불리언 색인
+## 3. 불리언 색인
 
 ~~~python
 import numpy as np
@@ -426,7 +194,7 @@ print('\n', data[names == 'Bob',])
 '''
 ~~~
 
-### 7.4 유니버셜 함수
+## 4. 유니버셜 함수
 
 데이터 요소 별로 수학적 함수를 적용하는 것
 
@@ -485,7 +253,7 @@ modf:
 '''
 ~~~
 
-### 7.5 재형성
+### 5. 재형성
 
 ~~~python
 import numpy as np
@@ -510,9 +278,9 @@ result = np.where(zarr, xarr, yarr)
 print(result)
 
 '''
-[0 1 2 3 4 5 6 7] 
+[0 1 2 3 4 5 6 7]
 
-[0 1 2 3 4 5 6 7] 
+[0 1 2 3 4 5 6 7]
 
 [[0 1]
  [2 3]
@@ -528,7 +296,7 @@ print(result)
 
 ~~~
 
-### 7.6 수학 메소드와 통계 메소드
+## 6. 수학 메소드와 통계 메소드
 
 ~~~python
 import numpy as np
@@ -581,4 +349,131 @@ sum :  -4.463405086082886
  [  3  12  60]
  [  6  42 336]]
 '''
+~~~
+
+## 6.1 불리언 배열을 위한 메소드
+
+~~~python
+import numpy as np
+
+np.random.seed(12345)
+
+arr = np.random.randn(100)
+
+print((arr>0).sum())
+
+bools = np.array([[False, False,True,False], [False, False, True, False]])
+
+print(bools.any(axis=1)) # any는 하나라도 true이면 true를 리턴
+print(bools.all(axis=0))
+
+data = np.random.randn(10,4)
+data = data * 2
+print('\n', data)
+
+print('\n',data[(data>3).any(axis=1)]) # 연관된 record를 가져온다.
+'''
+[[-1.17897537  3.16340019 -1.05746965  0.91400374]
+ [ 3.26947241  1.9780166   0.91588029  1.11030882]]
+'''
+
+~~~
+
+## 6.2 정렬
+
+numpy 정렬은 각 개별적으로 sorting 되기 때문에 연관된 data에 대해서는 적합하지 않다.
+
+~~~python
+import numpy as np
+
+arr = np.random.randn(5,3)
+
+print('\n', arr)
+
+arr.sort(axis=1)
+print('\n', arr)
+
+arr.sort(axis=0)
+print('\n', arr)
+~~~
+
+### 6.2.1 간접 정렬
+
+~~~python
+import numpy as np
+
+np.random.seed(12345)
+
+values = np.array([5,0,1,3,2])
+
+indexer = values.argsort()
+print(indexer)
+print(values[indexer])
+
+
+data = np.random.rand(3,5)
+data[0] = values
+
+print(data)
+print('\n', data[:, data[0].argsort()])
+
+'''
+[1 2 4 3 0]
+[0 1 2 3 5]
+[[5.         0.         1.         3.         2.        ]
+ [0.5955447  0.96451452 0.6531771  0.74890664 0.65356987]
+ [0.74771481 0.96130674 0.0083883  0.10644438 0.29870371]]
+
+ [[0.         1.         2.         3.         5.        ]
+ [0.96451452 0.6531771  0.65356987 0.74890664 0.5955447 ]
+ [0.96130674 0.0083883  0.29870371 0.10644438 0.74771481]]
+'''
+~~~
+
+## 6.3 집합 함수
+
+- unique
+- union
+- diff.
+- intersect
+
+~~~python
+import numpy as np
+
+names = np.array((['Bob', 'Joe', 'Will', 'Bob', 'Will', 'Joe', 'Joe']))
+print('\n', np.unique(names))
+
+ints = np.array([3,3,3,2,2,1,1,4,4])
+print('\n', np.unique(ints)) # 정렬까지 기본으로 해준다.
+
+values = np.array([6,0,0,3,2,5,6])
+print('\n', np.in1d(values, [2,3,6])) # Contain이랑 비슷하게 동작 , A[index] in B ??
+print('\n', np.union1d(values, [2,3,6])) # #교집합
+print('\n', np.intersect1d(values, [2,3,6])) # 합집합
+print('\n', np.setdiff1d(values, [2,3,6])) # 차집합
+~~~
+
+## 6.4 고급 배열
+
+### 6.4.1 집합 합치기
+
+~~~python
+import numpy as np
+
+np.random.seed(12345)
+
+arr1 = np.arange(1,7).reshape(2,3)
+arr2 = np.arange(7,13).reshape(2,3)
+
+print(arr1)
+print('\n', arr2)
+print('\n', np.concatenate([arr1, arr2], axis=0))
+print('\n', np.concatenate([arr1, arr2], axis=1))
+
+print('\n', np.vstack([arr1, arr2])) #vertical
+print('\n', np.vstack([arr1, arr2])) #horizontal
+
+print('\n', np.r_[arr4,arr5]) #vertical
+print('\n', np.r_[arr4,arr5]) # horizontal
+print('\n', np.c_[np.r_[arr4, arr5], arr3])
 ~~~

@@ -66,13 +66,34 @@ world = 'world'
 hello_wordl = hello + ', ' + world
 # 링크드 리스트 연결이 됨
 ~~~
-  
-### 3.2 Jupyter notebook
+
+### 3.2 Tool
+
+#### 3.2.1 Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
+#### 3.2.2 PyCharm
+
+![ss](/assets/images/2019-10-29-08-29-13.png)
+
+##### 프로젝트 생성 방법
+
+1. `File` -> `New Project`
+2. `more` 메뉴 클릭
+![ㅇㅇ](/assets/images/2019-10-29-08-30-45.png)
+
+3. 미리 설치한 `interpreter`를 선택
+![ㅇㅇ](/assets/images/2019-10-29-08-33-32.png)
+
+4. `create` 클릭
+
+5. `File` -> `Python File`
+
+6. 코드 작성 후 `run`을 하기 위해서 `Alt` + `Shift` + `F10`
+
 ### 3.3 문자열
 
 ~~~python
@@ -472,4 +493,213 @@ def YourRange(start, end):
 
 for i in YourRange(0,5) :
     print(i)
+~~~
+
+### 3.10 Iterator
+
+#### 3.10.1 Comprehension
+
+~~~python
+result = []
+
+# For loop 방식
+for i in range(10) :
+    result.append(i)
+print(result)
+
+# Comprehension 방식
+result2 = [i  for i in range(10)]
+print(result2)
+
+result3 = []
+for i in range(10) :
+    if i % 2 == 0 :
+        result3.append(i)
+print(result3)
+
+result4 = [i  for i in range(10) if i %2 ==0]
+print(result4)
+
+result5 =[]
+# else 문이 사용할 경우 if else 문을 앞에서 선언해야 한다.
+result5 = [i  if i %2 ==0 else 10 for i in range(10) ]
+print(result5)
+# [0, 10, 2, 10, 4, 10, 6, 10, 8, 10]
+
+
+data1 = 'hello'
+data2 = 'world'
+result6 = [i+j for i in data1 for j in data2 if not (i==j)]
+print(result6)
+
+words = 'the quick brown for jumps over the lazy dog'.split()
+print(words)
+
+result7 = [[w.upper(), w.lower(), len(w) ] for w in words]
+print(result7)
+~~~
+
+> Compression 방식을 사용하면 가독성이 떨어지지만 처리 속도가 빨라진다.
+
+#### 3.10.2 Emurate
+
+~~~python
+for i,v in enumerate(data) :
+    print(i,v)
+
+str = 'Team is an academic institude located in south korea'.split()
+
+result = {i:j for i,j in enumerate(str)}
+print(result)
+~~~
+
+### 3.10.3 Zip
+
+~~~python
+a = (1,2,3)
+b = 10,20,30
+c = 100, 200, 300
+
+result2 = [x+y+z for x,y,z in zip(a,b,c)]
+print(result2)
+
+# x는 tuple로 받고 x를 sum 함수를 통해 tuple의 합을 구한다.
+result3 = [sum(x) for x in zip(a,b,c)]
+print(result3)
+~~~
+
+### 3.11 File 입출력
+
+#### 3.11.1 File read/write 기본
+
+~~~python
+file = open('text.txt', 'w')
+
+file.write('hello')
+file.close()
+
+file2 = open('text.txt', 'r')
+
+str = file2.read()
+print(str)
+file2.close()
+~~~
+
+#### 3.11.2 Iterator 사용
+
+~~~python
+def displayForLoop(file) :
+    infile = open(file, 'r')
+    for line in infile :
+        print(line, end= '')
+    infile.close()
+
+def displayWithComprehension(file) :
+    infile = open(file,'r')
+    # new line 제거
+    listData = [line.rstrip() for line in infile]
+    infile.close()
+    return listData
+
+filepath = 'FirstPresidents.txt'
+displayForLoop(filepath)
+print(displayWithComprehension(filepath))
+~~~
+
+#### 3.12.3 file을 list로 read 한 후 정렬한다음 write
+
+~~~python
+def readListFromFile(file) :
+    infile = open(file,'r')
+    # new line 제거
+    listData = [line for line in infile]
+    infile.close()
+    return listData
+
+def writeListToFile(list, file) :
+    outfile = open(file + '_sorted','w')
+    outfile.writelines(list) # 한번에 list를 write 할 수 있음
+    outfile.close()
+
+file = 'States.txt'
+list = readListFromFile(file)
+list.sort()
+writeListToFile(list,file)
+~~~
+
+### 3.13 집합 API(Set)
+
+~~~python
+infile = open('File1.txt', 'r')
+
+firstSet = {line for line in infile}
+infile.close()
+
+infile = open('File2.txt', 'r')
+
+secondSet = {line for line in infile}
+infile.close()
+
+# 합집합
+outfile = open('Union.txt', 'w')
+outfile.writelines(firstSet.union(secondSet))
+
+# 교집합
+outfile = open('Intersection.txt', 'w')
+outfile.writelines(firstSet.intersection(secondSet))
+
+# 차집합
+outfile = open('Difference.txt', 'w')
+outfile.writelines(firstSet.difference(secondSet))
+~~~
+
+### 3.14 Lambda
+
+~~~python
+#람다 식을 이용해 함수를 축약해서 사용 가능하다.
+f = lambda x,y : x+y
+
+def f2(x,y) :
+    return x+ y
+
+print(f(10,20))
+print(f2(10,20))
+
+ex = [1,2,3,4,5]
+print(list(map(lambda x:x**2, ex)))
+~~~
+
+### 3.15 바이너리 파일
+
+#### 3.15.1 pack(), unpack()
+
+~~~python
+import struct
+
+packed = struct.pack('i', 256) # data => bytes
+
+# integer는 4byte이고 byte 단위로 출력한다.
+for i in packed:
+    print(i)
+
+unpacked = struct.unpack('i',packed) # bytes => tuple(data)
+print(unpacked) # (256,)
+~~~
+
+#### 3.15.2 Pickle library
+
+- Pickle library를 이용하여 쉽게 바이너리 파일을 read/write 할 수 있다.
+
+~~~python
+import pickle
+
+outfile = open('list.pickle', 'wb')
+data = [1,2,3,4,5]
+pickle.dump(data,outfile)
+outfile.close()
+
+infile = open('list.pickle', 'rb')
+rData = pickle.load(infile)
+
+print(rData)
 ~~~
