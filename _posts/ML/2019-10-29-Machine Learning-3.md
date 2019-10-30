@@ -20,7 +20,7 @@ tags:
 comments: true
 header:
   overlay_filter: 0.5
-  overlay_image: https://pandas.pydata.org/_static/pandas_logo.png-2018-12-10-4.53.32.png
+  overlay_image: https://pandas.pydata.org/_static/pandas_logo.png
   teaser: https://pandas.pydata.org/_static/pandas_logo.png
 sitemap :
   changefreq : daily
