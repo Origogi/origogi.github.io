@@ -17,6 +17,7 @@ tags:
   - Machine Learning
   - Python
   - Pandas
+  - Matplotlib
 comments: true
 header:
   overlay_filter: 0.5
@@ -34,3 +35,54 @@ sitemap :
 - Data를 시각화 하기 위한 library(그래프, 도표)
 - Matlat과 유사한 인터페이스를 지원한다.
 
+## 1. 그래프
+
+### 1.1 기본
+
+- 코드
+
+~~~python
+plt.title("custom plot") # title
+plt.plot([10,20,30,40], [1,4,9,16], c='b', lw = 5, ls='--', marker = 'o', ms=15, mec='g', mew =5, mfc = 'r')
+plt.xlim(0,50) # X 축 범위 지정
+plt.ylim(-10,30) # Y축 범위 지정
+plt.show()
+~~~
+
+- 결과화면
+
+![ss](/assets/images/Figure_1.png)
+
+### 1.2 Tick 지정
+
+~~~python
+X =np.linspace(-np.pi, np.pi, 256)
+C = np.cos(X)
+plt.plot(X,C)
+plt.xticks([-np.pi, -np.pi/2, np.pi/2, np.pi]) # 4개 지정
+plt.yticks([-1,0,1]) # 3개 지정
+plt.show()
+~~~
+
+- 결과 화면
+
+![](/assets/images/2019-10-31-11-08-51.png)
+
+### 1.3 Label, Title 지정
+
+- 코드
+
+~~~python
+X =np.linspace(-np.pi, np.pi, 256)
+C,S = np.cos(X), np.sin(X)
+plt.plot(X,C, ls = '--', label = 'cosine')
+plt.plot(X,S, ls = ':', label = 'sine')
+plt.xlabel('time')
+plt.ylabel('amplitude')
+plt.legend(loc=2) # 범례 위치 지정
+plt.show()
+~~~
+
+- 실행화면
+
+![](/assets/images/2019-10-31-11-02-41.png)
