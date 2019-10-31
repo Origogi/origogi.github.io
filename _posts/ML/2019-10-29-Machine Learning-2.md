@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing (2)"
+title: "Machine Learning 을 위한 Pre Processing - Numpy"
 excerpt : " "
 layout: single
 classes : wide

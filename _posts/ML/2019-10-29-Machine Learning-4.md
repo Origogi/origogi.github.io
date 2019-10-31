@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing (4)"
+title: "Machine Learning 을 위한 Pre Processing - Matplotlib"
 excerpt : " "
 layout: single
 classes : wide
@@ -176,3 +176,37 @@ plt.show()
 - 실행 결과
 
 ![](/assets/images/2019-10-31-11-49-43.png)
+
+## 히스토그램
+
+~~~python
+import matplotlib.pyplot as plt
+import numpy as np
+plt.style.use('ggplot') # ggplot 스타일 적용
+
+mu1, mu2, sigma = 100 ,130, 15
+x1 = mu1 + sigma* np.random.randn(10000)
+x2 = mu2 + sigma* np.random.randn(10000)
+
+fig = plt.figure()
+
+ax1 = fig.add_subplot(1,1,1)
+
+ax1.hist(x1, bins = 50, color = 'darkgreen')
+ax1.hist(x2, bins = 50, color = 'orange', alpha = 0.3)
+ax1.xaxis.set_ticks_position('bottom')
+ax1.yaxis.set_ticks_position('left')
+
+plt.xlabel('Bins')
+plt.ylabel("Number of Values bin")
+ax1.set_title('Two Frequency Distributions')
+
+fig.suptitle('Histogram', fontsize=14, fontweight='bold')
+
+plt.show()
+
+~~~
+
+- 실행 결과
+
+![](/assets/images/2019-10-31-13-52-05.png)

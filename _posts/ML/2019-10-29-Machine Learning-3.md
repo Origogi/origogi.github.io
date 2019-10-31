@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing (3)"
+title: "Machine Learning 을 위한 Pre Processing - Pandas"
 excerpt : " "
 layout: single
 classes : wide
@@ -614,7 +614,7 @@ print(pd.concat([s1,s4], axis=1, join='inner'))
 
 > DataFrame을 붙일 때 index가 불일치 하는 경우 NaN 값이 들어가기 때문에 주의하여 사용해야 한다.
 
-#### 5.1.3 데이터 회전(stack(), unstack())
+### 5.2 데이터 회전(stack(), unstack())
 
 - Column과 index의 위치를 서로 바꿈으로써 같은 데이터를 여려 가지 모습(표현)으로 분석이 가능하다.
 - pivot을 통해 그룹화를 쉽게 할 수 있다.
@@ -707,7 +707,7 @@ two  NaN  NaN  4.0  5.0  6.0
 
 ~~~
 
-#### 5.1.4 중복 제거 
+### 5.3 중복 제거 
 
 ~~~python
 import pandas as pd
@@ -756,7 +756,7 @@ dtype: bool
 '''
 ~~~
 
-#### 5.1.5 함수 매핑을 이용한 데이터 변형 - map()
+### 5.4 함수 매핑을 이용한 데이터 변형 - map()
 
 ~~~python
 import pandas as pd
@@ -820,7 +820,7 @@ Name: food, dtype: object
 '''
 ~~~
 
-#### 5.1.6 치환 - replace()
+### 5.5 치환 - replace()
 
 ~~~python
 import pandas as pd
@@ -851,5 +851,133 @@ print(data, '\n')
 
 print(data.rename(index =str.title, columns=str.upper), '\n')
 print(data.rename(index ={'OHIO' : 'INDIANA'}, columns={'three' : 'peek'}), '\n')
+
+~~~
+
+### 5.6 cut()
+
+~~~python
+import pandas as pd
+
+ages = [20,22,25,27,21,23,36,31,55,42,32]
+
+bins = [18,25,35,60, 100]
+
+cData = pd.cut(ages, bins)
+print(cData)
+print('\n',pd.value_counts(cData))
+
+group_nams = ['Youth', 'YoungAdult', 'MiddleAged', 'Senior']
+
+rcData= pd.cut(ages, bins, labels=group_nams)
+print('\n',rcData)
+print('\n', pd.value_counts(rcData))
+
+'''
+[(18, 25], (18, 25], (18, 25], (25, 35], (18, 25], ..., (35, 60], (25, 35], (35, 60], (35, 60], (25, 35]]
+Length: 11
+Categories (4, interval[int64]): [(18, 25] < (25, 35] < (35, 60] < (60, 100]]
+
+ (18, 25]     5
+(35, 60]     3
+(25, 35]     3
+(60, 100]    0
+dtype: int64
+
+ [Youth, Youth, Youth, YoungAdult, Youth, ..., MiddleAged, YoungAdult, MiddleAged, MiddleAged, YoungAdult]
+Length: 11
+Categories (4, object): [Youth < YoungAdult < MiddleAged < Senior]
+
+ Youth         5
+MiddleAged    3
+YoungAdult    3
+Senior        0
+dtype: int64
+'''
+~~~
+
+### 5.8 GroupBy
+
+- 분류 - 적용 - 결합
+
+1. 데이터를 색인 기준으로 분리한다.
+2. 함수를 각 그룹에 적용시켜 새로운 값을 얻어낸다.
+3. 함수를 적용한 결과를 하나의 객체로 나타낸다.
+
+### 5.8.1 공통의 이름으로 그룹화
+
+~~~python
+import pandas as pd
+import numpy as np
+
+np.random.seed(12345)
+
+df= pd.DataFrame({'key1' : ['a', 'a','b', 'b', 'a' ],
+                  'key2' : ['one','two', 'one', 'two', 'one'],
+                  'data1': np.random.randn(5),
+                  'data2' : np.random.randn(5)})
+print(df)
+grouped = df['data1'].groupby(df['key1'])
+print('\n',grouped)
+print('\n', grouped.mean())
+print('\n', df['data1'].groupby([df['key1'], df['key2']]).mean())
+print('\n', df['data1'].groupby([df['key1'], df['key2']]).mean().unstack())
+
+for name, group in df.groupby('key1'):
+    print('name:' , name)
+    print(group)
+
+print('\n')
+
+for (n1, n2), grouped in df.groupby(['key1', 'key2']) :
+    print(n1 ,n2)
+    print(group)
+
+dData = dict(list(df.groupby(['key1'])))
+print('\n', dData['b'])
+~~~
+
+### 5.8.2 임의의 이름을 사용하여 그룹화
+
+~~~python
+import pandas as pd
+import numpy as np
+
+people = pd.DataFrame(np.random.randn(5, 5),
+                      index=['Joe', "Steve", 'Wes', 'jim', 'Travis'],
+                      columns=list('abcde')
+                      )
+
+people.loc[2:3, ['b','c']] = np.nan
+print(people,'\n')
+
+mapping = {'a' : 'red', 'b': 'red', 'c' : 'blue', 'd' : 'blue', 'e' : 'red'}
+cData = people.groupby(mapping, axis=1)
+fData = cData.sum()
+
+print('\n', fData)
+print('\n', people.groupby(len).sum()) # 사람 이름 길이로 그룹화
+
+'''
+               a         b         c         d         e
+Joe    -0.899854 -0.017575  0.206386  0.123286 -2.492479
+Steve  -0.342711  0.532649  0.728005  0.598896  0.420379
+Wes     1.171489       NaN       NaN -0.997370  1.445726
+jim     1.867852 -1.200307  1.045335  0.643594 -1.831577
+Travis  0.513562 -0.712097  0.539612 -1.682141 -0.504461 
+
+
+             blue       red
+Joe     0.329672 -3.409908
+Steve   1.326900  0.610317
+Wes    -0.997370  2.617215
+jim     1.688929 -1.164032
+Travis -1.142529 -0.702996
+
+           a         b         c         d         e
+3  2.139487 -1.217882  1.251721 -0.230490 -2.878330
+5 -0.342711  0.532649  0.728005  0.598896  0.420379
+6  0.513562 -0.712097  0.539612 -1.682141 -0.504461
+'''
 
 ~~~

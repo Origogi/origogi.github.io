@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing (1)"
+title: "Machine Learning 을 위한 Pre Processing - Python"
 excerpt : " "
 layout: single
 classes : wide
@@ -26,30 +26,11 @@ sitemap :
   priority : 1.0
 ---
 
-# Machine Learning(ML)
-
-Python을 이용한 ML Pre Processing 강의를 정리한 POST입니다.
-
-## 1. Data 주요 개념
-
-- Data 가 가장 중요하다.
-- Data 에 대해서 전처리 과정을 통해 의미 있는 Data를 학습을 해야 ML의 예측 성능이 높아진다.
-- Data를 모을수록 좋다. (좋은 Data)
-- Data가 편향될 수록 성능이 떨어진다.(Overfiting)
-- Data를 그래프화하여 특성을 파악하는 것이 중요하다.
-
-## 2. 환경 셋업
-
-1. 아나콘다 설치
-2. Python 설치
-3. Jetbrain PyCharm 설치
-4. conda console를 실행하여 `Pandas`, `Numpy library` 설치
-
-## 3. Python
+# Python
 
 ![logo](https://i.redd.it/qvlxqyp8x1311.png)
 
-### 3.1 기본 특성
+## 1. 기본 특성
 
 - 인터프리터 언어(성능이 느리다) 성능 향상을 위해 NumPy lib을 사용하기도 한다.
 - 간략화된 문법(배우기가 쉽다)
@@ -70,15 +51,15 @@ hello_wordl = hello + ', ' + world
 # 링크드 리스트 연결이 됨
 ~~~
 
-### 3.2 Tool
+## 2. Tool
 
-#### 3.2.1 Jupyter notebook
+### 2.1 Jupyter notebook
 
 - Python을 실행해 볼수 있는 간단한 에디터
 - 아나콘다 설치 시 같이 설치가 된다.
 ![notebook-2](https://user-images.githubusercontent.com/35194820/67646429-77521700-f971-11e9-92cf-5ea9c71b7206.PNG)
   
-#### 3.2.2 PyCharm
+#### 2.2 PyCharm
 
 ![ss](/assets/images/2019-10-29-08-29-13.png)
 
@@ -97,7 +78,9 @@ hello_wordl = hello + ', ' + world
 
 6. 코드 작성 후 `run`을 하기 위해서 `Alt` + `Shift` + `F10`
 
-### 3.3 문자열
+### 3. Python 문법
+
+#### 3.1 문자열
 
 ~~~python
 s = 'Good morning'
@@ -114,9 +97,9 @@ e = '%10.3f'%(323.323323323) # '   323.323'
 '{:10.3f}'.format(323.3233232323)  # '   323.323'
 ~~~
 
-### 3.4 자료구조
+### 3.2 자료구조
 
-#### 3.4.1 List
+#### 3.2.1 List
   
   > 참고로 List는 Linked List 를 사용한다.
   > 대용량 데이터를 처리 할 때 느리다.
@@ -134,7 +117,7 @@ a.sort()
 a # [0,1,4,5]
 ~~~
   
-#### 3.4.2 Tuple
+#### 3.2.2 Tuple
 
   > List와 비슷하나 수정이 불가능 하다.
 
@@ -156,7 +139,7 @@ three # 3
 name, age, address = 'kim', 30 , 'seoul'
 ~~~
 
-#### 3.4.3 Dictionary
+#### 3.2.3 Dictionary
 
 - Key 값과 Value를 쌍으로 저장
 - Key는 Set으로 구현이 되어있고 Value는 Collection으로 구현이 되어 있다.
@@ -170,7 +153,7 @@ name, age, address = 'kim', 30 , 'seoul'
  data.items() ## dict_items([('name', 'Kim'), ('age', 30), ('address', 'seoul'), ('height', 180)])
 ~~~
   
-#### 3.4.4 Set
+#### 3.2.4 Set
 
 - 저장된 순서 보장하지 않는다.
 - 접근 속도가 빠르다.
@@ -182,11 +165,11 @@ type(setA) ## set
 setA #{1, 2, 3, 11}
 ~~~
 
-### 3.5 흐름 제어
+### 3.3 흐름 제어
 
 - `None` : 값이 없음(empty)을 의미
   
-#### 3.5.1 코드 블록(Code Block)
+#### 3.3.1 코드 블록(Code Block)
   
 - 여러 코드가 이루는 일정한 구역
 
@@ -212,7 +195,7 @@ else :
     print('num<=80')
 ~~~
 
-#### 3.5.2 반복문
+#### 3.3.2 반복문
 
 > for `반복변수` in `순서열` :
 > `코드 블록`
@@ -243,7 +226,7 @@ for k,v in dic.items() :
 
 ~~~
 
-### 3.6 함수
+### 3.4 함수
 
 - 함수를 정의할 때 `def` 키워드를 사용한다.
 
@@ -282,7 +265,7 @@ print_personnel(position = '인턴', name = '박상현' )
 > Python은 리턴 타입을 명시 하지 않는다. 왜냐하면 변수 자체에 타입이 없기 때문
 > 함수 인자 타입에 따른 함수 오버로드도 의미가 없다. 함수 인자도 타입이 없기 때문
 
-#### 3.6.1 가변 매개변수
+#### 3.4.1 가변 매개변수
 
 ~~~python
 def add (*data) :
@@ -305,7 +288,7 @@ print_team(카시야스='GK', 호날두='FW', 알론소='MF', 페페='DF')
 # 페페 = DF
 ~~~
 
-#### 3.6.2 함수 포인터
+#### 3.4.2 함수 포인터
 
 ~~~python
 def plus(a,b) :
@@ -337,9 +320,9 @@ hello = get_greeting('E')
 hello() # hello
 ~~~
 
-### 3.7 객제 지향 프로그래밍
+### 3.5 객제 지향 프로그래밍
 
-#### 3.7.1 생성자
+#### 3.5.1 생성자
 
 ~~~python
 class Car :
@@ -401,7 +384,7 @@ b.add('Lee')
 b.print_list() # ['Lee']
 ~~~
 
-#### 3.7.2 Class Private Member
+#### 3.5.2 Class Private Member
 
 ~~~python
 class HasPrivate :
@@ -422,7 +405,7 @@ obj.pubValue
 obj.__priValue # error 발생!!
 ~~~
 
-#### 3.7.3 Inheritance
+#### 3.5.3 Inheritance
 
 ~~~python
 class AA :
@@ -451,7 +434,7 @@ bb = BB()
 # BB init call
 ~~~
 
-### 3.8 Iteration
+### 3.6 Iteration
 
 ~~~python
 iterator = range(3).__iter__()
@@ -463,7 +446,7 @@ iterator.__next__() # exception!!
 
 ~~~
 
-#### 3.8.1 Custom Iteration
+#### 3.6.1 Custom Iteration
 
 ~~~python
 class MyRange:
@@ -484,7 +467,7 @@ for i in MyRange(0,5):
     print(i) # o 1 2 3 4
 ~~~
 
-### 3.9 Generator
+### 3.7 Generator
 
 ~~~python
 def YourRange(start, end):
@@ -498,9 +481,9 @@ for i in YourRange(0,5) :
     print(i)
 ~~~
 
-### 3.10 Iterator
+### 3.8 Iterator
 
-#### 3.10.1 Comprehension
+#### 3.8.1 Comprehension
 
 ~~~python
 result = []
@@ -544,7 +527,7 @@ print(result7)
 
 > Compression 방식을 사용하면 가독성이 떨어지지만 처리 속도가 빨라진다.
 
-#### 3.10.2 Emurate
+#### 3.8.2 Emurate
 
 ~~~python
 for i,v in enumerate(data) :
@@ -556,7 +539,7 @@ result = {i:j for i,j in enumerate(str)}
 print(result)
 ~~~
 
-### 3.10.3 Zip
+### 3.8.3 Zip
 
 ~~~python
 a = (1,2,3)
@@ -571,9 +554,9 @@ result3 = [sum(x) for x in zip(a,b,c)]
 print(result3)
 ~~~
 
-### 3.11 File 입출력
+### 3.9 File 입출력
 
-#### 3.11.1 File read/write 기본
+#### 3.9.1 File read/write 기본
 
 ~~~python
 file = open('text.txt', 'w')
@@ -588,7 +571,7 @@ print(str)
 file2.close()
 ~~~
 
-#### 3.11.2 Iterator 사용
+#### 3.9.2 Iterator 사용
 
 ~~~python
 def displayForLoop(file) :
@@ -609,7 +592,7 @@ displayForLoop(filepath)
 print(displayWithComprehension(filepath))
 ~~~
 
-#### 3.12.3 file을 list로 read 한 후 정렬한다음 write
+#### 3.9.3 file을 list로 read 한 후 정렬한다음 write
 
 ~~~python
 def readListFromFile(file) :
@@ -630,7 +613,7 @@ list.sort()
 writeListToFile(list,file)
 ~~~
 
-### 3.13 집합 API(Set)
+### 3.10 집합 API(Set)
 
 ~~~python
 infile = open('File1.txt', 'r')
@@ -656,7 +639,7 @@ outfile = open('Difference.txt', 'w')
 outfile.writelines(firstSet.difference(secondSet))
 ~~~
 
-### 3.14 Lambda
+### 3.11 Lambda
 
 ~~~python
 #람다 식을 이용해 함수를 축약해서 사용 가능하다.
@@ -672,9 +655,9 @@ ex = [1,2,3,4,5]
 print(list(map(lambda x:x**2, ex)))
 ~~~
 
-### 3.15 바이너리 파일
+### 3.12 바이너리 파일
 
-#### 3.15.1 pack(), unpack()
+#### 3.12.1 pack(), unpack()
 
 ~~~python
 import struct
@@ -689,7 +672,7 @@ unpacked = struct.unpack('i',packed) # bytes => tuple(data)
 print(unpacked) # (256,)
 ~~~
 
-#### 3.15.2 Pickle library
+#### 3.12.2 Pickle library
 
 - Pickle library를 이용하여 쉽게 바이너리 파일을 read/write 할 수 있다.
 
