@@ -96,8 +96,8 @@ frame3 = pd.DataFrame(data, columns=['year', 'state', 'pop', 'debt'],
 print('\n',frame3)
 
 print('\n',frame3.year) # Series를 리턴한다.
-print('\n',frame3['year']) # 위와 동일한 결과를 가져온다.
-print('\n', frame3.loc['three']) # Series를 리턴한다.
+print('\n',frame3['year']) # 행을 추출한다.
+print('\n', frame3.loc['three']) # 열을 추출한다.
 
 '''
    one  two
@@ -153,6 +153,9 @@ debt      NaN
 Name: three, dtype: object
 ...
 ~~~
+
+> 행을 추출 할 때에는 dataframe[`column명`] 
+> 열을 추출 할 때에는 dataframe.loc['index명']
 
 ## 3. 핵심 기능
 
@@ -979,5 +982,56 @@ Travis -1.142529 -0.702996
 5 -0.342711  0.532649  0.728005  0.598896  0.420379
 6  0.513562 -0.712097  0.539612 -1.682141 -0.504461
 '''
-
 ~~~
+
+### 5.8.3 agg()
+
+- 집계 함수이다.
+- max, count, mean, min 등 다양한 연산을 지원한다.
+
+~~~phthon
+import pandas as pd
+import numpy as np
+
+tips = pd.read_csv('tips.csv')
+print(tips.head(5))
+
+tips['tip_pct'] = tips['tip'] / tips['total_bill']
+
+print('\n',tips.head(5))
+
+grouped = tips.groupby(['sex', 'smoker'])
+grouped_pct = grouped['tip_pct']
+print('\n', grouped_pct.agg('mean'))
+print('\n', grouped_pct.agg(['mean', 'std']))
+print('\n', grouped_pct.agg([('gmean' , 'mean'), ('gstd','std')]))
+
+print('\n', grouped.agg({'tip' : np.max, 'size' : 'sum'}))
+print('\n', grouped.agg({'tip_pct' : ['min', 'max', 'mean','std'], 'size' : 'sum'}))
+~~~
+
+### 5.8.4 apply()
+
+- groupBy 함수이다.
+- agg() 는 미리 정의가 된 연산이지만 apply에 함수 포인터를 넘겨 줌으로써 좀 더 자유로운 연산이 가능하다.
+
+[tips.csv](https://origogi.github.io/machine%20learning/Machine-Learning-4/tips.csv)
+
+~~~python
+tips = pd.read_csv('tips.csv')
+
+tips['tip_pct'] = tips['tip'] / tips['total_bill']
+
+def top(df, n= 5, column = 'tip_pct') :
+    return df.sort_values(by= column)[-n:]
+
+print('\n',top(tips, n= 6), '\n')
+
+print('\n',tips.groupby('smoker').apply(top), '\n')
+print('\n',tips.groupby(['smoker', 'day']).apply(top, n =1, column='total_bill'), '\n')
+
+result = tips.groupby('smoker')['tip_pct'].describe()
+print('\n', result)
+print('\n', result.unstack())
+~~~
+
