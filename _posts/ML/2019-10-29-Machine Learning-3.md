@@ -612,4 +612,244 @@ print(pd.concat([s1,s4], axis=1, sort= False))
 print(pd.concat([s1,s4], axis=1, join='inner'))
 ~~~
 
-> DataFrame을 붙일 때 index가 블일치 하는 경우 NaN 값이 들어가기 때문에 주의하여 사용해야 한다.
+> DataFrame을 붙일 때 index가 불일치 하는 경우 NaN 값이 들어가기 때문에 주의하여 사용해야 한다.
+
+#### 5.1.3 데이터 회전(stack(), unstack())
+
+- Column과 index의 위치를 서로 바꿈으로써 같은 데이터를 여려 가지 모습(표현)으로 분석이 가능하다.
+- pivot을 통해 그룹화를 쉽게 할 수 있다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame(np.arange(6).reshape(2,3),
+                    index=pd.Index(['Ohio', 'Colorado'], name = 'state'),
+                    columns=pd.Index(['one', 'two','three'], name ='number'))
+# name을 사용하여 index나 column의 title을 지정할 수 있다.
+
+print(data)
+result = data.stack() # column을 index로 이동한다.
+print('\n',result)
+print('\n',result.unstack()) # index를 column으로 이동한다.
+print('\n',result.unstack(level =0)) # unstack()과 동일하다
+print('\n',result.unstack(level =1))
+print('\n',result.unstack('state'))
+
+
+s1 = pd.Series([0,1,2,3], index=list('abcd'))
+s2 = pd.Series([4,5,6], index=list('cde'))
+
+data2 = pd.concat([s1, s2], keys=['one', 'two']) # index 의 레벨이 2개가 생긴다.
+print('\n',data2)
+print('\n',data2.unstack()) 
+
+frame = pd.DataFrame({'a':range(7),'b':range(7,0,-1),
+                      'c':['one','one','one','two','two','two','two'],
+                      'd':[0,1,2,0,1,2,3]})
+print('\n',frame)
+frame2 = frame.set_index(['c','d']) # column을 인덱스로 지정할 수 있다.
+print('\n',frame2)
+
+
+'''
+number    one  two  three
+state                    
+Ohio        0    1      2
+Colorado    3    4      5
+
+ state     number
+Ohio      one       0
+          two       1
+          three     2
+Colorado  one       3
+          two       4
+          three     5
+dtype: int32
+
+ number    one  two  three
+state                    
+Ohio        0    1      2
+Colorado    3    4      5
+
+ state   Ohio  Colorado
+number                
+one        0         3
+two        1         4
+three      2         5
+
+ number    one  two  three
+state                    
+Ohio        0    1      2
+Colorado    3    4      5
+
+ state   Ohio  Colorado
+number                
+one        0         3
+two        1         4
+three      2         5
+
+ one  a    0
+     b    1
+     c    2
+     d    3
+two  c    4
+     d    5
+     e    6
+dtype: int64
+
+        a    b    c    d    e
+one  0.0  1.0  2.0  3.0  NaN
+two  NaN  NaN  4.0  5.0  6.0
+
+
+'''
+
+~~~
+
+#### 5.1.4 중복 제거 
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame({'k1' : ['one'] * 3 + ['two'] * 4 + ['one'],
+                     'k2' : [1,1,2,3,3,4,4,1]})
+
+# 맨 위에서 부터 순차적으로 비교하기 때문에 맨 처음은 무조건 False이다.
+
+print(data)
+print('\n',data.duplicated())
+print('\n', data.drop_duplicates())
+print('\n', data.drop_duplicates(['k1']))
+
+'''
+    k1  k2
+0  one   1
+1  one   1
+2  one   2
+3  two   3
+4  two   3
+5  two   4
+6  two   4
+7  one   1
+
+ 0    False
+1     True
+2    False
+3    False
+4     True
+5    False
+6     True
+7     True
+dtype: bool
+
+     k1  k2
+0  one   1
+2  one   2
+3  two   3
+5  two   4
+
+     k1  k2
+0  one   1
+3  two   3
+'''
+~~~
+
+#### 5.1.5 함수 매핑을 이용한 데이터 변형 - map()
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame({'food': ['bacon', 'pulled pork', 'bacon', "Pastrami", 'corned beef', 'Bacon', 'pastrami',
+                              'honey ham', 'nova lox'],
+                     'ounces': [4, 3, 12, 6, 7.5, 8, 3, 5, 6]})
+
+print('\n', data, '\n')
+
+meat_to_animal = {
+    'bacon' : 'pig',
+    'pulled pork' : 'pig',
+    'pastrami' : 'cow',
+    'corned beef' : 'cow',
+    'honey ham' : 'pig',
+    'nova lox' : 'salmon'
+}
+
+data['animal'] = data['food'].map(str.lower).map(meat_to_animal)
+print('\n',data, '\n')
+print('\n',data['food'].map(lambda  x : meat_to_animal[x.lower()]), '\n')
+
+'''
+           food  ounces
+0        bacon     4.0
+1  pulled pork     3.0
+2        bacon    12.0
+3     Pastrami     6.0
+4  corned beef     7.5
+5        Bacon     8.0
+6     pastrami     3.0
+7    honey ham     5.0
+8     nova lox     6.0 
+
+
+           food  ounces  animal
+0        bacon     4.0     pig
+1  pulled pork     3.0     pig
+2        bacon    12.0     pig
+3     Pastrami     6.0     cow
+4  corned beef     7.5     cow
+5        Bacon     8.0     pig
+6     pastrami     3.0     cow
+7    honey ham     5.0     pig
+8     nova lox     6.0  salmon 
+
+
+ 0       pig
+1       pig
+2       pig
+3       cow
+4       cow
+5       pig
+6       cow
+7       pig
+8    salmon
+Name: food, dtype: object 
+
+'''
+~~~
+
+#### 5.1.6 치환 - replace()
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.Series([1, -999., 2.,-1000,3])
+
+print('\n', data, '\n')
+print('\n', data.replace([-999, -1000], np.nan), '\n') # list와 일치하는 것을 치환
+print('\n', data.replace({-999:0, -1000:np.nan}), '\n')  # map을 이용
+~~~
+
+### 5.1.7 축 색인 이름 바꾸기
+
+~~~python
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame(
+    np.arange(12).reshape(3,4),
+    index=['Ohio', 'Colorado','New York'],
+    columns=['one', 'two', 'three', 'four']
+)
+
+print(data.index.map(str.upper), '\n')
+data.index = data.index.map(str.upper)
+print(data, '\n')
+
+print(data.rename(index =str.title, columns=str.upper), '\n')
+print(data.rename(index ={'OHIO' : 'INDIANA'}, columns={'three' : 'peek'}), '\n')
+
+~~~
