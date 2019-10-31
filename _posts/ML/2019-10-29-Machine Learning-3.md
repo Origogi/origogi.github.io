@@ -1015,7 +1015,7 @@ print('\n', grouped.agg({'tip_pct' : ['min', 'max', 'mean','std'], 'size' : 'sum
 - groupBy 함수이다.
 - agg() 는 미리 정의가 된 연산이지만 apply에 함수 포인터를 넘겨 줌으로써 좀 더 자유로운 연산이 가능하다.
 
-[tips.csv](https://origogi.github.io/machine%20learning/Machine-Learning-4/tips.csv)
+<!-- [tips.csv](https://origogi.github.io/machine%20learning/Machine-Learning-4/tips.csv) -->
 
 ~~~python
 tips = pd.read_csv('tips.csv')
@@ -1034,4 +1034,3 @@ result = tips.groupby('smoker')['tip_pct'].describe()
 print('\n', result)
 print('\n', result.unstack())
 ~~~
-
