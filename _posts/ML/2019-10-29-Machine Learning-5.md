@@ -21,8 +21,8 @@ tags:
 comments: true
 header:
   overlay_filter: 0.5
-  overlay_image: https://cdn.inflearn.com/wp-content/uploads/python_crawler.jpg
-  teaser: https://cdn.inflearn.com/wp-content/uploads/python_crawler.jpg
+  overlay_image: https://s3.amazonaws.com/codementor_content/2016-Nov/scraping.jpg
+  teaser: https://s3.amazonaws.com/codementor_content/2016-Nov/scraping.jpg
 sitemap :
   changefreq : daily
   priority : 1.0
@@ -43,9 +43,54 @@ sitemap :
 
 ## 2. 뷰티풀 소프4
 
+- HTML 파일을 쉽게 파싱을 하기 위한 도구
+
 ### 2.1 설치
+
+1. 콘다 프롬프트 실행
+2. 아래 명령어 실행
 
 ![](/assets/images/2019-11-01-13-22-37.png)
 
-### 
+### 2.2 HTML 분석
 
+#### 2.2.1 find(), findAll()
+
+- find(), findAll()를 통해 내가 찾고자 하는 tag 정보를 가져 올 수 있다.
+  - find() : 한 개 파싱
+  - findAll() : 전부 파싱
+
+### 2.3 예제
+
+~~~python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+pages = set()
+
+def getLinks(pageUrl):
+    global pages
+
+    html = urlopen('https://en.wikipedia.org/' + pageUrl)
+    bsObj = BeautifulSoup(html, 'html.parser')
+    try:
+        print(bsObj.h1.get_text())
+        print(bsObj.find(id='mw-content-text').findAll('p'[0]))
+        print(bsObj.find(id='ca-edit').find('span').find('a').attrs['href'])
+    except:
+        print('This page is missing something! No worries though!')
+
+    for link in bsObj.findAll('a', href=re.compile('^(/wiki/)')):
+        if 'href' in link.attrs:
+            if link.attrs['href'] not in pages:
+                newPage = link.attrs['href']
+                print(newPage)
+                pages.add(newPage)
+                getLinks(newPage)
+getLinks("")
+~~~
+
+- 실행 화면
+
+![bandicam 2019-11-01 14-33-12-095](https://user-images.githubusercontent.com/35194820/68004562-5bbe7780-fcb5-11e9-83da-b470304e9cce.gif)
