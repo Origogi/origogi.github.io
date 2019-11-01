@@ -1106,7 +1106,6 @@ Male   No      2.0  32.0  43.0  20.0
 
 
 ~~~python
-
 import pandas as pd
 
 fec = pd.read_csv('P00000001-ALL.csv')
@@ -1192,6 +1191,7 @@ bins = [0,1,10,100,1000,10_000,100_000, 1_000_000,10_000_000]
 labels = pd.cut(fec_mrbo.contb_receipt_amt,bins)
 print(labels)
 
+# 후원자의 카운트를 그륩화한다.
 grouped = fec_mrbo.groupby(['cand_nm', labels])
 print('\n', grouped.size())
 print('\n', grouped.size().unstack(level=0))
@@ -1199,6 +1199,12 @@ print('\n', grouped.size().unstack(level=0))
 bucket_sums = grouped.contb_receipt_amt.sum().unstack(level=0)
 print('\n', bucket_sums)
 
+# Data를 오바마와 롬니의 비율로 변환
+normed_sums= bucket_sums.div(bucket_sums.sum(axis=1), axis = 0)
+print('\n', normed_sums)
+
+normed_sums[0:-2].plot(kind='barh', stacked = True)
+plt.show()
 ~~~
 
 - 실행 결과
@@ -1216,7 +1222,6 @@ print('\n', bucket_sums)
     - 실험 혹은 경과 시간
 
 ### 6.1 날짜, 시간 자료형
-
 
 ~~~python
 from datetime import datetime
