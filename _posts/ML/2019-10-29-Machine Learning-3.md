@@ -1100,7 +1100,10 @@ Male   No      2.0  32.0  43.0  20.0
 
 ~~~
 
-## 5.10 종합 응용
+## 5.10 Matplotlib을 활용한 예
+
+[Matplotlib](https://origogi.github.io/machine%20learning/Machine-Learning-4/)
+
 
 ~~~python
 
@@ -1175,7 +1178,7 @@ import matplotlib.pyplot as plt
 
 # Bar 그래프로 변환
 over_2mm.plot(kind ='barh')
-# plt.show()
+plt.show()
 
 def get_to_amount(group, key, n=5) :
     totals = group.groupby(key)['contb_receipt_amt'].sum()
@@ -1198,7 +1201,19 @@ print('\n', bucket_sums)
 
 ~~~
 
+- 실행 결과
+
+두 후보에 대해서 직업 별 기부금 양|기부금 총 양에 대한 두 후보의 비율|
+|:---:|:---:|
+![](/assets/images/2019-11-01-12-46-22.png) | ![](/assets/images/2019-11-01-12-47-45.png)
+
 ## 6. 시계열 data 처리
+
+- 시게열 데이터는 금융, 경제, 생태학, 물리학 등 여러 분야에서 사용되는 매우 중요한 구조화 된 데이터이다.
+- 시간 상의 여러지점을 관측하거나 측정할 수 있는 모든 것이 시계열이다.
+    - 시간 내에서 특정 순간의 타임 스탬프
+    - 2018년 9월이나 2017년 같은 고정된 시간
+    - 실험 혹은 경과 시간
 
 ### 6.1 날짜, 시간 자료형
 
