@@ -50,6 +50,10 @@ ex>
 
 ### 모범 답안
 
+<details>
+<summary>접기/펼치기</summary>
+<div markdown="1">
+
 ~~~python
 def getWageAndHours():
     hoursworked = eval(input("Enter hours worked: "))
@@ -72,6 +76,11 @@ def displayEarnings(payForWeek):
 payForWeek = pay(wage, hours)
 displayEarnings(payForWeek)
 ~~~
+
+</div>
+</details>
+
+
 
 ### 2번 문제
 

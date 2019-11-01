@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Machine Learning 을 위한 Pre Processing - Web Crowling"
+title: "Machine Learning 을 위한 Pre Processing - 웹 크롤링"
 excerpt : " "
 layout: single
 classes : wide
@@ -28,7 +28,24 @@ sitemap :
   priority : 1.0
 ---
 
-# Web Crowling
+# 웹 크롤링
 
 ![logo](https://cdn.inflearn.com/wp-content/uploads/python_crawler.jpg)
+
+## 1. 개요
+
+- 웹으로 부터 데이터를 수집하는 작업을 말한다.
+- 프로그램을 만들어 웹 서버에 쿼리를 보내 데이터를 요청하고, 이를 파싱해 필요한 정보를 추출하는 작업을 자동으로 하는 것이다.
+- 화면을 구성하는 data format
+  - HTML
+  - CSS
+  - JavaScript
+
+## 2. 뷰티풀 소프4
+
+### 2.1 설치
+
+![](/assets/images/2019-11-01-13-22-37.png)
+
+### 
 
