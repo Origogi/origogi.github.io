@@ -710,7 +710,7 @@ two  NaN  NaN  4.0  5.0  6.0
 
 ~~~
 
-### 5.3 중복 제거 
+### 5.3 중복 제거
 
 ~~~python
 import pandas as pd
@@ -1034,3 +1034,238 @@ result = tips.groupby('smoker')['tip_pct'].describe()
 print('\n', result)
 print('\n', result.unstack())
 ~~~
+
+## 5.9 Pivot Table
+
+- 피벗 테이블은 하나 이상의 키로 수집하여 로우, 칼럼에 나열하여 데이터를 정렬한다.
+
+~~~python
+import pandas as pd
+import numpy as np
+
+tips = pd.read_csv('tips.csv')
+print(tips.head(5))
+
+tips['tip_pct'] = tips['tip'] / tips['total_bill']
+
+print('\n', tips.pivot_table(index=['sex', 'smoker']))
+
+print('\n', tips.pivot_table(
+    ['tip_pct', 'size'],
+    index=['sex', 'day'],
+    columns='smoker'
+))
+
+print('\n', tips.pivot_table(
+    'tip_pct',
+    index=['sex', 'smoker'],
+    columns='day',
+    aggfunc = len
+))
+
+'''
+ total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+
+                    size       tip   tip_pct  total_bill
+sex    smoker                                          
+Female No      2.592593  2.773519  0.156921   18.105185
+       Yes     2.242424  2.931515  0.182150   17.977879
+Male   No      2.711340  3.113402  0.160669   19.791237
+       Yes     2.500000  3.051167  0.152771   22.284500
+
+                  size             tip_pct          
+smoker             No       Yes        No       Yes
+sex    day                                         
+Female Fri   2.500000  2.000000  0.165296  0.209129
+       Sat   2.307692  2.200000  0.147993  0.163817
+       Sun   3.071429  2.500000  0.165710  0.237075
+       Thur  2.480000  2.428571  0.155971  0.163073
+Male   Fri   2.000000  2.125000  0.138005  0.144730
+       Sat   2.656250  2.629630  0.162132  0.139067
+       Sun   2.883721  2.600000  0.158291  0.173964
+       Thur  2.500000  2.300000  0.165706  0.164417
+
+ day            Fri   Sat   Sun  Thur
+sex    smoker                       
+Female No      2.0  13.0  14.0  25.0
+       Yes     7.0  15.0   4.0   7.0
+Male   No      2.0  32.0  43.0  20.0
+       Yes     8.0  27.0  15.0  10.0
+'''
+
+~~~
+
+## 5.10 종합 응용
+
+~~~python
+
+import pandas as pd
+
+fec = pd.read_csv('P00000001-ALL.csv')
+print('\n', fec.info())
+print('\n', fec['cand_nm'].drop_duplicates().values)
+
+parties = {'Bachmann, Michelle':'Republican',
+           'Cain, Herman':'Republican',
+           'Gingrich, Newt':'Republican',
+           'Huntsman, Jon':'Republican',
+           'Johnson, Gary Earl':'Republican',
+           'McCotter, Thaddeus G':'Republican',
+           'Obama, Barack':'Democrat',
+           'Paul, Ron':'Republican',
+           'Pawlenty, Timothy':'Republican',
+           'Perry, Rick':'Republican',
+           "Roemer, Charles E. 'Buddy' III":'Republican',
+           'Romney, Mitt':'Republican',
+           'Santorum, Rick':'Republican'}
+
+fec['party'] = fec.cand_nm.map(parties)
+
+print(fec.head(10))
+print('\n', fec['party'].value_counts())
+
+fec_mrbo = fec[fec.cand_nm.isin(['Obama, Barack', 'Romney, Mitt'])]
+
+print('\n',fec_mrbo )
+
+# 기부금이 0 이상인 Data
+fec = fec[fec.contb_receipt_amt >0]
+print(fec.head(10))
+
+occ_mapping = {
+    'INFORMATION REQUESTED PER BEST EFFORTS':'NOT PROVIDED',
+    'INFORMATION REQUESTED':'NOT PROVIDED',
+    'INFORMATION REQUESTED (BEST EFFORTS)':'NOT PROVIDED',
+    'C.E.O.':'CEO',
+    'C.E.O':'CEO'
+}
+
+# 의미가 같지만 용어가 다른 data를 변환한다.
+f = lambda x: occ_mapping.get(x,x) # get(key, default value)
+fec.contbr_occupation = fec.contbr_occupation.map(f)
+
+emp_mapping = {
+    'INFORMATION REQUESTED PER BEST EFFORTS':'NOT PROVIDED',
+    'INFORMATION REQUESTED':'NOT PROVIDED',
+    'SELF':'SELF-EMPLOYED',
+    'SELF EMPLOYED':'SELF-EMPLOYED'
+}
+
+# 의미가 같지만 용어가 다른 data를 변환한다.
+f = lambda x: emp_mapping.get(x,x)
+fec.contbr_employer = fec.contbr_employer.map(f)
+
+by_occupation = fec.pivot_table('contb_receipt_amt',
+                                index = 'contbr_occupation'
+                                ,columns = 'party',
+                                aggfunc= 'sum')
+
+print('\n', by_occupation)
+
+over_2mm = by_occupation[by_occupation.sum(axis =1) > 2000000]
+
+print('\n', over_2mm)
+
+import matplotlib.pyplot as plt
+
+# Bar 그래프로 변환
+over_2mm.plot(kind ='barh')
+# plt.show()
+
+def get_to_amount(group, key, n=5) :
+    totals = group.groupby(key)['contb_receipt_amt'].sum()
+    return totals.sort_values(ascending=False)[:n]
+
+grouped = fec_mrbo.groupby('cand_nm')
+print('\n', grouped.apply(get_to_amount, 'contbr_occupation', n =7))
+
+# Data를 구간 별로 나눔
+bins = [0,1,10,100,1000,10_000,100_000, 1_000_000,10_000_000]
+labels = pd.cut(fec_mrbo.contb_receipt_amt,bins)
+print(labels)
+
+grouped = fec_mrbo.groupby(['cand_nm', labels])
+print('\n', grouped.size())
+print('\n', grouped.size().unstack(level=0))
+
+bucket_sums = grouped.contb_receipt_amt.sum().unstack(level=0)
+print('\n', bucket_sums)
+
+~~~
+
+## 6. 시계열 data 처리
+
+### 6.1 날짜, 시간 자료형
+
+#### 6.1.1 기본
+
+~~~python
+from datetime import datetime
+
+now = datetime.now()
+print(now,'\n')
+print('{}년 {}월 {}일'.format(now.year, now.month, now.day), '\n')
+
+delta = datetime(2018,1,7) - datetime(2015,6,24,8,15)
+print(delta, '\n')
+print('days:{} seconds : {}'.format(delta.days, delta.seconds), '\n')
+
+from datetime import timedelta
+start = datetime(2011,1,7)
+print(start + timedelta(12), '\n')
+print(start -2 * timedelta(12), '\n')
+
+~~~
+
+#### 6.1.2 datetime format
+
+~~~python
+from datetime import datetime
+import pandas as pd
+import numpy as np
+
+dates = [datetime(2017, 1, 2), datetime(2017, 1, 5), datetime(2017, 7, 2),
+         datetime(2017, 9, 2), datetime(2017, 10, 2), datetime(2017, 12, 2)]
+
+ts = pd.Series(np.random.randn(6), index=dates)
+
+print('\n', ts)
+print('\n', type(ts))
+# 다양햔 형태로 인덱스 접근
+print(ts['1/5/2017'])
+print(ts['20171202'])
+
+l_ts = pd.Series(np.random.randn(1000)
+    , index=pd.date_range('1/1/2010', periods=1000)) # 2010월 1월 1일 부터 1일 증가 한 데이터를 가져온다.
+
+print(l_ts)
+print(l_ts['2011'], '\n') # 2011 년도 데이터
+print(l_ts['2011-05'], '\n') # 2011년 5월 데이터
+print(l_ts['2011-05' : '2011-07'], '\n') # 2011년 5월 부터 7월 데이터
+
+dates = pd.date_range('1/1/2010', periods=100, freq='W-WED') #수요일 데이터만 추출
+df = pd.DataFrame(np.random.randn(100,4),
+                  index=dates,
+                  columns=['one', 'two', 'three', 'four'])
+
+print('\n', df)
+print('\n', pd.date_range('1/1/2011', '10/2/2011'))
+print(pd.date_range(start='2011-01-01', periods=10))
+#start에서 뒤로 10개 생성
+print(pd.date_range(end='2011-01-01', periods=10))
+#end에서 잎으로 10개 생성
+print(pd.date_range(start='2011-01-01', end='2011-12-01', freq='BM'))
+# 그 달의 마지막 날 생성
+print('\n', pd.date_range(start='2011-01-01', end='2011-12-01', freq='WOM-2FRI'))
+# 그 달의 두 번째 주 금요일 생성
+print('\n', pd.date_range(start='2011-01-01', end='2011-12-01', freq='1h30min'))
+# 1시간 30분 간격으로 생성
+~~~
+
+> `freq` 의 활용도가 매우 높으므로 지원하는 형식을 잘 알아두면 좋다.
+> 예를 들어 비즈니스 데이(월~금)만 생성이 가능하다.
