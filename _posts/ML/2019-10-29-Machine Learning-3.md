@@ -3,8 +3,8 @@ published: true
 title: "Machine Learning 을 위한 Pre Processing - Pandas"
 excerpt : " "
 layout: single
-classes : wide
-author_profile: true
+# classes : wide
+author_profile: false
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
 toc_label: "My Table of Contents" # toc 이름 정의
