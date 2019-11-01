@@ -989,7 +989,7 @@ Travis -1.142529 -0.702996
 - 집계 함수이다.
 - max, count, mean, min 등 다양한 연산을 지원한다.
 
-~~~phthon
+~~~python
 import pandas as pd
 import numpy as np
 
@@ -1202,7 +1202,6 @@ print('\n', bucket_sums)
 
 ### 6.1 날짜, 시간 자료형
 
-#### 6.1.1 기본
 
 ~~~python
 from datetime import datetime
@@ -1222,7 +1221,7 @@ print(start -2 * timedelta(12), '\n')
 
 ~~~
 
-#### 6.1.2 datetime format
+### 6.2 datetime format
 
 ~~~python
 from datetime import datetime
@@ -1269,3 +1268,74 @@ print('\n', pd.date_range(start='2011-01-01', end='2011-12-01', freq='1h30min'))
 
 > `freq` 의 활용도가 매우 높으므로 지원하는 형식을 잘 알아두면 좋다.
 > 예를 들어 비즈니스 데이(월~금)만 생성이 가능하다.
+
+### 6.3 Sampling
+
+~~~python
+import pandas as pd
+import numpy as np
+
+np.random.seed(12345)
+
+rng = pd.date_range('1/1/2000', periods=100, freq='D')
+ts = pd.Series(np.random.rand(100), index=rng)
+
+print(ts)
+
+print(ts.resample('M').mean())
+# 해당 달의 평균을 구한다. 그룹핑과 동일
+
+rng = pd.date_range('1/1/2000', periods=12, freq ='T')
+ts = pd.Series(np.arange(12), index=rng)
+
+# Down sampling
+print('\n', ts)
+print('\n', ts.resample('5min').sum())
+#5분 단위로 샘플링, 디폴트로 오른쪽 미 포함
+print('\n', ts.resample('5min', closed='right').sum())
+# left를 제외하고 right를 포함한다.
+print('\n', ts.resample('5min', closed = 'right', label='right').sum())
+# label를 변경
+
+frame = pd.DataFrame(np.random.rand(2,4),
+                     index= pd.date_range('1/1/2000', periods=2, freq='W-WED'))
+# Up sampling
+print('\n', frame)
+print('\n', frame.resample('D').ffill()) # day 기준으로 sample을  늘린다.
+print('\n', frame.resample('D').ffill(limit=2))
+~~~
+
+### 6.4 시계열 정보와 Matplotlib을 활용한 예
+
+[Matplotlib](https://origogi.github.io/machine%20learning/Machine-Learning-4/)
+
+~~~python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+close_px_all = pd.read_csv('stock_px.csv', parse_dates=True, index_col=0)
+# parse_dates = True:  시간 형식 data가 있으면 date로 생성한다.
+# index_col=0 : 첫번째 컬럼을 index로 사용
+print(close_px_all)
+close_px = close_px_all[['AAPL', 'MSFT', 'XOM']]
+close_px = close_px.resample('B').ffill() # 비즈니스 데이로 샘플링
+
+close_px['AAPL'].plot()
+plt.show()
+
+close_px['AAPL'].loc['2011-01':'2011-03'].plot()
+# 1월 부터 3일 데이터를 보여준다
+plt.show()
+
+app_q = close_px['AAPL'].resample('Q-DEC').ffill()
+plt.show()
+
+app_q.loc['2009'].plot()
+plt.show()
+~~~
+
+- 실행 결과
+
+No Sampling|2011-01 부터 2011-03|2009년 분기 별|
+|:---:|:---:|:---:|
+![](/assets/images/2019-11-01-12-33-11.png) | ![](/assets/images/2019-11-01-12-34-03.png) | ![](/assets/images/2019-11-01-12-34-26.png)
