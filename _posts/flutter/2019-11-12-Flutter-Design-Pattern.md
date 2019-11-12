@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Flutter][번역] Flutter app architecture 101: Vanilla, Scoped Model, BLoC
+title: "[Flutter][번역] Flutter app architecture 101: Vanilla, Scoped Model, BLoC"
 excerpt : " "
 layout: single
 # classes: wide
