@@ -44,8 +44,11 @@ Flutter는 Modern react-style framework , 풍부한 Wiget Collection 및 tooling
 
 이를 고려하여 저는 동일한 문제를 세 가지 서로 다른 아키텍처로 해결하는 Sample app을 만들어 봤습니다.
 
-사용자에게 화면 중앙에 `Load user data` 버튼이 표시됩니다. 사용자가 버튼을 클릭하면 비동기 Data Loading이 트리거되고 버튼이 `Loading progress` 로 교체됩니다. Data가 로드된 후 `Loading progress`가 Data로 교체됩니다.
+사용자에게 화면 중앙에 `Load user data` 버튼이 표시됩니다. 
 
+사용자가 버튼을 클릭하면 비동기 Data Loading이 트리거되고 버튼이 `Loading progress` 로 교체됩니다. 
+
+Data가 로드된 후 `Loading progress`가 Data로 교체됩니다.
 
 
 <center><img src="https://miro.medium.com/max/300/1*yErdVupP--4NKV6b7YFffw.gif"></center>
@@ -64,6 +67,7 @@ class Repository {
   }
 }
 ~~~
+
 
 ~~~dart
 class User {
@@ -87,6 +91,8 @@ Widget의 수명 동안 Widget의 State가 여러 번 변경될 수 있으므로
  State 저장 Widget을 구현하려면 State class 있어야 합니다. 
 
 `_VanillaScreenState` class의 `bool _isLoading`, `User _user`는 Widget의 State를 나타냅니다. `build(BuildContext context)` 메소드를 호출하기 전에 두 Field를 초기화합니다.
+
+
 
 ~~~dart
 class VanillaScreen extends StatefulWidget {
@@ -154,7 +160,9 @@ class _VanillaScreenState extends State<VanillaScreen> {
 }
 ~~~
 
-Widget State 객체가 생성되면 `build (BuildContext context)` 메소드가 호출되어 UI를 build합니다. 현재 State를 나타 내기 위해 build되는 Widget에 대한 모든 결정은 UI declaration 코드를 통해 이루어집니다.
+Widget State 객체가 생성되면 `build (BuildContext context)` 메소드가 호출되어 UI를 build합니다. 
+
+현재 State를 나타 내기 위해 build되는 Widget에 대한 모든 결정은 UI declaration 코드를 통해 이루어집니다.
 
 ~~~dart
 body: SafeArea(
@@ -172,7 +180,9 @@ setState(() {
 
 > `setState()`를 호출하면 이 객체의 내부 State가 변경되었음을 `Framework`에 알립니다. 그러면 Framework가 이 State 객체의 build를 예약합니다.
 
-즉, `setState()` 메소드를 호출한 후 `build(BuildContext context)` 메소드를 Framework에 의해 다시 호출하고 전체 Widget Tree를 재구성합니다. 이제 _isLoading이 true 메소드로 설정됨에 따라 `_buildBody()` 대신 `_buildLoading()`을 호출하고 화면에 `Loading Progress` 가 표시됩니다.
+즉, `setState()` 메소드를 호출한 후 `build(BuildContext context)` 메소드를 Framework에 의해 다시 호출하고 전체 Widget Tree를 재구성합니다. 
+
+이제 _isLoading이 true 메소드로 설정됨에 따라 `_buildBody()` 대신 `_buildLoading()`을 호출하고 화면에 `Loading Progress` 가 표시됩니다.
 
 ~~~dart
 widget._repository.getUser().then((user) {
@@ -208,7 +218,9 @@ Scoped Model을 사용해서 같은 화면을 만들어 봅시다. 먼저, `pubs
 scoped_model: ^1.0.1
 ~~~
 
-UserModelScreen Widget을 살펴보고 Scoped model를 사용하지 않은 이전 예와 비교해 봅시다. 모든 Widget의 후손이 모델을 사용할 수 있도록 하려면 ScopedModel로 랩핑하고 Widget과 모델을 제공해야합니다.
+UserModelScreen Widget을 살펴보고 Scoped model를 사용하지 않은 이전 예와 비교해 봅시다. 
+
+모든 Widget의 후손이 모델을 사용할 수 있도록 하려면 ScopedModel로 랩핑하고 Widget과 모델을 제공해야합니다.
 
 ~~~dart
 class UserModelScreen extends StatefulWidget {
@@ -280,7 +292,13 @@ class _UserModelScreenState extends State<UserModelScreen> {
 }
 ~~~
 
-이전 예제에서 Widget State가 변경되면 전체 Widget Tree가 다시 작성되었습니다. 그러나 실제로 전체 화면을 Rebuild가 필요가 없을 수도 있습니다. 예를 들어 AppBar는 전혀 바뀌지 않았음으로 Rebuild 할 필요가 없습니다. 이상적 으로는 업데이트 된 Widget 만 Rebuild 되어야 합니다. `Scoped model`은 이를 해결하는 데 도움이 될 수 있습니다.
+이전 예제에서 Widget State가 변경되면 전체 Widget Tree가 다시 작성되었습니다. 그러나 실제로 전체 화면을 Rebuild가 필요가 없을 수도 있습니다. 
+
+예를 들어 AppBar는 전혀 바뀌지 않았음으로 Rebuild 할 필요가 없습니다. 
+
+이상적 으로는 업데이트 된 Widget 만 Rebuild 되어야 합니다.
+
+`Scoped model`은 이를 해결하는 데 도움이 될 수 있습니다.
 
 `ScopedModelDescendant<UserModel>` Widget은 Widget Tree에서 `UserModel`을 찾는 데 사용됩니다. `UserModel`이 변경 사항을 알릴 때마다 자동으로 Rebuild 됩니다.
 
@@ -314,7 +332,9 @@ class UserModel extends Model {
 }
 ~~~
 
-이제 `UserModel`이 State를 유지하고 관리합니다. 변경 사항이 발생했음을 `Listener` 에게 알릴려면 (그리고 descendants을 Rebuild 하려면) `notifyListeners()` 메소드를 호출해야합니다.
+이제 `UserModel`이 State를 유지하고 관리합니다. 
+
+변경 사항이 발생했음을 `Listener` 에게 알릴려면 (그리고 descendants을 Rebuild 하려면) `notifyListeners()` 메소드를 호출해야합니다.
 
 ### 장점
 
@@ -331,7 +351,9 @@ class UserModel extends Model {
 
 `BLoC (Business Logic Components)` 는 Google 개발자가 권장하는 패턴입니다. State 변경을 관리하고 전파하기 위해 `Stream` 을 활용합니다.
 
-당신이 만약 Android 개발자라면 `Bloc` 객체를 `ViewModel` 로, `StreamController` 를 `LiveData` 로 생각할 수 있습니다. 이렇게 이해를 한다면 다음 코드를 매우 간단하게 만들 수 있습니다.
+당신이 만약 Android 개발자라면 `Bloc` 객체를 `ViewModel` 로, `StreamController` 를 `LiveData` 로 생각할 수 있습니다. 
+
+이렇게 이해를 한다면 다음 코드를 매우 간단하게 만들 수 있습니다.
 
 ~~~dart
 class UserBloc {
@@ -379,7 +401,11 @@ State 가 변경 될 때 Subscriber 에게 알리기 위해 추가 메소드 호
 2. UserLoadingState : Data가 로드되는 동안 `Loading progress` 가 표시 될 때의 State
 3. UserDataState : Data가 로드되어 화면에 표시 될 때의 State
 
-이런 방식으로 State 변경을 전파하면 UI 선언 코드의 모든 logic 를 제거 할 수 있습니다. `Scoped Model`의 예에서는 UI 선언 코드에서 `_isLoading`이 true 인지 확인하여 렌더링 할 Widget을 결정 했습니다. `BLoC`의 경우 화면 State 를 전파하고 있으며 `UserBlocScreen` Widget의 유일한 책임은 현재 State에 대한 UI를 렌더링하는 것입니다.
+이런 방식으로 State 변경을 전파하면 UI 선언 코드의 모든 logic 를 제거 할 수 있습니다. 
+
+`Scoped Model`의 예에서는 UI 선언 코드에서 `_isLoading`이 true 인지 확인하여 렌더링 할 Widget을 결정 했습니다.
+
+ `BLoC`의 경우 화면 State 를 전파하고 있으며 `UserBlocScreen` Widget의 유일한 책임은 현재 State에 대한 UI를 렌더링하는 것입니다.
 
 ~~~dart
 class UserBlocScreen extends StatefulWidget {
@@ -457,7 +483,9 @@ class _UserBlocScreenState extends State<UserBlocScreen> {
 }
 ~~~
 
-`UserBlocScreen` 코드는 이전 예제에 비해 훨씬 단순해졌습니다. State 변화를 듣기 위해 `StreamBuilder`를 사용하고 있습니다. `StreamBuilder`는 `Stream`과의 최신 `Snapshot` 을 기반으로 자체 build 되는 StatefulWidget입니다.
+`UserBlocScreen` 코드는 이전 예제에 비해 훨씬 단순해졌습니다. State 변화를 듣기 위해 `StreamBuilder`를 사용하고 있습니다.
+
+ `StreamBuilder`는 `Stream`과의 최신 `Snapshot` 을 기반으로 자체 build 되는 StatefulWidget입니다.
 
 ### 장점
 
