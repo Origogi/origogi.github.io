@@ -4,7 +4,7 @@ title: "[Flutter][번역] Flutter app architecture 101: Vanilla, Scoped Model, B
 excerpt : " "
 layout: single
 # classes: wide
-author_profile: true
+author_profile: false
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
 toc_label: "My Table of Contents" # toc 이름 정의
@@ -44,7 +44,7 @@ Flutter는 Modern react-style framework , 풍부한 Wiget Collection 및 tooling
 
 이를 고려하여 저는 동일한 문제를 세 가지 서로 다른 아키텍처로 해결하는 Sample app을 만들어 봤습니다.
 
-사용자에게 화면 중앙에 `Load user data` 버튼이 표시된다. 사용자가 버튼을 클릭하면 비동기 Data Loading이 Tree거되고 버튼이 `Loading progress` 로 교체됩니다. Data가 로드된 후 `Loading progress`가 Data로 교체됩니다.
+사용자에게 화면 중앙에 `Load user data` 버튼이 표시됩니다. 사용자가 버튼을 클릭하면 비동기 Data Loading이 트리거되고 버튼이 `Loading progress` 로 교체됩니다. Data가 로드된 후 `Loading progress`가 Data로 교체됩니다.
 
 
 
@@ -77,13 +77,16 @@ class User {
 }
 ~~~
 
-## Vanilla
+## 1. Vanilla
 
 공식 Flutter 설명서를 읽은 후 대부분의 개발자가하는 방식으로 앱을 build 해 봅시다.
 
 아래 예제는 `Navigator`를 사용하여 `VanillaScreen` 화면으로 이동합니다.
 
-Widget의 수명 동안 Widget의 State가 여러 번 변경될 수 있으므로 StatefulWidget을 상속해야 합니다. State 저장 Widget을 구현하려면 State class 있어야 합니다. `_VanillaScreenState` class의 `bool _isLoading`, `User _user`는 Widget의 State를 나타냅니다. `build(BuildContext context)` 메소드를 호출하기 전에 두 Field를 초기화합니다.
+Widget의 수명 동안 Widget의 State가 여러 번 변경될 수 있으므로 StatefulWidget을 상속해야 합니다. 
+ State 저장 Widget을 구현하려면 State class 있어야 합니다. 
+
+`_VanillaScreenState` class의 `bool _isLoading`, `User _user`는 Widget의 State를 나타냅니다. `build(BuildContext context)` 메소드를 호출하기 전에 두 Field를 초기화합니다.
 
 ~~~dart
 class VanillaScreen extends StatefulWidget {
@@ -191,7 +194,8 @@ widget._repository.getUser().then((user) {
 2. 단일 책임 원칙(SRP)을 어깁니다. Widget은 UI build 뿐만 아니라 Data load, business logic, State 관리를 담당합니다.
 3. 현재 State를 어떻게 표현해야 하는지에 대한 결정은 UI declaration 코드로 이루어지며, 만약 State 관리 코드가 좀 더 복잡해지면 가독성이 떨어질 것입니다.
 
-## Scoped Model
+---
+## 2. Scoped Model
 
 `Scoped Model`은 Flutter Framework에 포함되지 않은 3rd party 패키지입니다. Scoped Model의 개발자는 아래와 같이 설명합니다.
 
@@ -322,7 +326,8 @@ class UserModel extends Model {
 1. 3rd party library
 2. 모델이 점점 복잡 해짐에 따라 notifyListeners ()를 언제 호출해야 할지 결정하기가 어렵습니다.
 
-## BLoC
+
+## 3. BLoC
 
 `BLoC (Business Logic Components)` 는 Google 개발자가 권장하는 패턴입니다. State 변경을 관리하고 전파하기 위해 `Stream` 을 활용합니다.
 
