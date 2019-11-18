@@ -45,3 +45,165 @@ Stream은 데이터와 이벤트의 흐름을 나타냅니다. 그렇다면 가�
 Stream of Cats 😁
 
 ## BLoC Pattern
+
+BLoC (Bussiness Logic Component) 패턴은 2018 년 Dart Conference에서 Paolo Soares가 공식적으로 [발표](https://www.youtube.com/watch?v=PLHln7wHgPE)했습니다.
+
+발표 비디오를 본다면 아마도 초기 목적이 다른 플랫폼(Angular Dart)에서 비즈니스 로직과 관련된 코드를 재사용하는 것임을 깨달았을 것입니다.
+
+이 패턴이 추구하는 것은 모든 비즈니스 로직 코드를 UI에서 삭제하고 BLoC 클래스에서만 사용하는 것입니다. 
+
+BloC은 책임을 올바른 구성 요소에 두는 것 외에 프로젝트와 코드, 환경 및 플랫폼의 독립성을 가져올수 있습니다. 
+
+그리고 BLoC 패턴은 스트림의 사용에만 의존하기 때문에 이제 우리의 이야기는 훨씬 더 이치에 맞을 것입니다.
+
+![](https://miro.medium.com/max/561/1*WJMUsjhRqwj40NQ7ovWJYw.png)
+
+위의 이미지를 보면 흐름을 실감할 수 있습니다. 위젯은 Sink를 통해 BLoC 클래스로 데이터/이벤트를 전송하고 Stream에서 알림을 받습니다.
+
+Widget에 비즈니스 로직가 없다는 것은 BLoC에서 일어난 일이 UI의 책임이 아니라는 것을 의미합니다. 
+
+이 아키텍처를 통해 비즈니스 로직 테스트 케이스들을 더 쉽게 테스트할 수 있도록 합니다. 왜냐하면 비즈니스 로직은 BloC class 에만 존재하기 때문입니다.
+
+## RxDart 살펴보기
+
+RxDart는 현재 0.21.0 버전으로 (이 게시물 시점)에 있습니다. 여기에서는 해당 Libary에서 사용되는 몇몇 Object에 대해 이야기하겠습니다.
+
+### Observable<T> class
+
+Observable을 통해 위젯에 알림을 보내면 이를 관찰하고 데이터 흐름을 처리 할 수 ​​있습니다. RxDart의 관찰 가능한 클래스는 Stream에서 확장되며, 이는 다음과 같은 몇 가지 중요한 사항을 내포하고 있습니다.
+
+- Stream 클래스에 정의 된 모든 메서드는 Observable 에도 있습니다.
+- 모든 Observable은 Dart Stream을 입력을 이용하는 API (예 : StreamBuilder 위젯 포함)로 전달할 수 있습니다.
+
+### PublishSubject<T> class
+
+이것은 매우 간단합니다. Subject 는 데이터, 오류 및 완료 이벤트를 Listener에게 보낼 수 있습니다. 여기서는 이전에 이야기했던 Sink와 함께 작동합니다. 아래의 코드를 참조하십시오.
+
+~~~dart
+PublishSubject<int> subject = new PublishSubject<int>();
+
+/*this listener below will print every integer added to the subject: 1, 2, 3, ...*/
+subject.stream.listen(print);
+subject.add(1);
+subject.add(2);
+
+/*but this listener below will print only the integer added after his initialization: 3, .../*
+subject.stream.listen(print);
+subject.add(3);
+~~~
+
+### BehaviorSubject<T> class
+
+이것은 PublishSubject와 유사합니다. 또한 데이터, 오류 및 완료 이벤트를 Listener 에게 보낼 수 있으며 추가로 Subject에 새로운 Listener가 추가 된다면 가장 최근에 받았던 이벤트를 새로운 Listener가 받을 것입니다.
+
+~~~dart
+BehaviorSubject<int> subject = new BehaviorSubject<int>();
+subject.stream.listen(print); // prints 1,2,3 
+subject.add(1);
+subject.add(2);
+subject.add(3);
+
+subject.stream.listen(print); // prints 3
+~~~
+
+### ReplaySubject<T> class
+
+ReplaySubject를 사용하면 데이터, 오류 및 완료된 이벤트를 Listener에게 전송하는 것도 동일합니다. 그러나 여기서 중요한 차이점이 있습니다. item이 Subject에 추가되면 ReplaySubject가 item을 기록하며 Listener가 스트림을 observe 할 때 기록 된 item이 Listener로 방출됩니다. 아래의 예를 참조하십시오
+
+~~~dart
+ReplaySubject<int> subject = new ReplaySubject<int>();
+
+subject.add(1);
+subject.add(2);
+subject.add(3);
+
+subject.stream.listen(print); // prints 1, 2, 3
+~~~
+
+### 실전 단계
+
+이 Post 에서는 RxDart와 BLoC 패턴의 원리를 사용하는 간단한 예를 보여줍니다. 시작해 봅시다!
+
+![](https://miro.medium.com/max/500/1*bHkjiqKae77dh1LIj34StQ.gif)
+Now I really need your attention
+
+시작하기에 가장 좋은 방법은 플로터 헬로 월드 예제입니다. 아마도 당신은 앱의 incresement 기능에 익숙할 것입니다.
+
+하지만 더 많은 것을 만들기 위해 decrement 기능을 만들어 봅시다. 우선 Flutter 프로젝트를 만들고 rxdart를 프로젝트로 가져오십시오.
+
+~~~dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Flutter Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => new _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+      ),
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text('You have pushed the button this many times:',),
+            new Text('$_counter', style: Theme.of(context).textTheme.display1),
+          ],
+        ),
+      ),
+      floatingActionButton: new Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+        new Padding(padding: EdgeInsets.only(bottom: 10), child:
+          new FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: new Icon(Icons.add),
+          )
+        ),
+        new FloatingActionButton(
+          onPressed: _decrementCounter,
+          tooltip: 'Decrement',
+          child: new Icon(Icons.remove),
+        ),
+      ])
+    );
+  }
+}
+~~~
+
