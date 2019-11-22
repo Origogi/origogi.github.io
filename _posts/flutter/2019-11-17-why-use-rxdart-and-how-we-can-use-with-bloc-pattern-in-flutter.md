@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "[Flutter][번역] Why use RxDart and how we can use with BLoC Pattern in Flutter?"
 excerpt : " "
 layout: single
@@ -40,8 +40,11 @@ Stream은 데이터와 이벤트의 흐름을 나타냅니다. 그렇다면 가�
 
 그리고 Sinks란 무엇일까요? 만약 우리가 데이터 플럭스의 출력을 가지고 있다면, 우리는 또한 입력이 필요힙니다. 그것이 Sinks가 사용되는 것입니다. 간단해 보이지 않습니까? 이제 BLoC 패턴에 대해 살펴보고, 어떻게 이 두 개념을 멋진 Flutter 앱으로 결합할 수 있는지 알아봅시다.
 
-![dd](https://miro.medium.com/max/600/1*ccPKTUTwZtt8HADzCtBLwA.gif)
-Stream of Cats 😁
+|<img src="https://miro.medium.com/max/600/1*ccPKTUTwZtt8HADzCtBLwA.gif" />|
+|:--:| 
+| *Stream of Cats* 😁 |
+
+
 
 ## BLoC Pattern
 
@@ -122,6 +125,9 @@ subject.stream.listen(print); // prints 1, 2, 3
 ### 실전 단계
 
 이 Post 에서는 RxDart와 BLoC 패턴의 원리를 사용하는 간단한 예를 보여줍니다. 시작해 봅시다!
+
+{% include image.html url="https://miro.medium.com/max/500/1*bHkjiqKae77dh1LIj34StQ.gif" description="Now I really need your attention" %}
+
 
 ![](https://miro.medium.com/max/500/1*bHkjiqKae77dh1LIj34StQ.gif)
 Now I really need your attention
