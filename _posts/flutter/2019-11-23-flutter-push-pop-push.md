@@ -28,6 +28,6 @@ sitemap :
 
 # Flutter: Push, Pop, Push
 
-
 ![](https://miro.medium.com/max/1024/1*7banZjCh-rGamKT-9jqADA.jpeg)
 
+Framework가 제공하는 모든 위젯을 통해 Flutter에서 UI를 구축하는 것은 매우 간단합니다. 마지막 기사에서 다루었습니다.
