@@ -86,7 +86,7 @@ new RaisedButton(
 
 `pushNamed` 메소드를 사용하여 main.dart에 경로가 정의 된 화면으로 이동할 수 있습니다. 우리는 이 방법을 `namedRoute`라고 부릅니다. 이 방법의 사용 사례는 매우 간단합니다.
 
-![image](https://miro.medium.com/max/94/1*RKtC1MKJbjSfMjUlR-2K7g.png){: style="float: left"}
+![image](https://miro.medium.com/max/94/1*RKtC1MKJbjSfMjUlR-2K7g.png)
 
 ## Pop it
 
