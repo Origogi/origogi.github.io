@@ -14,6 +14,7 @@ categories :
 tags: 
   - Flutter
   - Dart
+  - 번역
 comments: true
 header:
   overlay_image: assets/images/flutter_dart.png
