@@ -1,6 +1,6 @@
 ---
-published: false
-title: "[Flutter][번역] Flutter: Push, Pop, Push
+published: true
+title: "[Flutter][번역] Flutter: Push, Pop, Push - 진행중
 excerpt : " "
 layout: single
 author_profile: true
