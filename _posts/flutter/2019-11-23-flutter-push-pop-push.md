@@ -86,8 +86,49 @@ new RaisedButton(
 
 `pushNamed` 메소드를 사용하여 main.dart에 경로가 정의 된 화면으로 이동할 수 있습니다. 우리는 이 방법을 `namedRoute`라고 부릅니다. 이 방법의 사용 사례는 매우 간단합니다.
 
-![image](https://miro.medium.com/max/94/1*RKtC1MKJbjSfMjUlR-2K7g.png){: style="float: left"}
+![image](https://miro.medium.com/max/94/1*RKtC1MKJbjSfMjUlR-2K7g.png)
 
 ## Pop it
 
-Now when we want to get rid of the last visited screen, which is Screen2 in this case, we would need to pop Routes from the Navigator’s stack using the pop methods.
+이제 마지막 방문한 화면 (이 경우 Screen2)을 제거하려면 `pop` 메소드를 사용하여 네비게이터의 스택에서 Route를 Pop해야합니다.
+
+~~~dart
+Navigator.of(context).pop();
+~~~
+
+위 코드는 `onPressed`
+ 메서드 안에 들어갑니다.
+
+
+![image](https://miro.medium.com/max/93/1*hq7qfAer0wCCSyIBKr7sfg.png)
+
+Scaffold를 사용할 때는 일반적으로 명시적으로 Route를 pop할 필요가 없습니다. 왜냐하면 Scaffold는 자동으로 ApApar에 `back` 버튼을 추가하기 때문입니다. `back` 버튼을 누르면 Navigator.pop ()을 호출합니다. 
+Android에서도 기기의 back 버튼을 누르면 같은 방식으로 작동합니다.
+그럼에도 불구하고 사용자가 취소 버튼을 클릭 할 때 AlertDialog를 팝업하는 것과 같은 유스 케이스에는 이 방법이 필요할 수 있습니다.
+
+### Why pop instead of pushing back to the previous screen?
+
+원하는 위치에 호텔을 나열하는 호텔 예약 앱이 있다고 가정합니다. 
+목록에서 하나의 항목을 클릭하면 호텔에 대한 자세한 정보가 있는 화면으로 이동합니다. 선택한 호텔이 마음에 들지 않다 다시 목록으로 돌아가고 싶습니다.
+Stack에 HotelListScreen 을 push하면 DetailsScreen은 Stack에 계속 유지가 됩니다. 따라서 back 버튼을 누르면 다시 DetailsScreen 로 돌아가게 됩니다. 이것은 매우 혼란스럽습니다.
+
+샘플 앱을 실행하고 Screen1의 appBar를 확인하십시오. 이것은 초기 Route 이기 때문에 back 버튼이 없습니다. 
+이제 back 버튼 대신 `Push to Screen 2` 버튼을 누룹니다. 그 다음 `Push to Screen1 instead of Pop` 버튼을 누른 후 이제 Screen1의 appBar를 확인 하십시오. 새로 표시된 back 버튼을 누르면 Screen2로 돌아갈 수 있습니다.
+
+![](https://miro.medium.com/max/92/1*Xsyo5c8s1JwO6f2OQ1nNEg.png)
+
+
+### maybePop
+
+만약 초기 Route 인 상태에서 실수로 Screen을 pop을 하게 되면 어떻게 될까요? 스택에 있는 유일한 screen을 pop하게 되면 app은 종료가 됩니다. 그 이유는 표시할 Route가 없기 때문입니다. 사용자가 이러한 경험을 원하지 않을수도 있습니다.
+
+이를 방지하기 위해 maybePop ()이 등장하게 됩니다. 
+Screen1 에서 `maybePop` 버튼을 클릭하게 되면 아무 것도 하지 않습니다. 왜냐하면 pop를 할 것이 없기 때문입니다. 하지만 Screen3에서 같은 버튼을 누르게 되면 pop이 될 것입니다. 왜냐하면 그것을 할 수 있는 상태이기 때문입니다.
+
+### canPop
+
+위 동작을 수행 할 수 있다는 것은 놀라운 일이지만 이것이 초기 Route 인지 어떻게 알 수 있습니까? 그러한 경우 사용자에게 경고를 표시 할 수 있다면 좋을 것입니다.
+
+좋은 질문입니다.  `canPop ()` 메서드를 호출하면 Stack에 Route를 pop 할수 있으면 true를 반환하고 가능하지 않으면 false를 반환합니다.
+
+두가지 방법 모두 Sreen 1과 Screen 3의 `canPop` 및 `maybePop`을 사용해 보고 차이점을 확인하십시오. canPop의 return 값이 IDE의 콘솔 탭에 표시됩니다.
