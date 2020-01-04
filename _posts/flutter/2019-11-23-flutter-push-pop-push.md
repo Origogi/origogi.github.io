@@ -25,7 +25,6 @@ sitemap :
 ---
 > Original Source : <https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31>
 
-
 # Flutter: Push, Pop, Push
 
 ![](https://miro.medium.com/max/1024/1*7banZjCh-rGamKT-9jqADA.jpeg)
