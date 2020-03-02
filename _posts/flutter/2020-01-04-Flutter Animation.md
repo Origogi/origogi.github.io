@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: "[Flutter][번역] Flutter Animation: Easy Way of Learning the Flutter Implicit Animation Widgets Pt. 1 - 진행중"
 excerpt : " "
 layout: single
