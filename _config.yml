@@ -120,9 +120,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://origogi.github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/jungtae11460/?hl=ko"
+    - label: "Linked In"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/%EC%A0%95%ED%83%9C-%EA%B9%80-679975155/"
 
 # Site Footer
 footer:
@@ -133,9 +133,9 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Origogi"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/jungtae11460/?hl=ko"
+    - label: "Linked In"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/%EC%A0%95%ED%83%9C-%EA%B9%80-679975155/"
 
 
 # Reading Files
