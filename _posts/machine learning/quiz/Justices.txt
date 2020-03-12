@@ -1,0 +1,112 @@
+Samuel,Alito,George W. Bush,NJ,2006,0
+Henry,Baldwin,Andrew Jackson,PA,1830,1844
+Philip,Barbour,Andrew Jackson,VA,1836,1841
+Hugo,Black,Franklin Roosevelt,AL,1937,1971
+Harry,Blackman,Richard Nixon,MN,1970,1994
+John,Blair,George Washington,VA,1789,1796
+Samuel,Blatchford,Chester Arthur,NY,1882,1893
+Joseph,Bradley,Ulysses Grant,NJ,1879,1892
+Louis,Brandeis,Woodrow Wilson,MA,1916,1939
+William,Brennan,Dwight Eisenhower,NJ,1956,1990
+David,Brewer,Benjamin Harrison,KS,1889,1910
+Stephen,Breyer,Bill Clinton,MA,1994,0
+Henry,Brown,Benjamin Harrison,MI,1890,1906
+Warren,Burger,Richard Nixon,VA,1969,1987
+Harold,Burton,Harry Truman,OH,1945,1958
+Pierce,Butler,Warren Harding,MN,1922,1939
+James,Byrnes,Franklin Roosevelt,SC,1941,1942
+John,Campbell,Franklin Pierce,AL,1853,1861
+Benjamin,Cardozo,Herbert Hoover,NY,1932,1938
+John,Catron,Martin Van Buren,TN,1837,1865
+Salmon,Chase,Abraham Lincoln,OH,1864,1873
+Samuel,Chase,George Washington,MD,1796,1811
+Tom,Clark,Harry Truman,TX,1949,1967
+John,Clarke,Woodrow Wilson,OH,1916,1922
+Nathan,Clifford,James Buchanan,ME,1858,1881
+Benjamin,Curtis,Millard Fillmore,MA,1851,1857
+William,Cushing,George Washington,MA,1789,1810
+Peter,Daniel,Martin Van Buren,VA,1841,1860
+David,Davis,Abraham Lincoln,IL,1862,1877
+William,Day,Theodore Roosevelt,OH,1903,1922
+William,Douglas,Franklin Roosevelt,CT,1939,1975
+Gabriel,Duval,James Madison,MD,1811,1836
+Oliver,Ellsworth,George Washington,CT,1796,1800
+Stephen,Field,Abraham Lincoln,CA,1863,1897
+Abe,Fortas,Lyndon Johnson,TN,1965,1969
+Felix,Frankfurter,Franklin Roosevelt,MA,1939,1962
+Melville,Fuller,Grover Cleveland,IL,1888,1910
+Ruth,Ginsburg,Bill Clinton,NY,1993,0
+Arthur,Goldberg,John Kennedy,IL,1962,1965
+Horace,Gray,Chester Arthur,MA,1881,1902
+Robert,Grier,James Polk,PA,1846,1870
+John,Harlan,Rutherford Hayes,KY,1877,1911
+John,Harlan II,Dwight Eisenhower,NY,1955,1971
+Oliver,Holmes,Theodore Roosevelt,MA,1902,1932
+Charles,Hughes,William Taft,NY,1910,1941
+Ward,Hunt,Ulysses Grant,NY,1872,1882
+James,Iredell,George Washington,NC,1790,1799
+Howell,Jackson,Benjamin Harrison,TN,1893,1895
+Robert,Jackson,Franklin Roosevelt,NY,1941,1954
+John,Jay,George Washington,NY,1789,1795
+Thomas,Johnson,George Washington,MD,1791,1793
+William,Johnson,Thomas Jefferson,SC,1804,1834
+Elena,Kagan,Barack Obama,NY,2010,0
+Anthony,Kennedy,Ronald Reagan,CA,1987,0
+Joseph,Lamar,William Taft,GA,1911,1916
+Lucius,Lamar,Grover Cleveland,MS,1888,1893
+Brockholst,Livingston,Thomas Jefferson,NY,1806,1823
+Horace,Lurton,William Taft,TN,1910,1914
+John,Marshall,John Adams,VA,1801,1835
+Thurgood,Marshall,Lyndon Johnson,NY,1967,1992
+Stanley,Matthews,James Garfield,OH,1881,1889
+Joseph,McKenna,William McKinley,CA,1898,1925
+John,McKinley,Martin Van Buren,AL,1837,1852
+John,McLean,Andrew Jackson,OH,1829,1861
+James,McReynolds,Woodrow Wilson,TN,1914,1941
+Samuel,Miller,Abraham Lincoln,IA,1862,1890
+Sherman,Minton,Harry Truman,IN,1949,1956
+William,Moody,Theodore Roosevelt,MA,1906,1910
+Alfred,Moore,John Adams,NC,1799,1804
+Frank,Murphy,Franklin Roosevelt,MI,1940,1949
+Samuel,Nelson,John Tyler,NY,1845,1872
+Sandra,O'Connor,Ronald Reagan,AZ,1981,2005
+William,Patterson,George Washington,NJ,1793,1806
+Rufus,Peckham,Grover Cleveland,NY,1895,1910
+Mahlon,Pitney,William Taft,NJ,1912,1922
+Lewis,Powell,Richard Nixon,VA,1972,1987
+Stanley,Reed,Franklin Roosevelt,KY,1938,1957
+William,Rehnquist,Richard Nixon,AZ,1972,2005
+John,Roberts,George W. Bush,MD,2005,0
+Owen,Roberts,Herbert Hoover,PA,1930,1945
+John,Rutledge,George Washington,MA,1789,1795
+Wiley,Rutledge,Franklin Roosevelt,IA,1943,1949
+Edward,Sanford,Warren Harding,TN,1923,1930
+Antonin,Scalia,Ronald Reagan,VA,1986,0
+George,Shiras,Benjamin Harrison,PA,1892,1903
+Sonia,Sotomayor,Barack Obama,NY,2009,0
+David,Souter,George H. W. Bush,NH,1990,2009
+John,Stevens,Gerald Ford,IL,1975,2010
+Potter,Stewart,Dwight Eisenhower,OH,1959,1981
+Harlan,Stone,Calvin Coolidge,NY,1925,1946
+Joseph,Story,James Madison,MA,1811,1845
+William,Strong,Ulysses Grant,PA,1870,1880
+George,Sutherland,Warren Harding,VT,1922,1938
+Noah,Swayne,Abraham Lincoln,OH,1862,1881
+William,Taft,Warren Harding,CT,1921,1930
+Roger,Taney,Andrew Jackson,MD,1836,1864
+Clarence,Thomas,George H. W. Bush,GA,1991,0
+Smith,Thompson,James Monroe,NY,1823,1843
+Thomas,Todd,Thomas Jefferson,KY,1807,1826
+Robert,Trimble,John Q. Adams,KY,1826,1828
+Willis,Van Devanter,William Taft,WY,1910,1937
+Fred,Vinson,Harry Truman,KY,1946,1953
+Morrison,Waite,Ulysses Grant,OH,1874,1888
+Earl,Warren,Dwight Eisenhower,CA,1953,1969
+Bushrod,Washington,John Adams,VA,1798,1829
+James,Wayne,Andrew Jackson,GA,1835,1867
+Byron,White,John Kennedy,CO,1962,1993
+Edward,White,Grover Cleveland,LA,1894,1921
+Charles,Whittaker,Dwight Eisenhower,MO,1957,1962
+James,Wilson,George Washington,PA,1789,1798
+Levi,Woodbury,James Polk,NH,1845,1851
+William,Woods,Rutherford Hayes,CA,1880,1887
