@@ -1,6 +1,6 @@
 ---
-published: false
-title: "[Flutter][번역] Flutter Animation: Easy Way of Learning the Flutter Implicit Animation Widgets Pt. 1 - 진행중"
+published: true
+title: "[Flutter] Flutter Project를 GitHub Page로 Deploy 해보기"
 excerpt : " "
 layout: single
 classes: wide
@@ -17,15 +17,10 @@ tags:
   - Dart
 comments: true
 header:
-  overlay_image: https://miro.medium.com/max/2880/1*THWu5HfSUu7SZaIx8uZvRA.png
+  overlay_image: assets/images/flutter_dart.png
   overlay_filter: 0.5
-  teaser: https://miro.medium.com/max/2880/1*THWu5HfSUu7SZaIx8uZvRA.png
+  teaser: https://miro.medium.com/max/1920/1*2adBDBgzNounV9WhluUh5Q.png
 sitemap :
   changefreq : daily
   priority : 1.0
 ---
-
-> Original Source : <https://www.didierboelens.com/2019/09/flutter-internals>
-
-# Introduction
-
