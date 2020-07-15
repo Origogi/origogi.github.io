@@ -29,7 +29,7 @@ sitemap :
 
 ## Overview
 
-Flutter는 Android와 iOS 뿐만 아니라 __Web__ 도 지원하는 Cross Platform입니다. 
+Flutter는 Android와 iOS 뿐만 아니라 __Web__ 도 지원하는 Cross Platform입니다.
 
 이 포스트에서 Flutter를 작성한 코드를 Web으로 빌드해보고 그 결과물을 __Github pages__ 로 호스팅을 하는 과정을 다루도록 하겠습니다.
 
@@ -38,7 +38,6 @@ Flutter는 Android와 iOS 뿐만 아니라 __Web__ 도 지원하는 Cross Platfo
 <div align="center">
 <img src="https://media3.giphy.com/media/bEVKYB487Lqxy/giphy.gif" >
 </div>
-
 
 Flutter는 이제 flutter 웹 애플리케이션 실행을 위한 초기 실험 지원을 제공합니다. 여전히 누락 된 기능과 알려진 성능 문제가 많이 있으므로 프로덕션 용도로는 권장되지 않습니다.
 
@@ -245,7 +244,7 @@ jobs:
 ## 8. 결론
 
 명령어 몇 줄만 입력하면 손 쉽게 Web으로 만들어진다는 것이 무척 매력적으로 느껴집니다.  
-하지만 맨 처음 언급했드시 아직 stable 이 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다. 그리고 프래임도 App보다 떨어지는 것을 느낄수 있습니다.  
-그래도 한번 쯤 내가 만든 Flutter app을 한번 Github page로 호스팅하여 친구들이나 동료 개발자에게 한번 자랑해보는 건 어떨까요??
+하지만 맨 처음 언급했지만 Web은 아직 stable 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다. 그리고 프레임도 App보다 떨어지는 것을 느낄수 있습니다.  
+그래도 한번 쯤 내가 만든 Flutter app을  Github page로 호스팅하여 친구들이나 동료 개발자에게 자랑해보는 건 어떨까요??
 
 혹시 따라하시다가 막히는 부분이 있으면 댓글로 남겨주세요.
