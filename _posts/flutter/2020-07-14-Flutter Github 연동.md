@@ -198,13 +198,13 @@ jobs:
 - Github repository > Action 에 가보면 workflow의 명령어들을 쭉 실행하는 것을 볼 수 있습니다. 그리고 작업이 완료 될 때까지 기다려 줍시다.
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/35194820/87507167-ddb9c980-c6a7-11ea-8069-2db1303940c0.png" width="50%">
+<img src="https://user-images.githubusercontent.com/35194820/87507167-ddb9c980-c6a7-11ea-8069-2db1303940c0.png" >
 </div>
 
 약 2분 후 아래와 같이 그린 라이트가 보인다면 빌드가 성공 한 것입니다!
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/35194820/87507211-f1fdc680-c6a7-11ea-8ea3-87ce30a020eb.png" width="50%">
+<img src="https://user-images.githubusercontent.com/35194820/87507211-f1fdc680-c6a7-11ea-8ea3-87ce30a020eb.png" >
 </div>
 
 ## 6. Github Page enable 하기
@@ -216,7 +216,7 @@ jobs:
 - source를 `master`에서 `gh-pages` 로 변경합니다.
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/35194820/87507962-4d7c8400-c6a9-11ea-9c88-17da4aaeed16.png" width="50%">
+<img src="https://user-images.githubusercontent.com/35194820/87507962-4d7c8400-c6a9-11ea-9c88-17da4aaeed16.png">
 </div>
 
 ## 7. 접속해보기
@@ -232,7 +232,7 @@ jobs:
 짜잔! 위와 같이 웹페이지에서 잘 나오고 동작도 잘되는 것을 확인 할수 있습니다.
 
 <div align="center">
-<img src="https://media.giphy.com/media/kudIERso2pFiE/giphy.gif" width ="50%">
+<img src="https://media.giphy.com/media/kudIERso2pFiE/giphy.gif" width ="50%" >
 </div>
 
 참 쉽지 않습니까? 저 같이 Web을 1도 모르는 사람도 Web page를 이렇게 만들어 봤습니다.
