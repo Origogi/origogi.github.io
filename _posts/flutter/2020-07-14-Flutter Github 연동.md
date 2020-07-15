@@ -104,15 +104,15 @@ $ flutter clean
 
 ## 3. Github 페이지 설정하기
 
-1. Web으로 배포하고자 하는 프로젝트를 Github Repository에 업로드를 합니다.
+- Web으로 배포하고자 하는 프로젝트를 Github Repository에 업로드를 합니다.
 
-2. https://github.com/settings/tokens 에 접속하여 TOKEN을 생성합니다. TOKEN 명은 `commit_secret`으로 하고 scope를 아래와 같이 설정하고 생성합니다.
+- https://github.com/settings/tokens 에 접속하여 TOKEN을 생성합니다. TOKEN 명은 `commit_secret`으로 하고 scope를 아래와 같이 설정하고 생성합니다.
 <div align="center">
 
 <img src="https://user-images.githubusercontent.com/35194820/87496727-21540980-c68f-11ea-9f78-008946957071.png">
 </div>
 
-3. 1단계에서 생성된 Github Repository > Settings > Secrets 로 이동한 후 `New secret` 버튼을 눌러 Secret 를 생성합니다. 이름은 `COMMIT_SECRET`으로 합니다.
+- 1단계에서 생성된 Github Repository > Settings > Secrets 로 이동한 후 `New secret` 버튼을 눌러 Secret 를 생성합니다. 이름은 `COMMIT_SECRET`으로 합니다.
 value에는 2단계에서 생성된 TOKEN 값을 set 합니다.
 
 <div align="center">
@@ -121,13 +121,13 @@ value에는 2단계에서 생성된 TOKEN 값을 set 합니다.
 
 ## 4. Project에 index.html 파일 추가
 
-1. lib 폴더가 존재하는 path에 web/index.html 파일을 추가합니다.
+- lib 폴더가 존재하는 path에 web/index.html 파일을 추가합니다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/87506976-86b3f480-c6a7-11ea-8550-c5ccdc40687f.png" width="200">
 </div>
 
-2. index.html을 아래와 같이 수정합니다.
+- index.html을 아래와 같이 수정합니다.
 
 ~~~html
 <!DOCTYPE html>
@@ -144,13 +144,13 @@ value에는 2단계에서 생성된 TOKEN 값을 set 합니다.
 
 ## 5. Project에 Github workflow 설정하기
 
-1. Project 에 .github/workflows/workflow.yml 를 생성합니다.
+- Project 에 .github/workflows/workflow.yml 를 생성합니다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/87503012-1b195980-c69e-11ea-8d5e-5a87d0cf49ac.png" width="200">
 </div>
 
-2. workflow.yml 파일을 아래 코드를 복사/붙여넣기를 합니다.
+- workflow.yml 파일을 아래 코드를 복사/붙여넣기를 합니다.
 
 ~~~yml
 name: Flutter Web
@@ -191,11 +191,11 @@ jobs:
           git push origin gh-pages -f
 ~~~
 
-3. 위 코드에서 주석으로 표시된 5군데를 자신의 환경에 맞게 수정을 합니다.
+- 위 코드에서 주석으로 표시된 5군데를 자신의 환경에 맞게 수정을 합니다.
 
-4. 추가된 파일을 `git push` 를 합니다.
+- 추가된 파일을 `git push` 를 합니다.
 
-5. Github repository > Action 에 가보면 workflow의 명령어들을 쭉 실행하는 것을 볼 수 있습니다. 그리고 작업이 완료 될 때까지 기다려 줍시다.
+- Github repository > Action 에 가보면 workflow의 명령어들을 쭉 실행하는 것을 볼 수 있습니다. 그리고 작업이 완료 될 때까지 기다려 줍시다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/87507167-ddb9c980-c6a7-11ea-8069-2db1303940c0.png" width="50%">
@@ -209,11 +209,11 @@ jobs:
 
 ## 6. Github Page enable 하기
 
-1. Github repository > Settings 으로 이동합니다.
+- Github repository > Settings 으로 이동합니다.
 
-2. `Github Pages` 를 enable 합니다.
+- `Github Pages` 를 enable 합니다.
 
-3. source를 `master`에서 `gh-pages` 로 변경합니다.
+- source를 `master`에서 `gh-pages` 로 변경합니다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/87507962-4d7c8400-c6a9-11ea-9c88-17da4aaeed16.png" width="50%">
@@ -229,8 +229,7 @@ jobs:
 <img src="https://user-images.githubusercontent.com/35194820/87509054-b2d17480-c6ab-11ea-81c3-298f15b78964.png" width ="50%">
 </div>
 
-
-짜잔 위와 같이 웹페이지에서 잘 나오고 동작도 잘되는 것을 확인 할수 있습니다.
+짜잔! 위와 같이 웹페이지에서 잘 나오고 동작도 잘되는 것을 확인 할수 있습니다.
 
 <div align="center">
 <img src="https://media.giphy.com/media/kudIERso2pFiE/giphy.gif" width ="50%">
@@ -240,11 +239,13 @@ jobs:
 
 위 화면는 아래 링크로도 확인 가능합니다.
 
-https://origogi.github.io/Vertical_Card_Pager/#/
+[link](https://origogi.github.io/Vertical_Card_Pager/#/)
 
 ## 8. 결론
 
-명령어 몇 줄만 입력하면 손 쉽게 Web으로 만들어진다는 것이 무척 매력적으로 느껴질수 있느나 맨 처음 언급했드시 아직 stable 이 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다. 그리고 프래임도 조금 떨어지는 것을 느낄수 있습니다.
+명령어 몇 줄만 입력하면 손 쉽게 Web으로 만들어진다는 것이 무척 매력적으로 느껴집니다.  
+하지만 맨 처음 언급했드시 아직 stable 이 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다.  
+그리고 프래임도 조금 떨어지는 것을 느낄수 있습니다.
 
 그래도 한번 쯤 내가 만든 Flutter app을 한번 Github page로 호스팅하여 친구들이나 동료 개발자에게 한번 자랑해보는 건 어떨까요??
 
