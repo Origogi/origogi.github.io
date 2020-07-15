@@ -223,7 +223,8 @@ jobs:
 
 이제 마지막입니다!
 
-위 `Github Pages` 에 보이는 링크를 눌러서 정상 동작하는 지 확인 해봅니다. 주소는 [github id].github.io/[Your Repository] 입니다.
+위 `Github Pages` 에 보이는 링크를 눌러서 정상 동작하는 지 확인 해봅니다.  
+주소는 [github id].github.io/[Your Repository] 입니다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/87509054-b2d17480-c6ab-11ea-81c3-298f15b78964.png" width ="50%">
@@ -244,9 +245,7 @@ jobs:
 ## 8. 결론
 
 명령어 몇 줄만 입력하면 손 쉽게 Web으로 만들어진다는 것이 무척 매력적으로 느껴집니다.  
-하지만 맨 처음 언급했드시 아직 stable 이 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다.  
-그리고 프래임도 조금 떨어지는 것을 느낄수 있습니다.
-
+하지만 맨 처음 언급했드시 아직 stable 이 되지 않았기 때문에 iOS, Android app 처럼 완벽하게 동작하지 않을수도 있습니다. 그리고 프래임도 App보다 떨어지는 것을 느낄수 있습니다.  
 그래도 한번 쯤 내가 만든 Flutter app을 한번 Github page로 호스팅하여 친구들이나 동료 개발자에게 한번 자랑해보는 건 어떨까요??
 
 혹시 따라하시다가 막히는 부분이 있으면 댓글로 남겨주세요.
