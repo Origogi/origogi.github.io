@@ -8,3 +8,5 @@ $type-size-4-5: 1.12em !default; // Ubuntu Mono is a bit small
 
 @charset "utf-8";
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans+KR|Ubuntu+Mono);
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin	.language-plaintext {
+@import "minimal-mistakes"; // main partials
