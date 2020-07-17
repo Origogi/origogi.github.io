@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Flutter] Dart Pad를 이용하여 내가 만든 Flutter 소스를 공유하기"
+title: "[Flutter] Dart Pad를 이용하여 내가 만든 Flutter App을 공유하기"
 excerpt : " "
 layout: single
 classes: wide
@@ -28,4 +28,4 @@ sitemap :
 ![header](https://miro.medium.com/max/1920/1*2adBDBgzNounV9WhluUh5Q.png)
 
 
-<iframe src="https://dartpad.dev/embed-inline.html?id=5d70bc1889d055c7a18d35d77874af88"></iframe>
+<iframe src="https://dartpad.dev/embed-inline.html?id=5d70bc1889d055c7a18d35d77874af88" style="width:100%; height:300px"></iframe>
