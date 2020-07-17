@@ -13,7 +13,7 @@
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme           : "mmistakes/minimal-mistakes"
 
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko-KR"
@@ -110,7 +110,7 @@ analytics:
 author:
   name             : "Origogi"
   avatar           : "/assets/images/profile.png"
-  bio              : "안드로이드 개발자"
+  bio              : "Android, Flutter Developer"
   location         : "Seoul, Korea"
   email            : "rlawjdxo1212@naver.com"
   links:
