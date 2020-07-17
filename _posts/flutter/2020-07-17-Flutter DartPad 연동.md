@@ -71,16 +71,13 @@ dartpad는 기본적으로 내가 작성한 코드를 저장하지 않기 때문
 ~~~dart
 https://dartpad.dev/[id]
 ~~~
-</br>
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/35194820/87751283-a9294780-c838-11ea-99ab-33aa4829e438.png" >
 </div>
-</br>
 
 - 마지막으로 접속도 잘되고 실행도 잘되는 것을 확인하셨으면 동료 개발자나 친구들에게 메신저로 위 링크를 보내주며 자랑을 해봅시다!
 
-</br>
 
 <div align="center">
   <img src="https://media.giphy.com/media/lArQw5Z7Ejb0c/giphy.gif" width="300" >
@@ -90,7 +87,6 @@ https://dartpad.dev/[id]
 - [DartPad](https://dartpad.dev/5eaa69dfeba45bdc3d05b715d16ddc5f)
 
 - [Gist](https://gist.github.com/Origogi/5eaa69dfeba45bdc3d05b715d16ddc5f)
-</br>
 
 ## 3. DartPad 를 Web에 Embedded
 
@@ -103,9 +99,16 @@ https://dartpad.dev/[id]
 - 위에서 `id` 값을 내가 만든 `gist id`를 바꿔줍니다.
 - `style` 값을 내 화면에 맞게 수정을 합니다.
 
-그러면 아래와 같이 web page에 보이실 것입니다.
+그러면 아래와 같이 임베디드된 dartpad가 화면에 출력이 됩니다.
 
 <iframe src="https://dartpad.dev/embed-flutter.html?id=5eaa69dfeba45bdc3d05b715d16ddc5f" style="width:100%; height:700px"></iframe>
+
+## 4. 결론
+
+DartPad을 이용하면 IDE, SDK 없이 앱을 실행하고 실시간으로 수정함으로써 추후에 기획자나 디자이너와 커뮤니케이션을 할 때 매우 유용할 것이라 생각이 됩니다.
+무엇보다도 사용 방법이 매우 쉬어서 저에게 매우 매력적으로 다가온 거 같습니다. 
+
+그러니 여러분도 한번 사용 해보시는 것을 강력 추천 드립니다.
 
 ## Reference
 
