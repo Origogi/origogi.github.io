@@ -24,7 +24,7 @@ sitemap :
 
 Android Activity 전환 시 각 Activity Life cycle 순서를 정리 한 포스트입니다.
 
-### Main Activity에서 Detail Activity 실행
+## Main Activity에서 Detail Activity 실행
 
 아래와 같이 Gallary 앱이 동작을 할 때
 
@@ -40,13 +40,13 @@ Android Activity 전환 시 각 Activity Life cycle 순서를 정리 한 포스�
 |4| |onResume()|
 |5| onStop()||
   
-### Detail Activity가 종료되고 Main Activity 복귀
+## Detail Activity가 종료되고 Main Activity 복귀
 
 아래와 같이 Gallary 앱이 동작을 할 때
 
 ![main activity](https://user-images.githubusercontent.com/35194820/104006681-27fcad00-51ea-11eb-8d9e-9180370be700.gif)
 
-
+  
 아래와 같은 순서로 Life cycle 이 호출이 됩니다.
   
 |Time Line|Main Activity|Detail Activity|
