@@ -32,12 +32,12 @@ Android Databing을 할 시 자동으로 생성되는 DatabindingImpl 소스를 
 
 분석할 때 사용한 코드는 아래 Tic Tac Toe github repo. 를 참고했습니다.
 
-
 <div align="center">
 
-![tictactoe](https://user-images.githubusercontent.com/35194820/114659874-4fa26a80-9d2f-11eb-85ad-9a2e4d90954d.gif)
+<img src="https://user-images.githubusercontent.com/35194820/114659874-4fa26a80-9d2f-11eb-85ad-9a2e4d90954d.gif" >
 
-[github](https://github.com/ericmaxwell2003/ticTacToe)
+<a href="https://github.com/ericmaxwell2003/ticTacToe">github</a>
+
 </div>
 
 ### Tic Tac Toe 
@@ -46,10 +46,10 @@ Android Databing을 할 시 자동으로 생성되는 DatabindingImpl 소스를 
 
 <div align="center">
 
-![tictactoe](https://user-images.githubusercontent.com/35194820/114660281-fd157e00-9d2f-11eb-8d6f-a23a8fa41276.gif)
-
+<img src="https://user-images.githubusercontent.com/35194820/114660281-fd157e00-9d2f-11eb-8d6f-a23a8fa41276.gif" >
 
 </div>
+
 
 ### Sample Code Structure
 
