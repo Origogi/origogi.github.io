@@ -12,7 +12,8 @@ toc_sticky: true # 스크롤 내릴때 같이 내려가는 목차
 categories :	
  - Android	
 tags: 	
-  - Android	
+  - Android
+  - MVVM
 comments: true	
 header:	
   overlay_filter: 0.5	
