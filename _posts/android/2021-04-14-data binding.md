@@ -19,7 +19,6 @@ header:
 sitemap :	
   changefreq : daily	
   priority : 1.0	
-  priority : 1.0---
 ---
 
 Android Databing을 할 시 자동으로 생성되는 DatabindingImpl 소스를 분석하여 내부적으로 Databinding이 어떻게 동작하는 지 알아보는 포스트입니다.

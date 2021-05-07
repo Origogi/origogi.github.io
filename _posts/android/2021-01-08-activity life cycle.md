@@ -19,7 +19,6 @@ header:
 sitemap :	
   changefreq : daily	
   priority : 1.0	
-  priority : 1.0---
 ---
 
 Android Activity 전환 시 각 Activity Life cycle 순서를 정리 한 포스트입니다.

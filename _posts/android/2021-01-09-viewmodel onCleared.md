@@ -20,7 +20,6 @@ header:
 sitemap :	
   changefreq : daily	
   priority : 1.0	
-  priority : 1.0---
 ---
 
 ViewModel 의 onCleared()를 사용하여 리소르를 어떻게 해제를 할 것인가에 대해 다루는 포스팅입니다.
