@@ -22,11 +22,12 @@ sitemap :
   priority : 1.0	
 ---
 
-보통 RecylerView 를 활용한 앱은 다음과 같은 화면으로 구성이 될 것이다.
+RecylerView 를 활용한 앱은 보통 다음과 같은 화면으로 구성이 될 것이다.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/104088168-31e4e580-52a8-11eb-8333-f7aedd046fb2.gif" >
 </div>
+</br>
 
 위 앱은 서버로 부터 imageUrl 과 title 데이터를 list 형태로 받아오고 그 list를 RecyclerView 에 뿌려주는 간단한 기능을 제공한다.
 
@@ -35,9 +36,9 @@ sitemap :
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/117423140-594c7600-af5b-11eb-9123-4f6c289da95a.gif" >
 </div>
+</br>
 
 위 현상이 발생하는 이유는 title 같은 경우 바로 TextView 에 set을 하지만 Image 같은 경우는 ImageUrl를 이용하여 서버로 부터 다운받아야 하는 과정이 추가로 들어가기 때문이다.
-
 만약 Image Size가 클 수록 로드 딜레이는 더 길어질 것이다.
 
 해당 포스트의 목적은 RecyclerView 에서 스크롤 시 이미지 로딩 시간을 단축하는 방법에 대해 다루도록 하겠다.
@@ -45,7 +46,7 @@ sitemap :
 ## 스크롤 시 이미지 로딩 딜레이가 왜 발생하는 가?
 
 스크롤 시 이미지 딜레이가 발생하는 원인에 대해서 살펴보기 위해 RecyclerView의 동작 방식에 대해 간략히 살펴보면
-RecyclerView는 RecyclerViewAdapter로 부터 item layout를 제공받는다. 
+RecyclerView는 RecyclerViewAdapter로 부터 item layout를 제공받는다.
 
 보통 RecyclerViewAdpater는 다음과 같이 구현 할 것이다.
 
@@ -168,13 +169,11 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 위 로직을 적용 하기 전과 적용 후 비교 결과는 다음과 같다.
 
-<div align="center">
-
 |Preload 적용 전|Preload 적용 후|
 |------|---|
 |![default](https://user-images.githubusercontent.com/35194820/117423140-594c7600-af5b-11eb-9123-4f6c289da95a.gif)|![custom](https://user-images.githubusercontent.com/35194820/117423126-52bdfe80-af5b-11eb-8216-597f357a2cca.gif)|
-</div>
-
+  
+  
 참고로 Glide 자체에 디스크 캐쉬 때문에 앱을 지우고 새로 설치하여 확인을 하였다.
 몇몇 아이템에 대해서 딜레이는 있지만 대부분 스크롤 할 때 바로 바로 표시되는 것을 볼 수가 있다.
 
