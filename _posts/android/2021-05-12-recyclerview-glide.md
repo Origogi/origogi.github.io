@@ -27,7 +27,6 @@ RecylerView 를 활용한 앱은 보통 다음과 같은 화면으로 구성이 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/104088168-31e4e580-52a8-11eb-8333-f7aedd046fb2.gif" >
 </div>
-</br>
 
 위 앱은 서버로 부터 imageUrl 과 title 데이터를 list 형태로 받아오고 그 list를 RecyclerView 에 뿌려주는 간단한 기능을 제공한다.
 
@@ -36,7 +35,6 @@ RecylerView 를 활용한 앱은 보통 다음과 같은 화면으로 구성이 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/117423140-594c7600-af5b-11eb-9123-4f6c289da95a.gif" >
 </div>
-</br>
 
 위 현상이 발생하는 이유는 title 같은 경우 바로 TextView 에 set을 하지만 Image 같은 경우는 ImageUrl를 이용하여 서버로 부터 다운받아야 하는 과정이 추가로 들어가기 때문이다.
 만약 Image Size가 클 수록 로드 딜레이는 더 길어질 것이다.
