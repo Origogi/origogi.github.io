@@ -7,5 +7,5 @@ sidebar_main: true
 ---
 
 
-{% assign posts = site.categories.android %}
+{% assign posts = site.categories.android | site.categories.Android  %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
