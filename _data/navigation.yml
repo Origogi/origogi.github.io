@@ -1,6 +1,8 @@
 # main links
 main:
-  - title: "태그"
+  - title: "Archive"
+    url: /year-archive/
+  - title: "Tag"
     url: /tags/
-  - title: "카테고리"
+  - title: "Category"
     url: /categories/
