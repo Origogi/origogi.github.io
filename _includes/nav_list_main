@@ -11,7 +11,7 @@
             📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
-        <span class="nav__sub-title" onclick="location.href='http://art-life.tistory.com'">Mobile</span>
+            <span class="nav__sub-title" onclick="location.href='http://art-life.tistory.com'">Mobile</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Android" %}
@@ -41,6 +41,8 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <a href="/categories/coroutine">Test<span class="nav__sub-title"></span></a>
+
       </li>
   </ul>
 </nav>
