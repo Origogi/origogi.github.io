@@ -41,7 +41,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <a href="/categories/test">Test<span class="nav__sub-title"></span></a>
+            <a href="/categories/test"><span class="nav__sub-title">Test</span></a>
 
       </li>
   </ul>
