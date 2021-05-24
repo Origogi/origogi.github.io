@@ -5,8 +5,11 @@ permalink: categories/test
 author_profile: true
 sidebar_main: true
 ---
-{% assign posts = site.categories.Flutter  %}
-  <h2 class="archive__subtitle">Flutter</h2>
-{% for post in posts %} 
-  {% include archive-single.html type=page.entries_layout %}
+{% include group-by-array collection=site.posts field="categories" %}
+{% for category in group_names %}
+  {% assign posts = group_items[forloop.index0] %}
+  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+  {% for post in posts %}
+    {% include archive-single.html %}
+  {% endfor %}
 {% endfor %}
