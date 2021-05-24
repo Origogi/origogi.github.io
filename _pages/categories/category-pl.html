@@ -1,13 +1,13 @@
 ---
-title: "Mobile"
+title: "Programing Language"
 layout: archive
-permalink: categories/mobile
+permalink: categories/pl
 author_profile: true
 sidebar_main: true
 ---
 {% include group-by-array collection=site.posts field="categories" %}
 {% for category in group_names %}
-  {% if category == "Flutter" or  category == "Kotlin" %}
+  {% if category == "Kotlin" or  category == "Coroutine" %}
     {% assign posts = group_items[forloop.index0] %}
     <h2 class="archive__subtitle">{{ category }}</h2>
     {% for post in posts %}
