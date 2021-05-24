@@ -25,7 +25,7 @@
             <a href="/categories/mobile"><span class="nav__sub-title">Mobile ({{total}})</span></a>
             <ul>
                 {% for category in filter-categories %}
-                    <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
+                    <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
 
@@ -42,7 +42,7 @@
             <a href="/categories/pl"><span class="nav__sub-title">Programing Language ({{total}})</span></a>
             <ul>
                 {% for category in filter-categories %}
-                    <li><a href="/categories/{{category[0]}}" class="">{{category[0]}} ({{category[1].size}})</a></li>
+                    <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
       </li>
