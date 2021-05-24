@@ -11,13 +11,12 @@
             📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
-            category-name: [ "Android", "Flutter" ]
 
+            <!--Category #1-->
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
-
             {% for category in site.categories %}
-                {% if category-name contains category[0] %}
+                {% if category[0] == "Android" or category[0] == "Flutter"  %}
                     {% assign total = total | plus: category[1].size %}
                     {% assign filter-categories = filter-categories | push: category %}
                 {% endif %}
@@ -29,13 +28,21 @@
                     <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
-            <a href="/categories/pl"><span class="nav__sub-title">Programing Language</span></a>
 
-            <ul>
-                {% for category in site.categories %}
+            <!--Category #2-->
+            {% assign total = 0 %}
+            {% assign filter-categories = "" | split: ',' %}
+            {% for category in site.categories %}
                     {% if category[0] == "Kotlin" or category[0] == "Coroutine" %}
-                        <li><a href="/categories/kotlin" class="">{{category[0]}}  ({{category[1].size}})</a></li>
-                    {% endif %}
+                    {% assign total = total | plus: category[1].size %}
+                    {% assign filter-categories = filter-categories | push: category %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="/categories/mobile"><span class="nav__sub-title">Programing Language({{total}})</span></a>
+            <ul>
+                {% for category in filter-categories %}
+                    <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
       </li>
