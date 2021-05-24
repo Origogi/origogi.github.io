@@ -22,7 +22,7 @@
                 {% endif %}
             {% endfor %}
 
-            <a href="/categories/mobile"><span class="nav__sub-title">Mobile({{total}})</span></a>
+            <a href="/categories/mobile"><span class="nav__sub-title">Mobile ({{total}})</span></a>
             <ul>
                 {% for category in filter-categories %}
                     <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
@@ -39,10 +39,10 @@
                 {% endif %}
             {% endfor %}
 
-            <a href="/categories/mobile"><span class="nav__sub-title">Programing Language({{total}})</span></a>
+            <a href="/categories/mobile"><span class="nav__sub-title">Programing Language ({{total}})</span></a>
             <ul>
                 {% for category in filter-categories %}
-                    <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
+                    <li><a href="/categories/pl" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
       </li>
