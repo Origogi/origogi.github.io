@@ -11,13 +11,12 @@
             📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
-            filter-name: [ "Android", "Flutter" ]
-
+            {% assign filter-name = ["Android", "Flutter"] %}
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
 
             {% for category in site.categories %}
-                {% if filter-name in category[0] %}
+                {% if filter-name contains category[0] %}
                     {% assign total = total | plus: category[1].size %}
                     {% assign filter-categories = filter-categories | push: category %}
                 {% endif %}
