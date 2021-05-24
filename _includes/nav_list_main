@@ -15,7 +15,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Android" or category[0] == "Flutter"  %}
-                        <li><a href="/categories/android" class="">Android ({{category[1].size}})</a></li>
+                        <li><a href="/categories/android" class="">{{category[0]}} ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -24,7 +24,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Kotlin" or category[0] == "Coroutine" %}
-                        <li><a href="/categories/kotlin" class="">Kotlin ({{category[1].size}})</a></li>
+                        <li><a href="/categories/kotlin" class="">{{category[0]}}  ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
