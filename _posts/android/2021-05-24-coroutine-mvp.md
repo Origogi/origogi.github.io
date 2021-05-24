@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP"	
 excerpt : " "	
 layout: single	
@@ -129,7 +129,7 @@ MyPresenter 는 MainContract.Presenter 를 상속받아 구현을 하고 View �
 
 화면을 구성하는 컴포넌트입니다.
 
-위 샘플코드에서 View는 Layout Xml, Acticity, RecyclerView Adapter인 ImageDataAdapter가 있습니다.
+위 샘플코드에서 View는 Layout Xml, RecyclerView Adapter인 ImageDataAdapter 그리고 MainActicity가 새롭게 추가가 됩니다.
 
 #### MainActivity
 

@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP"	
+title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC"	
 excerpt : " "	
 layout: single	
 classes: wide
