@@ -11,7 +11,8 @@
             📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
-            <a href="/categories/mobile"><span class="nav__sub-title">Mobile</span></a>
+            {% assign countC = {{ site.categories| where_exp:"item", "item[0] == 'Flutter' or "item[0] == 'Android" }}}
+            <a href="/categories/mobile"><span class="nav__sub-title">Mobile{{countC}}</span></a>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Android" or category[0] == "Flutter"  %}
