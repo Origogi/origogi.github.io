@@ -14,15 +14,8 @@
             <a href="/categories/mobile"><span class="nav__sub-title">Mobile</span></a>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Android" %}
+                    {% if category[0] == "Android" or category[0] == "Flutter"  %}
                         <li><a href="/categories/android" class="">Android ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "Flutter" %}
-                        <li><a href="/categories/flutter" class="">Flutter ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -30,15 +23,8 @@
 
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Kotlin" %}
+                    {% if category[0] == "Kotlin" or category[0] == "Coroutine" %}
                         <li><a href="/categories/kotlin" class="">Kotlin ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "Coroutine" %}
-                        <li><a href="/categories/coroutine" class="">Coroutine ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
