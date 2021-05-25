@@ -12,7 +12,7 @@
       </li>
       <li>
 
-            <!--Category #1-->
+            <!--Category Mobile-->
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
             {% for category in site.categories %}
@@ -29,7 +29,7 @@
                 {% endfor %}
             </ul>
 
-            <!--Category #2-->
+            <!--Category Programing Language-->
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
             {% for category in site.categories %}
@@ -45,6 +45,43 @@
                     <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
                 {% endfor %}
             </ul>
+
+            <!--Category OOP-->
+            {% assign total = 0 %}
+            {% assign filter-categories = "" | split: ',' %}
+            {% for category in site.categories %}
+                    {% if category[0] == "OOP" %}
+                    {% assign total = total | plus: category[1].size %}
+                    {% assign filter-categories = filter-categories | push: category %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="/categories/oop"><span class="nav__sub-title">OOP({{total}})</span></a>
+
+            <!--Category Book-->
+            {% assign total = 0 %}
+            {% assign filter-categories = "" | split: ',' %}
+            {% for category in site.categories %}
+                    {% if category[0] == "Book" %}
+                    {% assign total = total | plus: category[1].size %}
+                    {% assign filter-categories = filter-categories | push: category %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="/categories/book"><span class="nav__sub-title">Book({{total}})</span></a>
+
+            <!--Category Machine Learning-->
+            {% assign total = 0 %}
+            {% assign filter-categories = "" | split: ',' %}
+            {% for category in site.categories %}
+                    {% if category[0] == "ML" %}
+                    {% assign total = total | plus: category[1].size %}
+                    {% assign filter-categories = filter-categories | push: category %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="/categories/ml"><span class="nav__sub-title">Machine Learning({{total}})</span></a>
+
       </li>
   </ul>
 </nav>
