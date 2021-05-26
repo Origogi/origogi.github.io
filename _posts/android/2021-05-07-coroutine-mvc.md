@@ -254,4 +254,5 @@ MVC는 구조가 단순하고 구현하기가 쉽다는 장점이 있지만 기�
 
 ## 참고
 
-[[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](./2021-05-24-coroutine-mvp)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](./2021-05-24-coroutine-mvp)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM](./2021-05-26-coroutine-mvvm-livedata)

@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM"	
 excerpt : " "	
 layout: single	
@@ -131,14 +131,89 @@ View Model 이 생성이 되면 Model을 통해서 공급 받은 ImageData 를 �
 
 ### View
 
+Presenter 같은 경우는 View에서 직접 생성해서 가지고 있었지만 View Model 같은 경우는 ViewModelProvider를 통해 가져옵니다.
 
+~~~kotlin
+
+class MainActivity : AppCompatActivity(), CoroutineScope {
+    ...
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ...
+        val viewModel = ViewModelProvider(this)[MyViewModel::class.java]
+
+        val counterTextView = findViewById<TextView>(R.id.counter)
+
+        viewModel.getCounter()
+            .observe(this, { count ->
+                counterTextView.text = "count : $count"
+            })
+
+        viewModel.getImageDataList().observe(this, { newList ->
+            viewAdapter.update(newList)
+        })
+
+    }
+    ...
+}
+~~~
+
+ViewModelProvider 를 통해 ViewModel 을 가져오는 이유는 View Model 을 단 한 개만 생성하기 위함입니다.
+
+View Model은 한개 이상의 View와 관계를 가질수 있습니다. View Model은 LiveData 형태로 상태를 저장하고 있으며 만약 동일한 Class 로 여러개 의 View Model 인스턴스를 생성한다면 View Model간 데이터/상태 의 불일치가 발생할 것입니다.
+
+ViewModelProvider 은 View Model 객체를 관리하는 Map을 가지고 있으며 View의 요청에 따라 View Model를 새로 생성하거나 기존 존재하는 View Model를 리턴 할 것입니다.
+
+~~~java
+public class ViewModelStore {
+
+    private final HashMap<String, ViewModel> mMap = new HashMap<>();
+    ...
+}
+~~~
+
+View 는 LiveData에 observe() 를 통해서 LiveData 를 관찰하고 변경이 있을 시 View를 업데이트 하게 됩니다.
+
+~~~kotlin
+viewModel.getImageDataList().observe(this, { newList ->
+    viewAdapter.update(newList)
+})
+~~~
+
+추가로 View 의 RecyclerView에 업데이트 할 ImageData List를 이제 View Model이 관리하기 때문에 RecyclerView의 Adpater 는 이제 List 통째로 replace 를 해야 하기에 아래와 같이 update() 라는 함수를 추가했습니다.
+
+~~~kotlin
+
+class ImageDataAdapter(private val context: Context) :
+    RecyclerView.Adapter<ImageDataAdapter.ViewHolder>() {
+
+    ...
+    fun update(list: List<ImageData>) {
+        val diffCallback = Diff(imageDataList, list)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+        imageDataList.clear()
+        imageDataList.addAll(list)
+        diffResult.dispatchUpdatesTo(this)
+    }
+    ...
+}
+~~~
+
+### Model
+
+Model은 변경되는 점이 없습니다.
 
 ## 마무리
 
-MVP의 Presenter는 MVC 의 Controller와 대비 Android Framework와 종속성이 제거가 되어 테스트 코드 작성 및 Android Framework 변경 사항에 영향을 받지 않는 다는 장점이 있지만 View와 1대1로 종속성 때문에 Presenter는 다른 View와 결합할수 없습니다.
+MVVM 은 View Model를 사용함으로써 View와 Presenter 간 1대1 관계라는 단점을 극복하고 View와 View Model 간 N대1 이라는 관계를 가질수 있게 됩니다.
 
-위 장점을 살리면서 단점을 극복한 것이 MVVM 입니다. 다음 포스트에서 기존 MVP에서 MVVM 으로 변경하는 과정을 다루도록 하겠습니다.
+View와 View Model 간 N대1 이라는 관계는 View 는 결국 하나의 data를 공유함으로써 Activity-Activity, Activity-Fragment, Fragment-Fragment 간 통신이 가능하게 됩니다.
+마치 여러 개의 쓰레드가 공유 data를 통해 통신하는 것처럼요!!
+
+하지만 위 코드는 View를 업데이트를 할 때 data binding이 아닌 observer 패턴을 사용하였습니다.
+다음 포스트에서는 data binding을 어떻게 적용하는 방법에 대해 살펴보겠습니다.
 
 ## 참고
 
-[[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](./2021-05-24-coroutine-mvp)

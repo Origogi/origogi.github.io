@@ -197,4 +197,5 @@ MVP의 Presenter는 MVC 의 Controller와 대비 Android Framework와 종속성�
 
 ## 참고
 
-[[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM](./2021-05-26-coroutine-mvvm-livedata)
