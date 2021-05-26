@@ -35,7 +35,7 @@ MVC 패턴의 문제점은 Controller 와 Android Framework, View와 강력한 �
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/117981811-5e049600-b370-11eb-97d4-52fca92cf356.gif" >
-</div>
+</div></br>
 
 앱에 대해 간단히 설명하자면 서버로 부터 HTML 문서를 다운받고 문서로 부터 이미지-제목을 파싱하여 RecyclerView에 뿌려주는 갤러리 앱입니다. 비동기 처리를 위해 저는 Coroutine을 사용했습니다.
 
