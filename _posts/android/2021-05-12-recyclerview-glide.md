@@ -15,8 +15,10 @@ tags:
   - Android
   - Glide
 comments: true	
-header:	
-  overlay_filter: 0.5	
+header:
+  overlay_image: https://user-images.githubusercontent.com/35194820/119770376-18f76c80-bef7-11eb-8b3e-abca9300d1c1.gif
+  overlay_filter: 0.8
+  teaser: https://www.pngkey.com/png/full/27-278037_banner-freeuse-library-android-transparent-app-android-development.png
 sitemap :	
   changefreq : daily	
   priority : 1.0	
