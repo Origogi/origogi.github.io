@@ -14,8 +14,8 @@ categories :
  - Android	
 tags: 	
   - Android
-  - Glide
   - Coroutine
+  - JetPack
   - Kotlin
 comments: true	
 header:

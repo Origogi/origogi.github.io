@@ -14,9 +14,9 @@ categories :
  - Android	
 tags: 	
   - Android
-  - Glide
-  - Coroutine
   - Kotlin
+  - DataBinding
+  - JetPack
 comments: true	
 header:
   overlay_image: https://user-images.githubusercontent.com/35194820/119770376-18f76c80-bef7-11eb-8b3e-abca9300d1c1.gif
