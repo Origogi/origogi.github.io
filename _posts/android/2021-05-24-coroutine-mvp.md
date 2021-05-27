@@ -49,6 +49,9 @@ MVC 패턴의 문제점은 Controller 와 Android Framework, View와 강력한 �
 
 [Repository](https://github.com/Origogi/Android-Coroutine-Galley-App)
 
+> git checkout mvp
+
+
 ## MVP
 
 MVC 는 Model-View-Presenter의 약자로써 3개의 집합으로 구분합니다.
@@ -200,4 +203,5 @@ MVP의 Presenter는 MVC 의 Controller와 대비 Android Framework와 종속성�
 ## 참고
 
 - [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
-- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM](./2021-05-26-coroutine-mvvm-livedata)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM-LiveData](./2021-05-26-coroutine-mvvm-livedata)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM-DataBinding](./2021-05-27-coroutine-mvvm-data-binding)

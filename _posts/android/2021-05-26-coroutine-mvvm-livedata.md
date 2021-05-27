@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM"	
+title: "[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM (LiveData)"	
 excerpt : " "	
 layout: single	
 classes: wide
@@ -219,3 +219,4 @@ View와 View Model 간 N대1 이라는 관계는 View 는 결국 하나의 data�
 
 - [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
 - [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](./2021-05-24-coroutine-mvp)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM-DataBinding](./2021-05-27-coroutine-mvvm-data-binding)
