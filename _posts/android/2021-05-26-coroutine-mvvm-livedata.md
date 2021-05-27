@@ -20,7 +20,7 @@ tags:
 comments: true	
 header:
   overlay_image: https://user-images.githubusercontent.com/35194820/119770376-18f76c80-bef7-11eb-8b3e-abca9300d1c1.gif
-  overlay_filter: 0.8
+  overlay_filter: 1.0
   teaser: https://www.pngkey.com/png/full/27-278037_banner-freeuse-library-android-transparent-app-android-development.png
 sitemap :	
   changefreq : daily	
@@ -35,7 +35,7 @@ MVP 패턴을 사용할 때 가장 큰 문제점은 View와 Presenter 간의 강
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/35194820/117981811-5e049600-b370-11eb-97d4-52fca92cf356.gif" >
-</div></br>
+</div>
 
 앱에 대해 간단히 설명하자면 서버로 부터 HTML 문서를 다운받고 문서로 부터 이미지-제목을 파싱하여 RecyclerView에 뿌려주는 갤러리 앱입니다. 비동기 처리를 위해 저는 Coroutine을 사용했습니다.
 
