@@ -1,6 +1,6 @@
 ---
-published: false
-title: "[Android][Jetpack] View Model"	
+published: true
+title: "[Android][Jetpack] ViewModel"	
 excerpt : " "	
 layout: single	
 classes: wide
@@ -44,7 +44,11 @@ ViewModel 는 Android MVVM 디자인 패턴을 구현하기 위해서 사용되�
 - [LiveData](./2021-05-27-livedata)
 - DataBinding
 
-주된 목적인 액티비티나 프래그먼트에서 사용되는 데이터들을 저장/관리하는 모듈입니다. 액티비티나 플래그먼트와 독립적인 생명 주기를 가지고 있어서 액티비티나 플래그먼트가 종료되어도 계속 생존이 가능하기에 UI 변경에 필요한 데이터들을 저장/관리가 용의합니다.
+주된 목적은
+
+첫 번째로 액티비티나 프래그먼트에서 사용되는 데이터들을 저장/관리를 합니다.
+
+두 번째로 데이터를 가져오기 위해 네트워크 오퍼레이션이나 DB 쿼리등 비동기 로직을 액티비티나 프래그먼트로 부터 분리할수 있다는 것에 있습니다.
 
 여기서 데이터는 `LiveData` 형태로 저장이 되며 액티비티/프래그먼트와 View Model간 서로 이어주는 것이 `Data biding` 입니다. `LiveData` 나 `Data biding` 은 바로 위 링크를 참고 바랍니다.
 
@@ -79,10 +83,26 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 }
 ~~~
 
+또는 ktx 를 사용하면 아래와 같이 간략하게 생성할 수 있습니다.
 
+~~~gradle
+dependencies {
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+}
+~~~
+
+~~~kotlin
+val viewModel: MyViewModel by viewModels()
+~~~
 
 ## View Model 생명주기
 
 <div align="center">
 <img src="https://developer.android.com/images/topic/libraries/architecture/viewmodel-lifecycle.png?hl=ko" >
 </div>
+
+액티비티 또는 프래그먼트에서 ViewModelProvider 를 통해 ViewModel를 생성을 하며 View Model은 액티비티가 최종 종료될 때 또는 프래그먼트가 액티비티로부터 분리될 때 소멸이 됩니다.
+
+예를 들어 액티비티가 화면 회전하는 경우에는 onDestroy() 가 되어도 바로 onCreate() 가 됩니다. 이 경우 View Model를 사용하지 않는다면 onSaveInstance() 를 통해 데이터를 저장하고 복구하는 로직이 필요하게 됩니다.
+
+하지만 View Model를 사용하게 된다면 액티비티가 onDestroy() 가 되어도 View Model은 계속 유지가 되기 때문에 데이터 저장/복구 로직을 구현하지 않아도 됩니다.
