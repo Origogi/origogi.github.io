@@ -45,8 +45,8 @@ DataBinding 의 장점은 아래와 같습니다.
 
 Data binding는 주로 Android MVVM 패턴을 구현하기 위해 사용이 됩니다. 참고로 MVVM 패턴을 구현할 때에는 Data binding외에 아래 라이브러리과 같이 사용하게 됩니다.
 
-- [View Model](./2021-05-28-viewmodel)
-- [Live Data](./2021-05-27-livedata)
+- [View Model](https://origogi.github.io/android/viewmodel/)
+- [Live Data](https://origogi.github.io/android/livedata/)
 
 Data를 읽어서 View 를 업데이트하는 고전적인 방식은 아래와 같이 findViewByID() api를 사용하여 View를 접근한 다음 set api를 사용하여 View에 data를 set를 하게됩니다.
 

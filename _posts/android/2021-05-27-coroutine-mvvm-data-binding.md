@@ -314,6 +314,6 @@ Databiding 을 이용한 MVVM 패턴 같은 경우 View와 View Model간 약한 
 
 ## 참고
 
-- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](./2021-05-07-coroutine-mvc)
-- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](./2021-05-24-coroutine-mvp)
-- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM-LiveData](./2021-05-26-coroutine-mvvm-livedata)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVC](https://origogi.github.io/android/coroutine-mvc/)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVP](https://origogi.github.io/android/coroutine-mvp/)
+- [[Android] Coroutine을 활용한 안드로이드 디자인 패턴 - MVVM-LiveData](https://origogi.github.io/android/coroutine-mvvm-livedata/)
