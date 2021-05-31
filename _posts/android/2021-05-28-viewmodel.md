@@ -106,3 +106,7 @@ val viewModel: MyViewModel by viewModels()
 예를 들어 액티비티가 화면 회전하는 경우에는 onDestroy() 가 되어도 바로 onCreate() 가 됩니다. 이 경우 View Model를 사용하지 않는다면 onSaveInstance() 를 통해 데이터를 저장하고 복구하는 로직이 필요하게 됩니다.
 
 하지만 View Model를 사용하게 된다면 액티비티가 onDestroy() 가 되어도 View Model은 계속 유지가 되기 때문에 데이터 저장/복구 로직을 구현하지 않아도 됩니다.
+
+## Reference
+
+[ViewModel 개요](https://www.google.com/search?q=Viewmodel+%EA%B0%9C%EC%9A%94&oq=Viewmodel+%EA%B0%9C%EC%9A%94&aqs=chrome..69i57j0i333l2j69i60l2j69i61.5488j0j1&sourceid=chrome&ie=UTF-8)
