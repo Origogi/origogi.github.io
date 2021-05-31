@@ -42,7 +42,7 @@ ViewModel 는 Android MVVM 디자인 패턴을 구현하기 위해서 사용되�
 만약 Android MVVM 디자인 패턴을 구현 할 때에는 보통 View Model과 아래의 컴포넌트와 같이 set로 묶어서 사용합니다.
 
 - [LiveData](./2021-05-27-livedata)
-- DataBinding
+- [DataBinding](./2021-05-30-databinding)
 
 주된 목적은
 

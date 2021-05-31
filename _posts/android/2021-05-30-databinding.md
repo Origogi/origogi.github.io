@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "[Android][Jetpack] Data Binding"	
 excerpt : " "	
 layout: single	
@@ -43,7 +43,10 @@ DataBinding 의 장점은 아래와 같습니다.
 - xml 리소스만 보고도 View 에 어떤 데이터가 들어가는지 파악이 가능하다.
 - 코드 가독성이 좋아지고, 상대적으로 코드량이 줄어든다.
 
-Data binding는 주로 Android MVVM 패턴을 구현하기 위해 사용이 됩니다.
+Data binding는 주로 Android MVVM 패턴을 구현하기 위해 사용이 됩니다. 참고로 MVVM 패턴을 구현할 때에는 Data binding외에 아래 라이브러리과 같이 사용하게 됩니다.
+
+- [View Model](./2021-05-28-viewmodel)
+- [Live Data](./2021-05-27-livedata)
 
 Data를 읽어서 View 를 업데이트하는 고전적인 방식은 아래와 같이 findViewByID() api를 사용하여 View를 접근한 다음 set api를 사용하여 View에 data를 set를 하게됩니다.
 
@@ -147,3 +150,111 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ~~~
 
 여기서 `ActivityMainBinding` 은 컴파일러를 통해 생성된 클래스입니다. 이름은 xml 파일명 기준으로 생성이 되며 여기서 사용된 xml이름은 `activity_main.xml` 입니다.
+
+`binding.viewmodel` 에서 `viewmodel` 은 `activity_main.xml` 안에 `<data>` 안에 `name` 기준으로 생성이 됩니다. `binding.lifecycleOwner` 같은 경우 Data가 LiveData 인 경우 추가적으로 등록해야 합니다.
+
+### 4. BindingAdapter 설정
+
+BindingAdapter 는 Data가 변경될 경우 안드로이드 프래임워크에서 자동으로 실행하는 API입니다.
+
+BindingAdapter 은 위 예제에서 아래와 같이 `android:text` 와 `bindItem` 이 있습니다.
+
+~~~xml
+<TextView
+  ...
+    android:text="@{`Image Count :  ` + viewmodel.counter}"
+    />
+
+<androidx.recyclerview.widget.RecyclerView
+    ...
+    bindItem="@{viewmodel.imageDataList}"
+/>
+~~~
+
+여기서 `android:text` 는 Pre-define 된 BindingAdapter이고 `bindItem` 은 커스텀으로 추가한 BindingAdapter 입니다.
+
+`android:text` 은 아래와 같이 `TextViewBindingAdapter` 에 정의가 되어 있습니다.
+
+~~~java
+public class TextViewBindingAdapter {
+    ...
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, CharSequence text) {
+        final CharSequence oldText = view.getText();
+        if (text == oldText || (text == null && oldText.length() == 0)) {
+            return;
+        }
+        if (text instanceof Spanned) {
+            if (text.equals(oldText)) {
+                return; // No change in the spans, so don't set anything.
+            }
+        } else if (!haveContentsChanged(text, oldText)) {
+            return; // No content changes, so don't set anything.
+        }
+        view.setText(text);
+    }
+}
+~~~
+
+`bindItem` 은 안드로이드에서 기본적으로 제공하지 않는 BindingAdapter 로 아래와 같이 추가할수 있으며 @BindingAdapter 어노테이션을 이용하여 이름을 일치시킵니다.
+
+~~~kotlin
+@BindingAdapter("bindItem")
+fun bindItem(recyclerView: RecyclerView, items: LiveData<List<ImageData>>) {
+    val adapter = recyclerView.adapter
+    if (adapter is ImageDataAdapter) {
+        items.value?.let {
+            println("bind item ${it.size}")
+            adapter.update(it)
+        }
+    }
+}
+~~~
+
+### Appendix. Data object 교체
+
+일반적으로 View와 Data Object를 binding을 하고 Data Object 안의 맴버 변수를 업데이트 함으로써 View를 업데이트하지만 Data Object 자체를 변경해야 하는 case가 있을 수 있습니다.
+
+예를 들어 RecyclerView의 ViewHolder를 업데이트할 때입니다.
+
+~~~kotlin
+class ImageDataAdapter(private val context: Context) :
+  RecyclerView.Adapter<ImageDataAdapter.ViewHolder>() {
+
+  private val imageDataList = mutableListOf<ImageData>()
+
+  class ViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+      fun bind(itemData : ImageData) {
+          binding.item = itemData
+          binding.executePendingBindings()
+      }
+  }
+
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+      val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+      return ViewHolder(binding)
+  }
+
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+      val imageData = imageDataList[position]
+      holder.bind(imageData)
+  }
+  ...
+}
+~~~
+
+위의 Data Binding 동작 순서는 다음과 같습니다.
+
+1. onCreateViewHolder() 에 ListItemBinding.inflate() 를 이용하여 binding 을 생성합니다. ListItemBinding 은 컴파일러가 생성한 클래스로써 이름은 xml 파일명 기준으로 생성이 되며 여기서 사용된 xml이름은 `list_item.xml` 입니다.
+2. binding 객체를 ViewHolder가 가지도록 합니다.
+3. onBindViewHolder() 가 호출 될 때 ViewHolder의 bind() 를 호출합니다.
+4. binding의 item에 새로운 data를 set을 함으로써 Data binding의 data 자체를 교체합니다.
+5. 마지막으로 binding.executePendingBindings() 를 실행함으로써 안드로이드 프레임워크에 Data 가 변경되었음을 알립니다.
+
+## 정리
+
+Data  binding 같은 경우 여러가지 장점도 있지만 동작이 매우 복잡하고 러닝 커브가 존재하여 기존의 구조에 적용하기 어려울수도 있으며 앱 빌드시간이 늘어난다는 단점이 있습니다. 따라서 Data binding을 적용할 때 특장점을 잘 파악하고 적용하는 것이 중요합니다.
+
+## 참조
+
+[데이터 결합 라이브러리](https://developer.android.com/topic/libraries/data-binding?hl=ko)
