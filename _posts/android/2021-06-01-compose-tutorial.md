@@ -28,7 +28,7 @@ sitemap :
 ---
 
 <div align="center">
-<img src="https://thdev.tech/images/posts/2020/10/Android-Jetpack-Compose-Basics/image.png" >
+<img src="https://thdev.tech/images/posts/2020/10/Android-Jetpack-Compose-Basics/image.png" width="70%" >
 </div>
 
 ## 서론
