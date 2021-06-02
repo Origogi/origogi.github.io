@@ -91,3 +91,30 @@ fun DefaultPreview() {
     }
 }
 ~~~
+
+위 소스를 기반으로 하나 씩 분석하도록 하겠습니다.
+
+## @Composable
+
+Android Compose 같은 경우 화면을 구성할 때 Composable 함수를 이용합니다. Composable 함수는 `@Composable` 어노테이션을 구성하며 Composable 함수 내부에서 0개 이상의 Composable 함수를 호출할 수 있습니다. 이렇게 Composable 함수를 재귀 호출함으로써 Composable tree 를 구성하여 화면을 구성하게 됩니다.
+
+위 코드에서 보이는 `Text( ... )` 는 아래와 같이 미리 정의된 Composable 함수 입니다.
+
+~~~kotlin
+@Composable
+fun Text(text: AnnotatedString, modifier: Modifier = Modifier, ...) {
+    ...
+}
+~~~
+
+또한 `@Composable` 어노테이션를 사용하여 아래와 같이 Composable 함수를 추가하고 호출이 가능합니다.
+
+~~~kotlin
+@Composable
+fun NewsStory() {
+ ...
+}
+~~~
+
+## @Preview
+
