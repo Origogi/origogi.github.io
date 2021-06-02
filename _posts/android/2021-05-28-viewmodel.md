@@ -28,7 +28,7 @@ sitemap :
 ---
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/35194820/119796009-f58eea80-bf13-11eb-9d8b-cfbae470312b.PNG" >
+<img src="https://user-images.githubusercontent.com/35194820/119796018-f6c01780-bf13-11eb-8635-95a993dcc7a9.PNG" >
 </div>
 
 ## 서두

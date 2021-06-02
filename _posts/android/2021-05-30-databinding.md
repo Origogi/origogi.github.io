@@ -27,7 +27,9 @@ sitemap :
   priority : 1.0	
 ---
 
-![databinding](https://user-images.githubusercontent.com/35194820/119796020-f758ae00-bf13-11eb-975f-f09bfd895ef1.PNG)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/35194820/119796020-f758ae00-bf13-11eb-975f-f09bfd895ef1.PNG" >
+</div>
 
 ## 서론
 

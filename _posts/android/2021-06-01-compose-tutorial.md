@@ -15,7 +15,7 @@ categories :
 tags: 	
   - Android
   - Kotlin
-  - DataBinding
+  - Compose
   - JetPack
 comments: true	
 header:
