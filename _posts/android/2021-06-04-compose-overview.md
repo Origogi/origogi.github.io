@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "[Android][Compose] Compose Overview"	
 excerpt : " "	
 layout: single	
@@ -28,7 +28,7 @@ sitemap :
 ---
 
 <div align="center">
-<img src="https://cdn-images-1.medium.com/max/1000/1*dU9kuDf0BvOdILLYyOXZTA.jpeg">
+<img src="https://user-images.githubusercontent.com/35194820/120804010-1fcd5180-c57f-11eb-9863-f632f74bbf86.jpg">
 </div>
 
 ## 서론
@@ -57,18 +57,55 @@ UI가 업데이트 되는 과정은 아래와 같습니다.
 <img src="https://user-images.githubusercontent.com/35194820/120802957-fcee6d80-c57d-11eb-9eee-2dcdfdbfd863.PNG">
 </div>
 
-1. View 와 컨트롤러에 State가 중복된다.
-2. View 와 컨트롤러에 State는 항상 일치시켜야 하며 일치시키는 과정이 번거롭다.
-3. 코드가 복잡해질수록 View 와 컨트롤러에 State를 일치시키는 로직이 누락이 될수도 있다.
+1. View 와 컨트롤러에 State가 중복됩니다.
+2. View 와 컨트롤러에 State는 항상 일치시켜야 하며 일치시키는 과정이 번거로울수도 있습니다.
+3. 코드가 복잡해질수록 View 와 컨트롤러에 State를 일치시키는 로직이 누락이 될수도 있습니다..
 
-위와 같은 단점을 극복하기 위해 나온 개념이 선언형 UI 패턴 방식입니다.
+위와 같은 단점을 극복하기 위해 나온 개념이 선언형 UI 패턴 방식입니다. 선언형 UI 패턴은 다음과 같은 특징을 가지고 있습니다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/35194820/120802961-fd870400-c57d-11eb-9332-40d9bf2f0348.PNG">
+
+<img src="https://user-images.githubusercontent.com/35194820/120802963-fe1f9a80-c57d-11eb-87aa-e64b23ea2b91.PNG">
+</div>
+
+
+1. View 자체에 이제 State는 존재하지 않습니다. 따라서 더이상 setter 를 노출되지 않습니다.
+2. View 는 State 를 바라보고 있으며 State를 기반으로 View를 생성/구축합니다.
+3. State가 변경이 되면 View 를 다시 생성/구축합니다.
+
+## Composable 함수
+
+Android Compose 는 화면을 구성할 때 Composable 함수를 이용합니다. Composable 함수는 `@Composable` 어노테이션을 선언함으로써 구성하게 됩니다.
+
+위 코드에서 보이는 `Text( ... )` 는 아래와 같이 미리 정의된 Composable 입니다.
+
+~~~kotlin
+@Composable
+fun Text(text: AnnotatedString, modifier: Modifier = Modifier, ...) {
+    ...
+}
+~~~
+
+또한 `@Composable` 어노테이션를 사용하여 아래와 같이 Composable을 추가하고 호출이 가능합니다.
+
+~~~kotlin
+@Composable
+fun NewsStory() {
+ ...
+}
+~~~
+
+특정 Composable 은 자식 Composable를 가질수 있으며 자식 Composable 는 또 자식 Composable를 가짐으로써 Composable tree를 구성하게 됩니다. 이는 Flutter의 Widget tree와 매우 유사합니다.
+
+Composable 함수는 아래와 같은 특징을 가지고 있습니다.
+
+- Composable 함수는 순서와 관계없이 실행할 수 있습니다.
+- Composable 함수는 동시에 실행할 수 있습니다.
+- Composable Tree에서 특정 Composable이 변경이 되면 해당 Composable과 해당 자식 Composable만 새로 구성을 합니다.
+- Composable 은 취소가 될수 있습니다. 예를 들어 State가 변경이 되어 재구성을 하는 중에 다시 State가 변경이 되면 기존에 수행중인 재구성을 취소하고 다시 재구성을 시도합니다.
+- UI 애니메이션 동작을 처리할 때 Composable 함수는 자주 실행될 수 있습니다.
 
 ## Reference
 
 - [Compose 이해](https://developer.android.com/jetpack/compose/mental-model?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23article-https%3A%2F%2Fdeveloper.android.com%2Fjetpack%2Fcompose%2Fmental-model)
-
-
-![legacy](https://user-images.githubusercontent.com/35194820/120802957-fcee6d80-c57d-11eb-9eee-2dcdfdbfd863.PNG)
-![compose](https://user-images.githubusercontent.com/35194820/120802961-fd870400-c57d-11eb-9332-40d9bf2f0348.PNG)
-![compose2](https://user-images.githubusercontent.com/35194820/120802963-fe1f9a80-c57d-11eb-87aa-e64b23ea2b91.PNG)
-![compose3](https://user-images.githubusercontent.com/35194820/120802966-fe1f9a80-c57d-11eb-89e7-5b59c0a94e70.PNG)
