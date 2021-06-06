@@ -33,8 +33,28 @@ sitemap :
 
 ## 서론
 
-해당 포스트는 Android Compose 에 .
+해당 포스트는 Android Compose 화면을 구성할 때 사용되는 Layout 에 대해 정리한 것입니다.
+
+## Layout
 
 <img width="1701" alt="스크린샷 2021-06-06 오후 12 26 17" src="https://user-images.githubusercontent.com/35194820/120911539-29f86880-c6c3-11eb-8963-b7c16de1ade5.png">
+
+Compose에서 사용되는 Layout은 총 4 종류입니다.
+
+- Column
+- Row
+- Stack
+- Constraint Layout
+
+## 1. Column
+
+## 2. Row
+
+## 3. Stack
+
+## 4. Constraint Layout
+
+
+
 
 ## Reference
