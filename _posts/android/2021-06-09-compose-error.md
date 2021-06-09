@@ -35,7 +35,7 @@ sitemap :
 
 해당 포스트는 현재 Compose 개발 시 발생한 Exception 및 버그를 어떻게 해결 했는 지에 대해 다루는 포스트이며 Compose는 아직 알파 버전이기 때문에 이전에 적용했던 해결 방안이 새로운 Compose 버전이 업데이트 되면서 적용이 안될수도 있음을 명심하시길 바랍니다.
 
-## 1. java.lang.NoSuchMethodError: No static method drawRect 발생
+## java.lang.NoSuchMethodError: No static method drawRect 발생
 
 ### 발생 원인
 
@@ -85,4 +85,25 @@ android {
         kotlinCompilerVersion '1.5.10' // 1. kotlin compile 버전 수정
     }
 }
+~~~
+
+## java.lang.NoSuchMethodError startRestartGroup 발생
+
+### 발생 원인
+
+Compose 버전을 '1.0.0-beta08' 로 업그레이드 시 coil 라이브러리에서 아래와 같이 Exception 발생
+
+~~~java
+No interface method startRestartGroup(ILjava/lang/String;)Landroidx/compose/runtime/Composer; in class Landroidx/compose/runtime/Composer; or its super classes (declaration of 'androidx.compose.runtime.Composer' 
+....
+ at com.google.accompanist.coil.CoilImage__CoilKt.CoilImage(Coil.kt:245)
+        at com.google.accompanist.coil.CoilImage.CoilImage(Coil.kt:1)
+~~~
+
+### 해결 방안
+
+coil 라이브러리를 아래와 같이 최선 버전으로 업그레이드
+
+~~~java
+implementation "com.google.accompanist:accompanist-coil:0.10.0"
 ~~~
