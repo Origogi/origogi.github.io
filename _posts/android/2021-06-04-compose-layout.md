@@ -1,6 +1,6 @@
 ---
 published: false
-title: "[Android][Compose] Layout"	
+title: "[Flutter] AWS Amplify와 연동해보기 - 1 "	
 excerpt : " "	
 layout: single	
 classes: wide
@@ -53,8 +53,5 @@ Compose에서 사용되는 Layout은 총 4 종류입니다.
 ## 3. Stack
 
 ## 4. Constraint Layout
-
-
-
 
 ## Reference
