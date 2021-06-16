@@ -78,7 +78,7 @@ UI가 업데이트 되는 과정은 아래와 같습니다.
 
 Android Compose 는 화면을 구성할 때 Composable 함수를 이용합니다. Composable 함수는 `@Composable` 어노테이션을 선언함으로써 구성하게 됩니다.
 
-위 코드에서 보이는 `Text( ... )` 는 아래와 같이 미리 정의된 Composable 입니다.
+예를 들어 화면에 텍스트를 구성하는 `Text( ... )` 는 아래와 같이 미리 정의된 Composable 입니다.
 
 ~~~kotlin
 @Composable
@@ -96,7 +96,14 @@ fun NewsStory() {
 }
 ~~~
 
-특정 Composable 은 자식 Composable를 가질수 있으며 자식 Composable 는 또 자식 Composable를 가짐으로써 Composable tree를 구성하게 됩니다. 이는 Flutter의 Widget tree와 매우 유사합니다.
+특정 Composable 은 자식 Composable를 가질수 있으며 자식 Composable 는 또 자식 Composable를 가짐으로써 Composable tree를 구성하게 됩니다. 
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/35194820/120459270-ff609400-c3d2-11eb-802a-37e525a63f4a.png
+" width="50%">
+</div>
+
+이는 Flutter의 Widget tree와 매우 유사합니다.
 
 Composable 함수는 아래와 같은 특징을 가지고 있습니다.
 
