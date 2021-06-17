@@ -43,3 +43,10 @@ Encapsulated – only TodoItemInput will be able to modify the state, while othe
 Shareable – hoisted state can be shared as an immutable value with multiple composables. Here we're going to use the state in both TodoInputTextField and TodoEditButton.
 Interceptable – TodoItemInput can decide to ignore or modify events before changing its state. For example, TodoItemInput could format :emoji-codes: into emoji as the user types.
 Decoupled – the state for TodoInputTextField may be stored anywhere. For example, we could choose to back this state by a Room database that is updated every time a character is typed without modifying TodoInputTextField.
+
+When hoisting state, there are three rules to help you figure out where it should go
+
+State should be hoisted to at least the lowest common parent of all composables that use the state (or read)
+State should be hoisted to at least the highest level it may be changed (or modified)
+If two states change in response to the same events they should be hoisted together
+You can hoist state higher than these rules require, but underhoisting state will make it difficult or impossible to follow unidirectional data flow.
