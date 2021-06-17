@@ -100,7 +100,7 @@ No interface method startRestartGroup(ILjava/lang/String;)Landroidx/compose/runt
         at com.google.accompanist.coil.CoilImage.CoilImage(Coil.kt:1)
 ~~~
 
-### 해결 방안
+### 해결 방안 (2021.06.09 기준)
 
 coil 라이브러리를 아래와 같이 최선 버전으로 업그레이드
 
