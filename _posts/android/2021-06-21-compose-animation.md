@@ -54,3 +54,28 @@ Scaffold(
 <div align="center">
 <img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/6946feb47acc2cc6.gif" width="30%">
 </div>
+
+## 2. AnimatedVisibility()
+
+Composable를 보여지고 사라지는 과정을 애니메이션으로 표현해주는 Composable 입니다.
+
+
+~~~
+var extended : Boolean
+...
+AnimatedVisibility(extended) {
+    Text(
+        text = stringResource(R.string.edit),
+        modifier = Modifier
+            .padding(start = 8.dp, top = 3.dp)
+    )
+}
+~~~
+
+AnimatedVisibility 에 지정된 Boolean값이 변경 될 때마다 애니메이션을 실행합니다. 
+
+기본적으로 AnimatedVisibility 의 자식 Composable을 페이드 인 및 확장하여 표시하고 페이드 아웃 및 축소하여 숨깁니다.
+
+<div align="center">
+<img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/37a613b87156bfbe.gif" width="20%">
+</div>
