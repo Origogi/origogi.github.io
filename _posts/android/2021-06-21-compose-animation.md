@@ -101,7 +101,13 @@ AnimatedVisibility(
 
 `enter` 매개변수에 `EnterTransition` 을 인스턴스화 하여 넘겨주며 `EnterTransition` 는 해당 Composable의 시작 위치 및 `AnimationSpec` 를 정의합니다.
 그리고 exit 매개변수에 `ExitTransition` 을 인스턴스화 하여 넘겨주며 `ExitTransition` 는 해당 Composable의 종료 위치 및 `AnimationSpec` 를 정의합니다.
-  
+
+위 매개변수를 통해 Composable이 위/아래 방향으로 보여지고 사라지는 것을 볼수 있습니다.
+
+<div align="center">
+<img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/76895615b43b9263.gif" width="30%">
+</div>
+   
 AnimatedVisibility의 디폴트 매개변수는 아래와 같습니다.
 
 ~~~kotlin
