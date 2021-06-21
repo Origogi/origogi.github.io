@@ -59,7 +59,6 @@ Scaffold(
 
 Composable를 보여지고 사라지는 과정을 애니메이션으로 표현해주는 Composable 입니다.
 
-
 ~~~
 var extended : Boolean
 ...
@@ -72,10 +71,48 @@ AnimatedVisibility(extended) {
 }
 ~~~
 
-AnimatedVisibility 에 지정된 Boolean값이 변경 될 때마다 애니메이션을 실행합니다. 
+AnimatedVisibility 에 지정된 Boolean값이 변경 될 때마다 애니메이션을 실행합니다.
 
 기본적으로 AnimatedVisibility 의 자식 Composable을 페이드 인 및 확장하여 표시하고 페이드 아웃 및 축소하여 숨깁니다.
 
 <div align="center">
 <img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/37a613b87156bfbe.gif" width="20%">
 </div>
+
+AnimatedVisibility 에 `enter`와 `exit` 매개 변수를 사용하여 Composable이 보여지고 사라지는 사용자 정의 애니메이션을를 사용할 수 있습니다.
+
+~~~kotlin
+AnimatedVisibility(
+    visible = shown,
+    enter = slideInVertically(
+        // Enters by sliding down from offset -fullHeight to 0.
+        initialOffsetY = { fullHeight -> -fullHeight },
+        animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
+    ),
+    exit = slideOutVertically(
+        // Exits by sliding up from offset 0 to -fullHeight.
+        targetOffsetY = { fullHeight -> -fullHeight },
+        animationSpec = tween(durationMillis = 250, easing = FastOutLinearInEasing)
+    )
+) {
+  ...
+}
+~~~
+
+`enter` 매개변수에 `EnterTransition` 을 인스턴스화 하여 넘겨주며 `EnterTransition` 는 해당 Composable의 시작 위치 및 `AnimationSpec` 를 정의합니다.
+그리고 exit 매개변수에 `ExitTransition` 을 인스턴스화 하여 넘겨주며 `ExitTransition` 는 해당 Composable의 종료 위치 및 `AnimationSpec` 를 정의합니다.
+  
+AnimatedVisibility의 디폴트 매개변수는 아래와 같습니다.
+
+~~~kotlin
+@Composable
+fun AnimatedVisibility(
+    visible: Boolean,
+    modifier: Modifier = Modifier,
+    enter: EnterTransition = fadeIn() + expandIn(),
+    exit: ExitTransition = shrinkOut() + fadeOut(),
+    content: @Composable() AnimatedVisibilityScope.() -> Unit
+) {
+    ...
+}
+~~~
