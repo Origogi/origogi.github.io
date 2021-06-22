@@ -107,3 +107,31 @@ coil 라이브러리를 아래와 같이 최선 버전으로 업그레이드
 ~~~java
 implementation "com.google.accompanist:accompanist-coil:0.10.0"
 ~~~
+
+## Modifier.clickable 이 동작하지 않는 문제 (2021.06.22 기준)
+
+아래와 같이 Surface나 Card의 Modifier 에 clickable 을 추가하였을 때 onClick callback이 호출되지 않음
+
+~~~kotlin
+Surface(
+        ,
+        modifier = Modifier
+          .fillMaxWidth()
+          .clickable(onClick = onClick)
+          .animateContentSize(),
+        elevation = 2.dp
+)
+~~~
+
+### 해결 방안 
+
+Modifier.clickable이 아닌 Surface나 Card의 onClick 매개변수에 직접 할당
+
+~~~kotlin
+Surface(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().animateContentSize(),
+        elevation = 2.dp
+)
+~~~
+
