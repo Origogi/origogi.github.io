@@ -122,3 +122,23 @@ fun AnimatedVisibility(
     ...
 }
 ~~~
+
+## 3. Modifier.animateContentSize()
+
+Composable 함수 내부에 사이즈가 변경이 되거나 컨텐츠가 변경이 될 경우 동적으로 사이즈 변화를 애니메이션으로 처리가 됩니다.
+
+~~~kotlin
+Column(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)
+        .animateContentSize()
+) {
+    // Column 안의 내용물이 변경이 된 경우
+}
+~~~
+
+<div align="center">
+<img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/c0ad7381779fcb09.gif" width="30%">
+</div>
+
