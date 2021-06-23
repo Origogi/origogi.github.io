@@ -142,3 +142,40 @@ Column(
 <img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/c0ad7381779fcb09.gif" width="30%">
 </div>
 
+## 4. InfiniteTransition
+
+영구적으로 애니메이션을 처리하기 위한 객체입니다.
+
+~~~
+val alpha by infinityTransition.animateFloat(
+    initialValue = 0.0f, targetValue = 1f, animationSpec = infiniteRepeatable(
+        animation = keyframes {
+            durationMillis = 1000
+            0.7f at 500
+        },
+        repeatMode = RepeatMode.Reverse
+    )
+)
+~~~
+
+위 코드는 infinityTransition 델리게이트를 통해 alpha 값이 0 .. 1 .. 0 으로 계속 변하게 되며
+  
+위 alpha 값을 Composable의 alpha 매개변수에 set을 하게되면
+
+~~~kotlin
+Box(
+    modifier = Modifier
+        .size(48.dp)
+        .clip(CircleShape)
+        .background(Color.LightGray.copy(alpha = alpha))
+)
+~~~
+
+아래와 같이 반짝이는 애니매이션 효과를 나타내게 됩니다.
+
+
+<div align="center">
+<img src="https://developer.android.com/codelabs/jetpack-compose-animation/img/ca4d1d5bfe87b2a9.gif" width="50%">
+</div>
+
+
