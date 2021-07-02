@@ -139,8 +139,7 @@ Surface(
 
 아래와 같이 Customize 한 typography 를 set할 때 Exception 발생
 
-~~~koltin
-
+~~~kotlin
 val Typography = Typography(
     body1 = TextStyle(
             fontFamily = FontFamily.Default,
@@ -158,15 +157,13 @@ val Typography = Typography(
         fontSize = 12.sp
     )
 )
-...
-
+ ...
 MaterialTheme(
         colors = colors,
         typography = Typography,
         shapes = Shapes,
         content = content
 )
-
 ~~~
 
 참고로 Exception이 발생한 Log는 다음과 같습니다.
