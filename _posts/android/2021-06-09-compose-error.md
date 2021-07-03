@@ -135,3 +135,55 @@ Surface(
 )
 ~~~
 
+## Typography 를 set 할 때 Exception 발생
+
+아래와 같이 Customize 한 typography 를 set할 때 Exception 발생
+
+~~~kotlin
+val Typography = Typography(
+    body1 = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp
+    ),
+    button = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W500,
+        fontSize = 14.sp
+    ),
+    caption = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    )
+)
+ ...
+MaterialTheme(
+        colors = colors,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
+)
+~~~
+
+참고로 Exception이 발생한 Log는 다음과 같습니다.
+
+~~~bash
+java.lang.NoSuchMethodError: No static method copy-H99Ercs$default(Landroidx/compose/ui/text/TextStyle;JJLandroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontSynthesis;Landroidx/compose/ui/text/font/FontFamily;Ljava/lang/String;JLandroidx/compose/ui/text/style/BaselineShift;Landroidx/compose/ui/text/style/TextGeometricTransform;Landroidx/compose/ui/text/intl/LocaleList;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/graphics/Shadow;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/text/style/TextDirection;JLandroidx/compose/ui/text/style/TextIndent;ILjava/lang/Object;)Landroidx/compose/ui/text/TextStyle; in class Landroidx/compose/ui/text/TextStyle; or its super classes (declaration of 'androidx.compose.ui.text.TextStyle' appears in /data/app/~~dzGPwRcTH3NcPitRFMz-4g==/cn.phakel.fighting-5iN5DgNNOwwUjTIkZ-2A6Q==/base.apk)
+    at androidx.compose.material.TypographyKt.withDefaultFontFamily(Typography.kt:284)
+    at androidx.compose.material.TypographyKt.access$withDefaultFontFamily(Typography.kt:1)
+    at androidx.compose.material.Typography.<init>(Typography.kt:186)
+    at androidx.compose.material.Typography.<init>(Typography.kt:118)
+    at cn.phakel.fighting.ui.theme.TypeKt.<clinit>(Type.kt:10)
+    at cn.phakel.fighting.ui.theme.TypeKt.getTypography(Type.kt:10)
+~~~
+
+### 해결 방안 (2021.07.01 기준)
+
+build.gradle 에서 Compose version 업그레이드
+
+~~~gradle
+ext {
+    compose_version = '1.0.0-beta09'
+}
+~~~
