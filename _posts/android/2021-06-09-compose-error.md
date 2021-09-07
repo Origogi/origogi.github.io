@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: "[Android][Compose] Compose 개발 시 Exception Error 해결 방안"	
 excerpt : " "	
 layout: single	
