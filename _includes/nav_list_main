@@ -29,6 +29,18 @@
                 {% endfor %}
             </ul>
 
+             <!--Category React-->
+             {% assign total = 0 %}
+             {% assign filter-categories = "" | split: ',' %}
+             {% for category in site.categories %}
+                     {% if category[0] == "React" %}
+                     {% assign total = total | plus: category[1].size %}
+                     {% assign filter-categories = filter-categories | push: category %}
+                 {% endif %}
+             {% endfor %}
+ 
+             <a href="/categories/react"><span class="nav__sub-title">React ({{total}})</span></a>
+
             <!--Category Programing Language-->
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
@@ -94,6 +106,9 @@
 
             <a href="/categories/daily"><span class="nav__sub-title">Daily Life ({{total}})</span></a>
 
+
+            
+ 
       </li>
   </ul>
 </nav>
