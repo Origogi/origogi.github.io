@@ -30,7 +30,7 @@ sitemap :
 
 [link](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
-## Snippet
+## Import
 
 |Commnad|Method|
 |------|---|
@@ -39,3 +39,32 @@ sitemap :
 |impt|import PropTypes from 'prop-types'|
 |imrpc|import React, { PureComponent } from 'react'|
 |imrpcp|import React, { PureComponent } from 'react' & import PropTypes from 'prop-types'|
+
+## Component
+
+### rcc
+
+~~~js
+import React, { Component } from 'react'
+
+export default class FileName extends Component {
+  render() {
+    return <div>$2</div>
+  }
+}
+~~~
+
+### rpcp
+
+~~~js
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+
+export default class FileName extends PureComponent {
+  static propTypes = {}
+
+  render() {
+    return <div>$2</div>
+  }
+}
+~~~
