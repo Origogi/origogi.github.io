@@ -41,7 +41,7 @@ npm install @mui/material
 npm install @mui/icons-material
 ~~~
 
-사용 시 `Module not found: Can't resolve '@emotion/react'` 에러가 발생 시 아래 패키지를추가로 설치
+`MUI` 사용 시 `Module not found: Can't resolve '@emotion/react'` 에러가 발생 시 아래 패키지를 추가로 설치
 
 ~~~
 npm install @emotion/react 
