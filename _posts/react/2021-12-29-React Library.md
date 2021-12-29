@@ -27,11 +27,11 @@ sitemap :
 ## Material UI (MUI)
 
 <div align="center">
-    <img src="https://media.vlpt.us/images/sunkim01/post/ab1bc5e7-5c3d-4d61-8b49-6feba35492a0/MeterialUI.png" width=50%>
-</a>
+   <img src="https://media.vlpt.us/images/sunkim01/post/ab1bc5e7-5c3d-4d61-8b49-6feba35492a0/MeterialUI.png" width=40%/>
 </div>
-
-~~~
+  
+  
+~~~bash
 npm install @mui/material
 ~~~
 
