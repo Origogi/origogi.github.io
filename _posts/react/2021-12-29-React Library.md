@@ -27,7 +27,6 @@ sitemap :
 ## Material UI (MUI)
 
 ![image](https://media.vlpt.us/images/sunkim01/post/ab1bc5e7-5c3d-4d61-8b49-6feba35492a0/MeterialUI.png)
-
   
 ~~~bash
 npm install @mui/material
@@ -35,13 +34,13 @@ npm install @mui/material
 
 ### Icons
 
-~~~
+~~~bash
 npm install @mui/icons-material
 ~~~
 
 `MUI` 사용 시 `Module not found: Can't resolve '@emotion/react'` 에러가 발생 시 아래 패키지를 추가로 설치
 
-~~~
+~~~bash
 npm install @emotion/react 
 npm install @emotion/styled
 ~~~

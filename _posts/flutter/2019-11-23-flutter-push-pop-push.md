@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[Flutter][번역] Flutter: Push, Pop, Push"
+title: "[Flutter][번역] Flutter Navigator"
 excerpt : " "
 layout: single
 author_profile: true
