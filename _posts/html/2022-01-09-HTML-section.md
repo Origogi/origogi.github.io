@@ -105,6 +105,19 @@ ul 태그는 순서가 없는 태그이다.
 
 ![image](https://user-images.githubusercontent.com/35194820/148677589-651ab5ac-e8f1-4bda-95f7-d5ae09e5dec1.png)
 
+### Input tag
+
+~~~html
+<lable>Name: </lable>
+<input id="input_name" type="text">
+~~~
+
+사용자로 부터 text 를 입력받을수 있는 태그이다. 보통 앞에 `label` 태그를 붙여서 어떤 데이터를 입력받을지를 나타낸다.
+  
+attr의 `id` 같은 경우 하나의 page에 여러개의 input 태그가 존재할 경우 각 태그들을 구별하기 위해 사용한다.
+  
+attr 의 `type` 같은 경우 date, color, number, password 등 다양한 타입이 존재한다.
+
 ## Reference
 
 [Youtube, 드림코딩 by 엘리](https://www.youtube.com/watch?v=OoA70D2TE0A)
