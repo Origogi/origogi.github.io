@@ -40,7 +40,7 @@
                   {% endif %}
               {% endfor %}
   
-              <a href="/categories/fe"><span class="nav__sub-title">FE ({{total}})</span></a>
+              <a href="/categories/fe"><span class="nav__sub-title">Front End ({{total}})</span></a>
               <ul>
                 {% for category in filter-categories %}
                     <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
