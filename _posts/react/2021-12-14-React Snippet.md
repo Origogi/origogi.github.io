@@ -3,7 +3,6 @@ published: true
 title: "[React] 스니펫 단축키 정리"
 excerpt : " "
 layout: single
-classes: wide
 author_profile: true
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
