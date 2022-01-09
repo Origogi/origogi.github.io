@@ -11,7 +11,6 @@ toc_icon: "cog"
 toc_sticky: true
 categories :
  - React
-
 comments: true
 header:
   # overlay_image: https://cf.festa.io/img/2019-9-27/a6c0b457-c336-42ba-b06e-462de90ada91.jpg

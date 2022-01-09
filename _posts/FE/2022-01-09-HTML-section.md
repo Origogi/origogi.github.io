@@ -3,7 +3,6 @@ published: true
 title: "[HTML] Sections"
 excerpt : " "
 layout: single
-classes: single
 author_profile: true
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
