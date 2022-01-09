@@ -166,7 +166,7 @@ a[href="naver.com"] {
 }
 ~~~
 
-### Appendix
+## Appendix
 
 아래 간단한 게임을 통해서 seletor에 대해서 학습/복습을 해보자.(이미지를 클릭!)
 
