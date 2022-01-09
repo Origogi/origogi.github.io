@@ -63,16 +63,116 @@ HTML 내에 모든 태그에 대해서 적용
 }
 ~~~
 
-위 CSS 를 적용하면 모든 태그에 대해 색상이 green으로 적용이 된다.
+위 CSS 를 적용하면 모든 태그에 대해 색상이 green 으로 적용이 된다.
 
 ### Type
 
 HTML 내에 지정된 같은 타입의 태그들에 대해서 스타일 적용
   
-예를 들어 `div` 를 선택했으면 해당 HTML에 `div` 태그에 대해서 스타일이 일괄 적용이 된다.
+~~~css
+li {
+  color : blue;
+}
+~~~
 
+위 CSS 를 적용하면 `li`  태그에 대해 색상이 blue 로 적용이 된다.
 
+### ID
 
+문서 안에 있는 단 하나의 태그에 스타일을 적용하는 경우에 사용합니다. 선택자에 샤프(#)와 id명(임의의 이름)을 붙여 식별한다.
+
+html
+
+~~~html
+<li id="special">First</li>
+~~~
+
+css
+
+~~~css
+#special {
+  color : pink;
+}
+~~~
+
+위 코드를 적용하면 HTML에 `special` id를 가진 태그를 선택해서 스타일을 적용한다.
+
+### Class
+
+HTML 내에 같은 class 이름을 가진 복수의 태그에 대해 스타일을 적용할  경우에 사용한다. 피리어드(.)와 class명(임의의 이름)을 붙여 구별한다.
+
+html
+
+~~~html
+<div class="red"></div>
+ ....
+<div class="red"></div>
+~~~
+
+css
+
+~~~css
+.red {
+  background: red;
+  width : 300px;
+  height : 300px;
+}
+~~~
+
+위 코드를 적용하면 HTML에 `red` class를 가진 모든 태그에 대해서 스타일을 적용한다.
+
+### State
+
+태그의 특정 상태에 대해서 스타일을 적용할수 있다. 이때 적용하고자 하는 태그 뒤에 콜론(:) 과 상태를 붙여서 정의한다.
+
+~~~css
+button:hover {
+  color : red
+}
+~~~
+
+위 코드를 적용하면 버튼에 마우스 커서를 올리게 되면 색상이 red 로 변경이 된다.
+
+### Attribute
+
+태그가 가진 특정 attribute에 대해서 스타일을 적용할수 있다.
+
+예를 들어 HTML 문서에 아래와 같이 태그가 정의가 되어있을 때
+
+~~~html
+<a href="naver.com">Naver</a>  # 1. 
+<a href="googlenaver.com">Google</a>  # 2. 
+<a>empty</a>   # 3. 
+~~~
+
+아래와 같이 CSS를 적용하게 되면
+
+~~~css
+a[href] {
+  color : red;
+}
+~~~
+
+1번과 2번 태그의 색상이 red로 변경이 된다.
+
+추가적으로 특정 attribute의 값을 가지고 있는 태그에 대해서 선택이 가능하다.  
+예를 들어 아래와 같이 CSS를 적용하게 되면
+
+1번 태그만 색상이 red로 변경이 된다.
+
+~~~css
+a[href="naver.com"] {
+  color : red;
+}
+~~~
+
+### Appendix
+
+아래 간단한 게임을 통해서 seletor에 대해서 학습/복습을 해보자.(이미지를 클릭!)
+
+<a href ="https://flukeout.github.io/"> 
+<img src="https://user-images.githubusercontent.com/35194820/148687382-d78fd1bb-b9a4-4f93-8833-8d9a8309469d.png">
+</a>
 
 ## Reference
 
