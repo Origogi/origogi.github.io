@@ -23,7 +23,10 @@ sitemap :
   changefreq : daily
   priority : 1.0
 ---
-자주 사용하는 VS Code extension 스니펫 정리한 포스트입니다.
+
+## Overview
+
+VS Code extension 스니펫 단축키를 정리한 포스트입니다.
 
 ## Reference
 
