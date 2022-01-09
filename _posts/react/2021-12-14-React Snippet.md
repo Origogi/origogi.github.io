@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[React] Debounce, Throttle"
+title: "[React] 스니펫 단축키 정리"
 excerpt : " "
 layout: single
 classes: wide
