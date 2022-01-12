@@ -57,24 +57,44 @@ CSS 의 display 속성은 태그를 `inline` 또는 `block` 타입으로 변경�
 ## position
 
 position은 태그의 위치를 지정할 때 사용하는 속성이다.
+
+### static
   
 예를 들어 아래와 같이 태그들이 존재할 때 `container` 의 위치를 `left`, `top` 를 사용해서 변경을 하려고 한다.
 
 ![CSS 레이아웃 정리 display, position 완성 _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 5-57 screenshot](https://user-images.githubusercontent.com/35194820/148958297-7ef95ff1-959c-411b-821c-2e2e8304f95e.png)
 
 하지만 `container` 의 위치는 변경이 되지 않는데 그 이유는 `positon` 의 디폴트 값은 `static` 이며 `static` 의 의미는 `position을 따로 지정하지 않는다` 이다.
+
+### relative
   
 따라서 `position` 을 `static` 에서 `relative` 로 변경을 하게 되면 노란색 `container` 의 위치가 오른 쪽에서 20px, 아래 쪽으로 20px 이동이 됨을 볼수 있다.
 
 ![CSS 레이아웃 정리 display, position 완성 _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 6-41 screenshot](https://user-images.githubusercontent.com/35194820/148958989-a97a76c2-c2a0-44aa-aa8d-9cf24f205b8d.png)
 
 정리하자면 `relative` 는 원래 위치해야하는 포지션 기준으로 태그를 이동한다.
+
+### absolute
   
 추가적으로 box 의 `position` 을 `absolute` 로 변경을 하게되면 아래와 같이 포지션이 `container` 기준으로 오른 쪽에서 20px, 아래 쪽으로 20px 이동이 됨을 볼수 있다.
   
 ![CSS 레이아웃 정리 display, position 완성 _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 7-43 screenshot](https://user-images.githubusercontent.com/35194820/149138194-6c75c8f2-7d1c-4583-9537-2d2729fa3a15.png)
   
 정리하자면 `absolute` 는 현재 태그를 담겨있는 상자를 기준으로 태그를 이동한다.
+
+### fixed
+
+box 의 `position` 을 `fixed` 로 변경하면 아래와 같이 창을 기준으로 오른 쪽에서 20px, 아래 쪽으로 20px 이동이 됨을 볼수 있다.
+
+![CSS 레이아웃 정리 display, position 완성 _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 8-13 screenshot](https://user-images.githubusercontent.com/35194820/149139771-34614609-1ce4-4877-a4fa-a36e0eb03bc1.png)
+  
+`fixed` 는 태그를 window 를 기준으로 이동을 시킨다.
+
+### sticky
+
+box 의 `position` 을 `sticky` 로 변경하면 아래와 같이 스크롤을 할 때 사라지지 않고 상단에 계속 붙어있는 것을 볼수 있다.
+
+![다운로드 (1)](https://user-images.githubusercontent.com/35194820/149142598-74aa1034-ac15-4c2d-b04e-c3bf009bc087.gif)
 
 ## Reference
 
