@@ -30,6 +30,75 @@ sitemap :
 
 예제 코드를 통해서 CSS의 속성 중 Flexbox 의 동작 방식에 대해 정리한 포스트입니다.
 
+## Flexbox란?
+
+아래와 같이 Container 에 여러개의 item 을 배치를 개발자가 쉽게 컨트롤할수 있도록 도와준다.
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 2-47 screenshot](https://user-images.githubusercontent.com/35194820/149147412-cdbbf8c4-3784-4868-ad87-e60969b77bab.png)
+
+예를 들어 각 아이템의 height 를 동일하게 하거나 각 아이템의 간격을 동일하게 하는 작업을 좀 더 편하게 수행할수 있다.
+
+flexbox 는 크게 두 가지 타입에 대해 적용하게 되는 데
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 4-22 screenshot](https://user-images.githubusercontent.com/35194820/149148924-896b8ef8-a080-44f3-a0f5-6ffbeecff0a3.png)
+
+- container : item 을 담고 있는 박스
+- item : container 에 포함되어 있는 요소들
+
+### container
+
+container에 지정되어 있는 속성은 아래와 같다.
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 4-27 screenshot](https://user-images.githubusercontent.com/35194820/149149134-b47f8d8b-0efa-4f8d-ba44-0fd0593e3ffe.png)
+
+### item
+
+item에 지정되어 있는 속성은 아래와 같다.
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 4-46 screenshot](https://user-images.githubusercontent.com/35194820/149149626-04c2031e-a932-47d5-a56d-3ffcf9d89f7c.png)
+
+### axis
+
+flexbox 는 수평 축, 수직 축을 가지고 있고 둘중 하나를 main axis으로 선택하면 남은 하나는 cross axis 가 된다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/35194820/149156154-765f320b-bf67-41fa-b44f-c8c3ce7a3f72.png" width=300>
+<img src="https://user-images.githubusercontent.com/35194820/149156163-f9fb705c-c430-4b14-af66-77479f1a9b9e.png" width=300>
+</div>
+
+## Flexbox 적용하기
+
+아래와 같이 10개의 블록을 선언해보자
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 8-47 screenshot](https://user-images.githubusercontent.com/35194820/149166004-4008f056-6089-4b77-9436-4605ab440241.png)
+  
+container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 아래와 같이 블록이 정렬이 되는 것을 확인할 수 있다.
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 9-37 screenshot](https://user-images.githubusercontent.com/35194820/149166323-988c427d-f88e-4b7b-bbf4-4811ee7d0a35.png)
+
+### flex-direction
+
+블록의 방향을 변경할 때 사용하며 기본 값은 `row` 이다.
+
+~~~css
+.container {
+  background : beige;
+  height : 100vh;
+  display :flex;
+  flex-direction: row;
+}
+~~~
+
+그 외 값은 아래와 같다.
+
+|row|row-reverse|
+|------|---|
+|![image](https://user-images.githubusercontent.com/35194820/149167069-8d1767d4-71e2-49d8-bfa7-7560b5bdbd82.png)|![image](https://user-images.githubusercontent.com/35194820/149167399-8f5b7a2c-72b5-4d78-a080-27bc45c5a39a.png)|
+
+|column|column-reverse|
+|------|---|
+|![image](https://user-images.githubusercontent.com/35194820/149167582-23d31f3c-5979-46c1-90ed-5d3918cab1fc.png)|![image](https://user-images.githubusercontent.com/35194820/149167813-c1da7288-e595-4f2d-9e98-69dfa9be031a.png)|
+
 ## Reference
 
 [youtube, 드림코딩 by 엘리](https://www.youtube.com/watch?v=7neASrWEFEM)
