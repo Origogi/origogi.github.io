@@ -69,8 +69,92 @@ flexbox 는 수평 축, 수직 축을 가지고 있고 둘중 하나를 main axi
 ## Flexbox 적용하기
 
 아래와 같이 10개의 블록을 선언해보자
+  
 
 ![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 8-47 screenshot](https://user-images.githubusercontent.com/35194820/149166004-4008f056-6089-4b77-9436-4605ab440241.png)
+
+위 샘플 코드는 아래와 같다.
+
+__HTML__
+
+~~~html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div class="container">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item4">4</div>
+    <div class="item item5">5</div>
+    <div class="item item6">6</div>
+    <div class="item item7">7</div>
+    <div class="item item8">8</div>
+    <div class="item item9">9</div>
+    <div class="item item10">10</div>
+  </div>
+</body>
+</html>
+~~~
+
+__CSS__
+
+~~~css
+.container {
+  background : beige;
+  height :100vh;
+}
+
+.item {
+  width : 40px;
+  height :40px;
+}
+
+.item1 {
+  background : #e57373;
+}
+
+.item2 {
+  background : #f06292;
+}
+
+.item3 {
+  background : #ba68c8;
+}
+
+.item4 {
+  background : #9575cd;
+}
+
+.item5 {
+  background : #7986cb;
+}
+
+.item6 {
+  background : #64b5f6;
+}
+
+.item7 {
+  background : #4fc3f7;
+}
+
+.item8 {
+  background : #4dd0e1;
+}
+
+.item9 {
+  background : #4db6ac;
+}
+
+.item10 {
+  background : #81c784;
+}
+~~~
   
 container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 아래와 같이 블록이 정렬이 되는 것을 확인할 수 있다.
 
@@ -98,6 +182,11 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 |column|column-reverse|
 |------|---|
 |![image](https://user-images.githubusercontent.com/35194820/149167582-23d31f3c-5979-46c1-90ed-5d3918cab1fc.png)|![image](https://user-images.githubusercontent.com/35194820/149167813-c1da7288-e595-4f2d-9e98-69dfa9be031a.png)|
+
+### flex-wrap
+
+
+
 
 ## Reference
 
