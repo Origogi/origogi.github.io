@@ -213,13 +213,17 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 
 #### __start__
 
-디폴트 값으로 중심 축이 수평 방향이면 아이템을 왼 쪽 에 그리고 수직 방향이면 아이템을 위 쪽에 배치를 한다.
+디폴트 값으로 중심 축이 수평 방향이면 item 을 왼 쪽에 그리고 수직 방향이면 item 을 위 쪽에 배치를 한다.
 
 #### __end__
 
 중심 축이 수평 방향이면 아이템을 오른 쪽 에 그리고 수직 방향이면 아이템을 아래 쪽에 배치를 한다.
 
-![image](https://user-images.githubusercontent.com/35194820/149458296-c07a2220-16dc-4ef4-802f-ac2c5458473e.png)
+#### __center__
+
+item 을 중앙으로 배치한다.
+
+![image](https://user-images.githubusercontent.com/35194820/149459069-6aa21c6d-3fbc-4e03-8df9-480b56d46e1d.png)
 
 #### __space-around__
 
@@ -238,6 +242,27 @@ item 과 item 사이의 space 의 사이즈는 모두 동일하고 item 과 cont
 item 과 item 사이 그리고 item 과 container 의 space 사이즈는 모두 동일하다.
 
 ![image](https://user-images.githubusercontent.com/35194820/149458680-5c613b5e-6a68-4a26-976a-e0025ef8eb8e.png)
+
+### align-content
+
+반대 축의 item 을 어떻게 배치할지 결정
+
+|center|space-around|space-between|
+|------|---|---|
+|![image](https://user-images.githubusercontent.com/35194820/149462601-775d7eb7-cdeb-4e18-965d-94f5ff917747.png)|![image](https://user-images.githubusercontent.com/35194820/149462880-9d8904e6-b86d-4812-bbcc-c778cbb65309.png)|![image](https://user-images.githubusercontent.com/35194820/149462761-d8e81e0f-b008-45e1-982f-70464c90d251.png)|
+
+~~~css
+{
+    align-content : start // or end, space-around, ...
+}
+~~~
+
+## 참고 자료
+
+좀 더 자세한 flexbox 정보는 아래 사이트 참고
+![image](https://user-images.githubusercontent.com/35194820/149463176-d6b2a1ac-8380-4551-834f-8738912e0142.png)
+[A Complete Guide to Flexbox
+](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## Reference
 
