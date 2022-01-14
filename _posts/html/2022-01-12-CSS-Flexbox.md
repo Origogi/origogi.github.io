@@ -393,12 +393,23 @@ item1 의 `align-self` 값을 `center` 로 변경하게 item1이 container 중�
 
 ## 4. 참고 자료
 
+### 4.1. Guide to Flexbox
+
 좀 더 자세한 flexbox 정보는 아래 사이트 참고  
   
 ![image](https://user-images.githubusercontent.com/35194820/149463176-d6b2a1ac-8380-4551-834f-8738912e0142.png)
-[A Complete Guide to Flexbox
-](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+[A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+### 4.2. FLEXBOX FROGGY
+
+flexbox 를 학습하기 위한 game 형식 사이트
+
+![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 22-35 screenshot](https://user-images.githubusercontent.com/35194820/149467713-283eea56-dad2-4bd5-a889-3e29d673407d.png)
+
+[FLEXBOX FROGGY](https://flexboxfroggy.com/#ko)
 
 ## 5. Reference
 
 [youtube, 드림코딩 by 엘리](https://www.youtube.com/watch?v=7neASrWEFEM)
+
+
