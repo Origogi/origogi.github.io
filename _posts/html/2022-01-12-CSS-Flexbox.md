@@ -30,7 +30,7 @@ sitemap :
 
 예제 코드를 통해서 CSS의 속성 중 Flexbox 의 동작 방식에 대해 정리한 포스트입니다.
 
-## Flexbox란?
+## 1. Flexbox란?
 
 아래와 같이 Container 에 여러개의 item 을 배치를 개발자가 쉽게 컨트롤할수 있도록 도와준다.
 
@@ -66,7 +66,7 @@ flexbox 는 수평 축, 수직 축을 가지고 있고 둘중 하나를 main axi
 <img src="https://user-images.githubusercontent.com/35194820/149156163-f9fb705c-c430-4b14-af66-77479f1a9b9e.png" width=300>
 </div>
 
-## Flexbox 적용하기
+## 2. __container__ flexbox 속성 적용
 
 아래와 같이 10개의 블록을 선언해보자
   
@@ -159,7 +159,7 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 
 ![CSS Flexbox 완전 정리  포트폴리오 만드는 날까지! _ 프론트엔드 개발자 입문편_ HTML, CSS, Javascript 9-37 screenshot](https://user-images.githubusercontent.com/35194820/149166323-988c427d-f88e-4b7b-bbf4-4811ee7d0a35.png)
 
-### flex-direction
+### 2.1. flex-direction
 
 블록의 방향을 변경할 때 사용하며 기본 값은 `row` 이다.
 
@@ -182,7 +182,7 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 |------|---|
 |![image](https://user-images.githubusercontent.com/35194820/149167582-23d31f3c-5979-46c1-90ed-5d3918cab1fc.png)|![image](https://user-images.githubusercontent.com/35194820/149167813-c1da7288-e595-4f2d-9e98-69dfa9be031a.png)|
 
-### flex-wrap
+### 2.2. flex-wrap
 
 한 줄에 아이템이 너무 많을 경우 아이템을 다른 줄로 줄 바꿈을 할지 아님 아이템 사이즈를 축소시켜서 한 줄에 표시할지를 결정한다.
 
@@ -201,7 +201,7 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 
 ![2222](https://user-images.githubusercontent.com/35194820/149457400-d220ba7b-4cdc-4587-88a0-893a72712bac.gif)
 
-### justify-content
+### 2.3. justify-content
 
 중심 축 기준으로 item 을 어떻게 배치할지 결정한다.
 
@@ -243,7 +243,7 @@ item 과 item 사이 그리고 item 과 container 의 space 사이즈는 모두 
 
 ![image](https://user-images.githubusercontent.com/35194820/149458680-5c613b5e-6a68-4a26-976a-e0025ef8eb8e.png)
 
-### align-content
+### 2.4. align-content
 
 반대 축의 item 을 어떻게 배치할지 결정
 
@@ -257,13 +257,148 @@ item 과 item 사이 그리고 item 과 container 의 space 사이즈는 모두 
 }
 ~~~
 
-## 참고 자료
+## 3. __item__ flexbox 속성 적용
 
-좀 더 자세한 flexbox 정보는 아래 사이트 참고
+다음은 item 에 대해서 적용되는 여러 flexbox 의 속성을 알아보자   먼저 아래와 같이 container 애 item 이 있다고 가정할 때
+
+__Output__
+
+![image](https://user-images.githubusercontent.com/35194820/149463943-fb3193fe-e5e9-480a-97f9-c539aabe341b.png)
+
+__HTML__
+
+~~~html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div class="container">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+  </div>
+</body>
+</html>
+~~~
+
+__CSS__
+
+~~~css
+.container {
+  background : beige;
+  height :100vh;
+  display : flex;
+}
+
+.item {
+  width : 40px;
+  height :40px;
+  border : 1px solid black;
+}
+
+.item1 {
+  background : #e57373;
+}
+
+.item2 {
+  background : #f06292;
+}
+
+.item3 {
+  background : #ba68c8;
+}
+
+~~~
+
+### 3.1. flex-grow
+
+item 이 container 에 여유 공간이 있으면 사이즈를 차지하려고 할 때 사용되는 값이다.
+
+~~~css
+{
+  flex-grow : 1 // defalt : 0
+}
+~~~
+
+item1 의 `flex-grow` 를 1로 지정하게 되면 아래와 같이 `item1` 이 남은 공간을 모두 차지하는 것을 볼수 있다.
+
+![image](https://user-images.githubusercontent.com/35194820/149464600-e52b8d79-eab1-44b1-a089-4983ecbd7ae2.png)
+
+그리고 모든 item 들에 대해서 `flex-grow` 를 1로 지정하게 되면 아래와 같이 모든 item 들이 동일한 크기로 남은 공간을 차지하게 된다.
+
+![image](https://user-images.githubusercontent.com/35194820/149464712-0cbe5ff6-b433-4067-ab09-e9eb623ebf01.png)
+
+위 상태에서 item1 `flex-grow` 를 2로 변경하게 되면 item1은 item2, item3 의 두 배의 사이즈를 차지하게 된다.
+
+![image](https://user-images.githubusercontent.com/35194820/149464944-a1653271-c578-4711-8df5-73894f8ded61.png)
+
+### 3.1. flex-shrink
+
+container 에 여유 공간이 없을 때 item 의 사이즈를 결정하는 속성이다. `flex-grow` 의 반대 속성이다.
+  
+아래 화면은 item1의 flex-shrink 값을 2로 하고 나머지는 flex-shrink 를 1로 했을 때 어떻게 동작하는 지 보여준다.
+
+![2222](https://user-images.githubusercontent.com/35194820/149465796-47adecb8-df98-41df-b22f-32257ae22484.gif)
+
+### 3.2. flex-basis
+
+container 의 사이즈가 늘어나거나 줄어들때 동일한 비율을 유지할 때 사용되는 속성이다.
+
+~~~css
+{
+   flex-basis : 10% // default : auto, 0%~100%
+}
+~~~
+  
+각 item 의 속성을 아래와 같이 지정했을 때
+
+~~~css
+.item1 {
+  background : #e57373;
+  flex-basis : 70%
+}
+
+.item2 {
+  background : #f06292;
+  flex-basis : 20%
+}
+
+.item3 {
+  background : #ba68c8;
+  flex-basis : 10%
+}
+~~~
+
+결과 화면이 아래와 같이 출력되는 것을 볼수 있다.
+
+![image](https://user-images.githubusercontent.com/35194820/149466535-83f40158-8337-46aa-885a-4e5828d66b57.png)
+
+### 3.3. align-self
+
+하나의 item에 대해 위치를 변경하고 싶을 때 사용한다.
+
+~~~css
+.item {
+    align-self : center // start ,end ...
+}
+~~~
+
+item1 의 `align-self` 값을 `center` 로 변경하게 item1이 container 중앙에 배치되는 것을 볼수 있다.
+
+![image](https://user-images.githubusercontent.com/35194820/149466911-03dd1c93-b014-4af0-96a6-f3c1f8724b0f.png)
+
+## 4. 참고 자료
+
+좀 더 자세한 flexbox 정보는 아래 사이트 참고  
+  
 ![image](https://user-images.githubusercontent.com/35194820/149463176-d6b2a1ac-8380-4551-834f-8738912e0142.png)
 [A Complete Guide to Flexbox
 ](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-## Reference
+## 5. Reference
 
 [youtube, 드림코딩 by 엘리](https://www.youtube.com/watch?v=7neASrWEFEM)
