@@ -201,6 +201,44 @@ container 를 flexbox 로 적용하기 위해서 display:flex 를 추가하면 �
 
 ![2222](https://user-images.githubusercontent.com/35194820/149457400-d220ba7b-4cdc-4587-88a0-893a72712bac.gif)
 
+### justify-content
+
+중심 축 기준으로 item 을 어떻게 배치할지 결정한다.
+
+~~~css
+{
+    justify-content : start // or end, space-around, ...
+}
+~~~
+
+#### __start__
+
+디폴트 값으로 중심 축이 수평 방향이면 아이템을 왼 쪽 에 그리고 수직 방향이면 아이템을 위 쪽에 배치를 한다.
+
+#### __end__
+
+중심 축이 수평 방향이면 아이템을 오른 쪽 에 그리고 수직 방향이면 아이템을 아래 쪽에 배치를 한다.
+
+![image](https://user-images.githubusercontent.com/35194820/149458296-c07a2220-16dc-4ef4-802f-ac2c5458473e.png)
+
+#### __space-around__
+
+중심 축이 수평 방향이면 아이템 좌 우에 동일한 크기의 space 가 추가된다. 그리고 수직 방향이면 위, 아래에 동일한 크기의 space 가 추가된다.
+
+![image](https://user-images.githubusercontent.com/35194820/149458581-7f4b7bbd-bd6e-4a07-a5c5-44baeaab8ea1.png)
+
+#### __space-between__
+
+item 과 item 사이의 space 의 사이즈는 모두 동일하고 item 과 container 의 space 사이즈는 0가 된다.
+
+![image](https://user-images.githubusercontent.com/35194820/149458619-cf1c5017-c828-4db1-98c9-7b002a6af41d.png)
+
+#### __space-evenly__
+
+item 과 item 사이 그리고 item 과 container 의 space 사이즈는 모두 동일하다.
+
+![image](https://user-images.githubusercontent.com/35194820/149458680-5c613b5e-6a68-4a26-976a-e0025ef8eb8e.png)
+
 ## Reference
 
 [youtube, 드림코딩 by 엘리](https://www.youtube.com/watch?v=7neASrWEFEM)
