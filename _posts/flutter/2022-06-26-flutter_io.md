@@ -36,8 +36,8 @@ sitemap:
 
 ### 날짜, 위치
 
-- 2022년 6월 26일 일요일 14:00~15:00
-- 서울시 건국대학교 산학 캠퍼스
+- 2022/06/26 (일) 14:00 - 18:00
+- 서울 광진구 능동로 120 건국대학교 서울캠퍼스 산학협동관 1층
 
 ## TimeTable
 
@@ -48,3 +48,102 @@ sitemap:
 - 16:20 ~ 16:40 플러터로 게임 개발하기 - 강환석(라피티)
 - 16:50 ~ 17:10 플러터 애니메이션 적용기 - 김선호(삼성전자)
 - 17:20 ~ 17:40 Flutter & Low code backend - 구글 Firebase와 AWS Amplify 사용해보기 - 송승현( Dependable System Lab)
+
+## 세션 #1 Linux Desktop, ROS
+
+- Flutter 3.0 에서 Mac, Linux OS beta 에서 stable로 변경
+
+### Flutter Desktop
+
+데스크톱 앱을 빌드하기 위해서 추가적으로 아래 툴을 추가적으로 설치해야함
+
+- Windows : visual studio 2022
+- max os : xcode, cocoapod
+- Linux : ...,...,,
+
+리눅스에서는 더 많은 툴을 요구하지만 명령어 한줄로 한방에 설치 가능
+
+```
+flutter config
+```
+
+### Linux 데스크탑
+
+### ROS
+
+Robot Operating System, 로봇제어를 위한 미들웨어
+
+### ROS + Flutter
+
+- rcl dart
+- Web socket OK
+- Open Source!!, QT는 유료
+
+ROS 에 웹 소켓 서버를 띄우고 Flutter 로 Client 를 만들어서 ROS 의 규격화된 메시지를 송수신 함으로써 로봇을 제어하거나 상태를 관제할수 있음
+
+## 세션 #2 Dart 2.17 변경점, Enum 실제로 써보자!
+
+### Enhaced Enum
+
+- 이넘 내부에 멤버 변수 및, 함수를 선언 가능
+
+### Super Initilizer
+
+super 키워드로 보일러 플레이트 코드 삭제
+
+### Named Parameter Every where
+
+Optional Parameter를 아무곳이나 가능
+
+### Flutter Lints 2.0
+
+### Secure Sockets
+
+Keylog Callbakck 을 통한 Logging 추가
+
+### Dart Doc
+
+1. 가장 많이 본 상의 200 페이지 핵심 라이브러리 샘플 코드 추가
+2. dart doc 명령어 추가
+3. dart pub/ flutter pub 명령어 추가
+
+### Multi Platform 강화
+
+#### Dart FFI
+
+- C/ Native 코드와 소통하기 위한 장치
+- 더 쉽게 FFI 플러그인을 만들수 있게 템플릿 제공
+- NativeFinalizer : 메모리 관리 효울화
+
+#### RISC-V 아키텍쳐 테스트 지원
+
+### Enum 실프로젝트 적용
+
+## 세션 3 멀티 모듈을 활용한 플러터 클린아키텍처
+
+### Part 1. 클린 아키텍처
+
+개발 효율화 => 개발 비용을 높이는 요소를 제거
+
+개발 비용을 높이는 요소
+
+- 지속적인 변경 요청
+- 복잡도가 증가할 수록 변경 비용은 증가
+
+### 변경에 잘 대응하기
+
+- 시간 관점 대응
+
+  - 플러그인 아키텍처
+
+- 범위 관점 대응
+  - 경계선 긋기
+
+### 플러그인 아키텍처
+
+- 추상적인 것 (일찍 결정해야 함)
+
+- 구체적인 것 (늦게 결정해도 됨)
+  - 데이터베이스
+
+### 아키텍쳐 경계
