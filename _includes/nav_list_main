@@ -76,6 +76,21 @@
 
             <a href="/categories/oop"><span class="nav__sub-title">OOP ({{total}})</span></a>
 
+
+            <!--Category Refactoring-->
+
+
+            {% assign total = 0 %}
+            {% assign filter-categories = "" | split: ',' %}
+            {% for category in site.categories %}
+                    {% if category[0] == "refactoring" %}
+                    {% assign total = total | plus: category[1].size %}
+                    {% assign filter-categories = filter-categories | push: category %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="/categories/refactoring"><span class="nav__sub-title">리팩토링 ({{total}})</span></a>
+
             <!--Category Book-->
             {% assign total = 0 %}
             {% assign filter-categories = "" | split: ',' %}
@@ -111,9 +126,6 @@
             {% endfor %}
 
             <a href="/categories/daily"><span class="nav__sub-title">Daily Life ({{total}})</span></a>
-
-
-            
  
       </li>
   </ul>
