@@ -108,12 +108,5 @@ end
 위 개선 작업을 적용한 결과 아래와 같이 iOS 빌드/배포 시간이 18분 정도로 약 30분 정도 시간을 단축하였습니다.
 
 <div align="center">
-
 <img width="955" alt="image" src="https://user-images.githubusercontent.com/35194820/211177631-38c271c1-076e-4c8f-95c5-ba8e670a3856.png">
 </div>
-
-
-
-
-
- 
