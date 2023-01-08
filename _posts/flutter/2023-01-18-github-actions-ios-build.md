@@ -15,7 +15,7 @@ categories :
 tags: 
   - Flutter
   - Dart
-  - GitHub Actions
+  - CI/CD
 comments: true
 header:
   overlay_image: assets/images/flutter_banner.jpeg
