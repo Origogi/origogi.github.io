@@ -90,7 +90,6 @@ target 'Runner' do
 end
 ~~~
 
-
 주의할 점은 Firestore tag 는 pubspec.yaml 의 firestore 의 버전에 따라 달라집니다. 꼭 버전을 확인해서 알맞은 tag 를 사용하도록 합니다.
 
 좀 더 자세한 내용은 아래 링크를 확인 바랍니다.
