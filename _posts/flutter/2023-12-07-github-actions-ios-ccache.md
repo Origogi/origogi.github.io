@@ -229,11 +229,12 @@ flutter build ipa --no-codesign
 bundle exec fastlane build
 ```
 
-위 명령어를 통해 Fastlane에서 빌드를 수행하지 않고 Actions command를 이용하여 flutter build ipa 를 통해서 빌드를 수행하도록 하였습니다.
+위 명령어를 통해 Fastlane에서 빌드를 수행하지 않고 command를 이용하여 flutter build ipa 를 통해서 빌드를 수행하도록 하였습니다.
 그리고 위 명령어를 통해서 빌드를 수행하면 ccache가 정상적으로 동작을 하게 됩니다.
-추가로 --no-codesign 옵션을 통해서 signing 과정을 생략이 되고 ipa 파일 자체는 생성되지 않고 xcarchive 폴더가 생성이 됩니다.
 
-Fastlane을 다음과 같이 수정합니다.
+추가로 --no-codesign 옵션을 통해서 signing 과정을 생략이 되고 ipa 파일 자체는 생성되지 않고 xcarchive 가 생성이 됩니다.
+
+그리고 Fastlane을 다음과 같이 수정합니다.
 
 ```ruby
 build_app(
@@ -244,8 +245,8 @@ build_app(
 )
 ```
 
-위 명령어를 통해서 Fastlane에서는 이전에 생성된 xcarchive 폴더를 이용하여 Signing 과정 및 ipa 파일 생성을 하게 됩니다.
-이렇게 구성하면 Fastlane에서 실질적으로 빌드는 수행하지 않기 때문에 Fastlane에서 ccache가 동작하지 않는 문제를 해결할 수 있습니다.
+위 명령어를 통해서 Fastlane에서는 이전에 생성된 xcarchive 를 이용하여 Signing 과정 및 ipa 파일 생성을 하게 됩니다.
+이렇게 구성하면 Fastlane에서 실질적으로 빌드는 수행하지 않기 때문에 Fastlane에서 ccache가 동작하지 않는 문제를 우회해서 해결할수 있게 됩니다.
 
 ### 4. 결과
 
