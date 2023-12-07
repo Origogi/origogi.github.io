@@ -170,7 +170,7 @@ Local storage:
 
 flutter build ipa 를 실행가기 전에 아래 액션을 추가합니다.
 
-```yaml
+```
 - name: Install Ccache
   uses: hendrikmuhs/ccache-action@v1.2
   with:
@@ -195,7 +195,8 @@ flutter build 명령어를 아래와 같이 수정합니다.
 
 ### 3. 확인
 
-workflow 를 실행하면 최초 빌드 시 캐시가 없기 때문에 시간이 오래 걸리지만 두 번째 빌드 시에는 캐시가 생성되어 빌드 시간이 줄어들고 workflow에 다음과 같이 출력되면 ccache가 잘 동작하는 것을 확인할 수 있습니다.
+workflow 를 실행하면 최초 빌드 시 캐시가 없기 때문에 시간이 오래 걸리지만 두 번째 빌드 시에는 캐시를 사용함으로써 빌드 시간이 단축되었습니다.
+그리고 workflow 의 출력을 통해 Ccahe의 캐시 효율을 확인해볼수 있습니다.
 
 <img width="500" alt="image" src="https://github.com/Origogi/leetcode/assets/35194820/7e24836a-8a0b-41fd-9c03-c6decffe3ced">
 
