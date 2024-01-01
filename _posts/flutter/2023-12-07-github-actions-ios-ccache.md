@@ -166,89 +166,34 @@ Local storage:
 
 ## 3. Github Actions 에서 Ccache 적용
 
-### 1. Ccache 설치
-
-flutter build ipa 를 실행가기 전에 아래 액션을 추가합니다.
-
-```
-- name: Install Ccache
-  uses: hendrikmuhs/ccache-action@v1.2
-  with:
-    key: ${{ runner.os }}-v2
-    max-size: 5G
-```
-
-### 2. flutter build 명령어 수정
-
-flutter build 명령어를 아래와 같이 수정합니다.
+### 1. 워크플로우 구성
 
 ```yaml
-- name: Build flutter app
+- name: Update env  // Ccache 환경 변수 추가
   run: |
-    export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
-    export CCACHE_SLOPPINESS=clang_index_store,file_stat_matches,include_file_ctime,include_file_mtime,ivfsoverlay,pch_defines,modules,system_headers,time_macros
-    export CCACHE_FILECLONE=true
-    export CCACHE_DEPEND=true
-    export CCACHE_INODECACHE=true
-    flutter build ipa
-```
+    echo "/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_PATH
+    echo "CCACHE_SLOPPINESS=clang_index_store,file_stat_matches,include_file_ctime,include_file_mtime,ivfsoverlay,pch_defines,modules,system_headers,time_macros" >> $GITHUB_ENV
+    echo "CCACHE_FILECLONE=true" >> $GITHUB_ENV
+    echo "CCACHE_DEPEND=true" >> $GITHUB_ENV
+    echo "CCACHE_INODECACHE=true" >> $GITHUB_ENV
 
-### 3. 확인
+  - name: Install Ccache  // Ccache 설치
+    uses: hendrikmuhs/ccache-action@v1.2
+    with:
+      key: ${{ runner.os }}-v2
+      max-size: 5G
+
+  - name: Build ipa  // 빌드
+    run: flutter build ipa
+```
+### 2. 확인
 
 workflow 를 실행하면 최초 빌드 시 캐시가 없기 때문에 시간이 오래 걸리지만 두 번째 빌드 시에는 캐시를 사용함으로써 빌드 시간이 단축되었습니다.
 그리고 workflow 의 출력을 통해 Ccahe의 캐시 효율을 확인해볼수 있습니다.
 
 <img width="500" alt="image" src="https://github.com/Origogi/leetcode/assets/35194820/7e24836a-8a0b-41fd-9c03-c6decffe3ced">
 
-#### Fastlane 사용할 시
-
-Github Actions 에서 Fastlane을 사용할 시 ccache가 동작하지 않는 문제를 발견했고 정확한 이유는 알수 없지만 아래와 같이 해결할 수 있었습니다.
-
-그리고 수정전 workflow 구성은 다음과 같습니다.
-
-```bash
-flutter build ios --config-only --no-codesign
-...
-bundle exec fastlane build
-```
-
-그리고 fastlane에서 `build_app` 을 수행하면서 실질적인 빌드는 Fastlane에서 수행하고 있습니다.
-
-```ruby
-build_app(
-  workspace: "ios/Runner.xcworkspace",
-  ...
-)
-```
-
-그리고 수정 후 workflow 구성은 다음과 같습니다.
-
-```bash
-flutter build ipa --no-codesign
-...
-bundle exec fastlane build
-```
-
-위 명령어를 통해 Fastlane에서 빌드를 수행하지 않고 command를 이용하여 flutter build ipa 를 통해서 빌드를 수행하도록 하였습니다.
-그리고 위 명령어를 통해서 빌드를 수행하면 ccache가 정상적으로 동작을 하게 됩니다.
-
-추가로 --no-codesign 옵션을 통해서 signing 과정을 생략이 되고 ipa 파일 자체는 생성되지 않고 xcarchive 가 생성이 됩니다.
-
-그리고 Fastlane을 다음과 같이 수정합니다.
-
-```ruby
-build_app(
-  workspace: "ios/Runner.xcworkspace",
-  skip_build_archive: true,
-  archive_path: "../build/ios/archive/Runner.xcarchive",
-  ...
-)
-```
-
-위 명령어를 통해서 Fastlane에서는 이전에 생성된 xcarchive 를 이용하여 Signing 과정 및 ipa 파일 생성을 하게 됩니다.
-이렇게 구성하면 Fastlane에서 실질적으로 빌드는 수행하지 않기 때문에 Fastlane에서 ccache가 동작하지 않는 문제를 우회해서 해결할수 있게 됩니다.
-
-### 4. 결과
+### 3. 결과
 
 Ccache 를 적용한 결과 빌드 시간은 약간 유동적이긴 하지만 분명히 빌드 시간을 크게 줄이는 데 성공했습니다.
 
