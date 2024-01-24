@@ -7,7 +7,7 @@ sidebar_main: true
 ---
 {% include group-by-array collection=site.posts field="categories" %}
 {% for category in group_names %}
-  {% if category == "Android" or category == "Flutter" %}
+  {% if category == "Android" or category == "Flutter" or category == "iOS" %}
     {% assign posts = group_items[forloop.index0] %}
     <h2 class="archive__subtitle">{{ category }}</h2>
     {% for post in posts %}
