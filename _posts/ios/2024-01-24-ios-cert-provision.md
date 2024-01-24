@@ -236,3 +236,8 @@ update_target_provision(
 # 	--results-bucket= Firebase Storage 이름 \
 
 ```
+
+### Reference
+
+https://sujinnaljin.medium.com/ios-certificate-%EC%99%80-provisioning-profile-e1b9455e8a51
+
