@@ -1,4 +1,3 @@
-
 ---
 published: true
 title: "진정한 시니어 개발자란?"
