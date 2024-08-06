@@ -40,4 +40,4 @@ sitemap:
 8. Clean Code
 9. Architecture Principle & Design Pattern
 
-현재 내가 위 조건을 만족하는지 체크해보자.
+단순히 연차가 쌓인다고 시니어 개발자로 취급되서는 안된다. 그리고 현재 내가 위 조건을 만족하는지 체크해보자.
