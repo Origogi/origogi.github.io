@@ -26,6 +26,8 @@ sitemap :
   priority : 1.0	
 ---
 
+![banner](https://github.com/user-attachments/assets/2e217acb-c4ae-4bb8-8747-f85e5d15a6e5)
+
 ## 서론
 
 해당 포스트는 `Combine` 에 대해 정리한 내용입니다.
@@ -67,3 +69,40 @@ Publisher, Subscriber, Operator, Subject
 - 비동기 코드를 간소화하고, 읽기 쉽게 만들어줍니다.
 - 쉬운 데이터 조작
 - 확장성과 응답성이 뛰어납니다. (이벤트가 발생하면 구독자는 이벤트를 수신한 다음 사용자 인터페이스를 업데이트할 수 있습니다.)
+
+## Combine 사용 예시
+
+### Simple Example
+
+```swift
+import Combine
+import UIKit
+
+let publisher = Just("Hello Combine")
+
+let cancellable = publisher.sink { value in
+    print(value)
+}
+
+cancellable.cancel()
+```
+
+- Just는 값을 한 번만 발행하는 Publisher입니다. 
+- sink 함수는 Subscriber를 생성하고, 값을 받아 처리합니다. 값을 받아 처리하 기 위해 sink 함수에 클로저를 전달합니다.
+- sink 함수의 리턴값은 `AnyCancellable` 객체입니다. 이 객체를 통해 구독을 취소할 수 있습니다.
+
+### Array Example
+
+```swift
+let numbers = (1 ... 10).publisher
+let doublePublisher = numbers.map { Double($0) }
+
+numbers.sink { value in
+    print(value)
+}
+
+doublePublisher.sink { value in
+    print(value)
+}
+```
+
