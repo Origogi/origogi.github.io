@@ -1,10 +1,10 @@
 ---
-published: true
+published: false
 title: "[iOS][Swift] Combine 정리"	
 excerpt : " "	
 layout: single	
 classes: wide
-author_profile: truㄷ
+author_profile: true
 read_time: false
 toc: true
 toc_label: "My Table of Contents"
