@@ -215,3 +215,40 @@ struct MyApp: App {
 1. 코드 간결성 : 구독 취소 로직을 별도로 작성할 필요 없음
 2. 자동 관리 : 뷰 컨트롤러 들이 해제될 때, 저장된 모든 구독도 자동으로 취소됨
 3. 다중 구독 관리 : 여러 개의 구독을 한 번에 관리할 수 있음
+
+## 예외 처리
+
+```swift
+enum NumberError: Error {
+    case operationFailed
+}
+
+let numberPublisher = [1, 2, 3, 4, 5].publisher
+
+let doublePublisher = numberPublisher.tryMap { num in
+    if num == 4 {
+        throw NumberError.operationFailed
+    }
+
+    return num * 2
+}.catch { error in
+    if let error = error as? NumberError {
+        print("Error: \(error)")
+    }
+    return [1, 2, 3, 4].publisher
+}
+
+let subscriber = doublePublisher.sink { value in
+    print(value)
+}
+```
+
+`tryMap`은 `map`과 유사하지만, 클로저가 에러를 던질 수 있습니다.
+
+```swift
+public func tryMap<T>(_ transform: @escaping (Self.Output) throws -> T) -> Publishers.TryMap<Self, T>
+```
+
+`catch`는 에러를 처리하고, 새로운 `Publisher` 를 반환합니다. 그리고 남은 Publisher 는 버려지고 catch 블록에서 반환된 Publisher 가 대신 사용됩니다.
+
+```swift
