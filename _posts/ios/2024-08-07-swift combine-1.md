@@ -1,6 +1,6 @@
 ---
-published: false
-title: "[iOS][Swift] Combine 정리"	
+published: true
+title: "[iOS][Swift] Combine 정리 (1)"	
 excerpt : " "	
 layout: single	
 classes: wide
@@ -252,3 +252,33 @@ public func tryMap<T>(_ transform: @escaping (Self.Output) throws -> T) -> Publi
 `catch`는 에러를 처리하고, 새로운 `Publisher` 를 반환합니다. 그리고 남은 Publisher 는 버려지고 catch 블록에서 반환된 Publisher 가 대신 사용됩니다.
 
 ```swift
+
+아니면 catch를 사용하지 않고, sink에서 에러를 처리할 수도 있습니다.
+
+```swift
+let numberPublisher = [1, 2, 3, 4, 5].publisher
+
+let doublePublisher = numberPublisher.tryMap { num in
+    if num == 4 {
+        throw NumberError.operationFailed
+    }
+
+    return num * 2
+}
+
+let subscriber = doublePublisher.sink { completion in
+    print("Completion: \(completion)")
+} receiveValue: { value in
+    print("Value: \(value)")
+}
+
+```
+
+위 코드를 실행 한 결과는 다음과 같습니다.
+
+```
+Value: 2
+Value: 4
+Value: 6
+Completion: failure(__lldb_expr_31.NumberError.operationFailed)
+```
