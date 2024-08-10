@@ -100,3 +100,16 @@ merged.sink { value in
 
 // 2, 4  짝수만 출력
 ```
+
+## CompactMap
+
+`Publisher`로부터 전달된 값을 변환하고, `nil`이 아닌 값만 반환합니다.
+
+```swift
+["1", "2", "3", "four", "5"].publisher
+    .compactMap { Int($0) }
+    .sink { print($0) }
+
+// 1, 2, 3, 5  
+// "four"는 Int로 변환할 수 없기 때문에 제외됩니다.
+```
