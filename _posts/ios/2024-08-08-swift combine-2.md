@@ -1,6 +1,6 @@
 ---
-published: false
-title: "[iOS][Swift] Combine 정리 (2)"	
+published: true
+title: "[iOS][Swift] Combine 정리 (2) - 변환 연산자, 결합 연산자"	
 excerpt : " "	
 layout: single	
 classes: wide

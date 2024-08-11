@@ -1,6 +1,6 @@
 ---
 published: true
-title: "[iOS][Swift] Combine 정리 (1)"	
+title: "[iOS][Swift] Combine 정리 (1) - 소개, Key Concepts, 사용 예시"	
 excerpt : " "	
 layout: single	
 classes: wide
