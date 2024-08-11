@@ -257,4 +257,38 @@ inner2.send(4) // 4
 inner1.send(5) // outer 는 이미 inner2 로 변경되었기 때문에 inner1 의 값은 출력되지 않습니다.
 ```
 
+switchToLatest()를 사용자 입력에 활용하는 좋은 예는 검색 기능을 구현할 때입니다. 사용자가 검색어를 입력할 때마다 네트워크 요청을 보내야 한다고 가정해 보겠습니다. 이 경우 사용자가 빠르게 입력을 변경할 수 있기 때문에, 이전 검색어에 대한 요청은 취소하고 가장 최근의 검색어에 대한 요청만 처리해야 합니다. switchToLatest()를 사용하면 이러한 동작을 쉽게 구현할 수 있습니다.
+
+```
+import Combine
+import Foundation
+
+// 검색어 입력을 받는 퍼블리셔
+let searchTextPublisher = PassthroughSubject<String, Never>()
+
+// 네트워크 요청을 시뮬레이션하는 함수
+func search(query: String) -> AnyPublisher<String, Never> {
+    // 실제 네트워크 요청 대신 1초 후에 결과를 반환하는 퍼블리셔
+    return Just("Results for \(query)")
+        .delay(for: 1.0, scheduler: RunLoop.main)
+        .eraseToAnyPublisher()
+}
+
+// 검색어가 변경될 때마다 새로운 네트워크 요청을 생성하는 퍼블리셔
+let searchResultsPublisher = searchTextPublisher
+    .map { query in
+        search(query: query)
+    }
+    .switchToLatest() // 가장 최근의 검색 결과만 구독
+    .sink(receiveValue: { result in
+        print(result)
+    })
+
+// 사용자가 입력하는 시뮬레이션
+searchTextPublisher.send("Swift")
+searchTextPublisher.send("SwiftUI")
+searchTextPublisher.send("Combine")
+
+// 이 경우 "Combine"에 대한 검색 결과만 출력됩니다.
+```
 
