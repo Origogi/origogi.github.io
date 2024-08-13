@@ -78,4 +78,86 @@ func fetchPosts() -> Publishers.Map<Publishers.Decode<URLSession.DataTaskPublish
 
 따라서 `eraseToAnyPublisher()` 를 호출하여 사용하기 단순한 `AnyPublisher` 타입으로 변환합니다.
 
+## Error Handling
 
+아래는 네트워크 요청 중 발생하는 에러를 처리하는 코드입니다.
+
+```swift
+struct Post: Codable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let body: String
+}
+
+enum NetworkError: Error {
+    case badServerResponse
+}
+
+func fetchPosts() -> AnyPublisher<[Post], Error> {
+    return URLSession.shared.dataTaskPublisher(for: URL(string: "https://jsonplaceholder.typicode.com/posts")!)
+        .tryMap { _, _ in
+            print("retries")
+            throw NetworkError.badServerResponse
+
+//            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+//                throw NetworkError.badServerResponse
+//            }
+//            return data
+        }
+        .retry(3)
+        .decode(type: [Post].self, decoder: JSONDecoder())
+        .eraseToAnyPublisher()
+}
+
+let cancellable = fetchPosts().receive(on: DispatchQueue.main).sink { completion in
+    print(completion)
+} receiveValue: { posts in
+    print(posts)
+}
+```
+
+tryMap 연산자를 이용해서 예외를 발생시키고 retry 연산자를 이용해서 지정된 횟수만큼 재시도합니다. 그리고 completion 을 받아서 에러를 처리합니다.
+
+## 두 개의 Publisher(네트워크 요청)를 합치기
+
+두 개의 Publisher 를 합치는 방법은 `CombineLatest` 연산자를 사용하면 됩니다.
+
+아래 코드는 두 개의 Publisher 를 합치는 예제입니다.
+
+```swift
+struct MovieResponse: Decodable {
+    let Search: [Movie]
+}
+
+struct Movie: Decodable {
+    let title: String
+
+    private enum CodingKeys: String, CodingKey {
+        case title = "Title"
+    }
+}
+
+func fetchMovies(_ searchTerm: String) -> AnyPublisher<[Movie], Error> {
+    guard let url = URL(string: "https://www.omdbapi.com/?s=\(searchTerm)&page=2&apiKey=564727fa") else {
+        fatalError("Invalid URL")
+    }
+
+    return URLSession.shared.dataTaskPublisher(for: url)
+        .map(\.data)
+        .decode(type: MovieResponse.self, decoder: JSONDecoder())
+        .map(\.Search)
+        .eraseToAnyPublisher()
+}
+
+let cancellable = Publishers.CombineLatest(fetchMovies("batman"), fetchMovies("superman"))
+    .sink(receiveCompletion: { completion in
+        print(completion)
+    }, receiveValue: { batmanMovies, supermanMovies in
+        print("Batman Movies: \(batmanMovies.count)")
+        print("Superman Movies: \(supermanMovies.count)")
+    })
+
+```
+
+fetchMovies() 함수를 이용해서 두 개의 Publisher 를 생성하고 CombineLatest 연산자를 이용해서 두 개의 Publisher 를 합칩니다. 그리고 두 개의 Publisher 가 모두 값을 방출하면 receiveValue 클로저가 호출됩니다.
