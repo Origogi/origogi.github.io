@@ -259,7 +259,7 @@ inner1.send(5) // outer 는 이미 inner2 로 변경되었기 때문에 inner1 �
 
 switchToLatest()를 사용자 입력에 활용하는 좋은 예는 검색 기능을 구현할 때입니다. 사용자가 검색어를 입력할 때마다 네트워크 요청을 보내야 한다고 가정해 보겠습니다. 이 경우 사용자가 빠르게 입력을 변경할 수 있기 때문에, 이전 검색어에 대한 요청은 취소하고 가장 최근의 검색어에 대한 요청만 처리해야 합니다. switchToLatest()를 사용하면 이러한 동작을 쉽게 구현할 수 있습니다.
 
-```
+```swift
 import Combine
 import Foundation
 
