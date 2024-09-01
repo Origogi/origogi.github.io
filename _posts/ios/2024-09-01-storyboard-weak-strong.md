@@ -26,6 +26,14 @@ sitemap :
   priority : 1.0	
 ---
 
+## 서론
+
+현재 iOS 개발 공부를 하면서 Storyboard를 이용하여 View를 생성하는 방법을 배우고 있습니다. 그런데 Storyboard를 이용하여 View를 생성할 때 IBOutlet을 선언할 때 weak로 선언하는 것이 맞는지 strong으로 선언하는 것이 맞는지 궁금하여 이에 대해 알아보았습니다.
+
+참고로 weak, 또는 strong reference, ARC 에 대한 개념은 아래 포스트를 참고하시면 됩니다.
+
+- [ARC (Automatic Reference Counting) 정리](https://origogi.github.io/ios/ARC/)
+
 
 ## Reference
 
