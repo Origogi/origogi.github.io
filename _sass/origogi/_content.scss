@@ -90,17 +90,15 @@
     margin-top: 0;
   }
 
-  /* Obsidian: 링크는 본문색 + 밑줄(외부 링크), hover 시 액센트 */
+  /* 링크는 액센트 색만으로 구분, 밑줄은 hover 때만 */
   a:not(.btn) {
-    color: $text-color;
-    text-decoration: underline;
-    text-decoration-color: $border-color-strong;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.15em;
+    color: $link-color;
+    text-decoration: none;
 
     &:hover {
-      color: $accent-color;
-      text-decoration-color: $accent-color;
+      color: $link-color-hover;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
     }
   }
 

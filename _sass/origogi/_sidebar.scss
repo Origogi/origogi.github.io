@@ -1,0 +1,250 @@
+/* ==========================================================================
+   사이드바 — Obsidian 파일 탐색기의 인상
+   프로필은 작고 조용하게, 카테고리는 들여쓰기 가이드 + hover 배경 + 현재 위치 강조
+   ========================================================================== */
+
+.sidebar {
+  @include breakpoint($large) {
+    /* 테마는 hover 전까지 흐리게(0.75) 두는데, 읽는 데 방해만 된다 */
+    opacity: 1;
+  }
+
+  > * {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+
+  p,
+  li {
+    font-size: 0.875em;
+    line-height: 1.5;
+  }
+}
+
+/* 프로필 */
+.author__avatar img {
+  max-width: 96px;
+
+  @include breakpoint($large) {
+    padding: 0;
+    border: 0;
+  }
+}
+
+.author__content {
+  @include breakpoint($large) {
+    margin-top: 0.75rem;
+  }
+}
+
+.sidebar .author__name {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.author__bio {
+  color: $muted-text-color;
+  font-size: 0.85em;
+  line-height: 1.5;
+
+  @include breakpoint($large) {
+    margin: 0.25rem 0 0.75rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1em;
+  }
+}
+
+.author__urls {
+  @include breakpoint($large) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  li {
+    margin: 0;
+    color: $muted-text-color;
+    font-size: 0.8em;
+    white-space: nowrap;
+  }
+
+  /* 위치는 한 줄, 그 아래 아이콘 링크가 한 줄로 이어진다 */
+  li[itemprop="homeLocation"] {
+    @include breakpoint($large) {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+      margin: 0 0 0.4rem;
+    }
+  }
+
+  /* 아이콘 링크: 28px 터치 영역, 회색 → hover 시 액센트 */
+  a {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin: 0 0.35rem 0 -0.3rem;
+    padding: 0;
+    color: $muted-text-color;
+    border-radius: 6px;
+    -webkit-transition: color 0.15s ease-out, background-color 0.15s ease-out;
+    transition: color 0.15s ease-out, background-color 0.15s ease-out;
+
+    &:hover {
+      color: $accent-color;
+      background-color: $background-secondary;
+      text-decoration: none;
+    }
+  }
+
+  .social-icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: currentColor;
+  }
+}
+
+/* 카테고리 트리 */
+.nav__list {
+  margin-top: 1.25em;
+
+  .nav__items {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+
+    > li {
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    ul {
+      margin: 0.1rem 0 0;
+      padding-left: 0.6rem;
+      list-style: none;
+      /* Obsidian 탐색기의 들여쓰기 가이드 */
+      border-left: 1px solid $border-color;
+
+      li {
+        margin: 0;
+      }
+    }
+
+    /* 테마의 .active(음수 마진 + bold) 대신 배경으로 표시한다 */
+    .active {
+      margin-left: 0;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+}
+
+.nav__summary a,
+.nav__sub-title,
+.nav__items ul a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  border: 0;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.15s ease-out;
+  transition: background-color 0.15s ease-out;
+}
+
+.nav__summary {
+  margin-bottom: 0.5rem !important;
+
+  a {
+    color: $heading-color;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $background-secondary;
+    }
+  }
+}
+
+.nav__group {
+  margin-bottom: 0.6rem !important;
+}
+
+.nav__sub-title {
+  color: $heading-color;
+  font-family: $global-font-family;
+  font-size: 1em;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+
+  &[href]:hover {
+    background-color: $background-secondary;
+  }
+}
+
+.nav__items ul a {
+  color: $text-color;
+  font-weight: 400;
+
+  &:hover {
+    color: $heading-color;
+    background-color: $background-secondary;
+  }
+}
+
+.nav__list .nav__items .active {
+  color: $accent-color;
+  font-weight: 600;
+  background-color: rgba($accent-color, 0.08);
+}
+
+.nav__count {
+  margin-left: 0.5rem;
+  color: $faint-text-color;
+  font-size: 0.8em;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav__list .nav__items .active .nav__count {
+  color: rgba($accent-color, 0.7);
+}
+
+/* 사이드바와 본문 사이 여백 — 테마 기본 1em은 답답하다 */
+.page,
+.archive {
+  @include breakpoint($large) {
+    padding-left: 2.5em;
+  }
+
+  @include breakpoint($x-large) {
+    padding-left: 3.5em;
+  }
+}

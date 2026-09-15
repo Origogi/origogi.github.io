@@ -43,10 +43,10 @@ $success-color: $obsidian-green !default;
 $warning-color: $obsidian-orange !default;
 $danger-color: $obsidian-red !default;
 
-/* Obsidian처럼 링크는 본문색, hover 시 액센트 */
-$link-color: $text-color !default;
-$link-color-hover: $accent-color !default;
-$link-color-visited: $text-color !default;
+/* 링크는 액센트(Obsidian --text-accent), hover 시 한 톤 진하게 */
+$link-color: $accent-color !default;
+$link-color-hover: mix(#000, $accent-color, 18%) !default;
+$link-color-visited: $accent-color !default;
 $masthead-link-color: $frame-text-color !default;
 $masthead-link-color-hover: #ffffff !default;
 $navicon-link-color-hover: mix(#fff, $frame-color, 15%) !default;

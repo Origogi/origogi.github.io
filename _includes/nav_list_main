@@ -1,130 +1,47 @@
-<!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
-
-{% assign sum = site.posts | size %}
+{%- comment -%}
+  사이드바 카테고리 트리.
+  groups 형식: "그룹명|그룹링크|카테고리키:슬러그[:표시명],…" 을 ";" 로 이어 쓴다.
+  카테고리키는 site.categories 의 키(대소문자 그대로), 슬러그는 /categories/<슬러그> 페이지.
+  개수는 site.categories 를 순회해 센다 — site.categories[변수] 조회는 Jekyll에서 nil 이 된다.
+{%- endcomment -%}
+{%- assign groups = "Mobile|/categories/mobile|Android:android,Flutter:flutter,iOS:ios;Front End|/categories/fe|React:react,HTML:html;Programming Language|/categories/pl|Kotlin:kotlin,Coroutine:coroutine;Topics||OOP:oop,refactoring:refactoring:리팩토링,Book:book,ML:ml:Machine Learning,Daily:daily:Daily Life" | split: ";" -%}
 
 <nav class="nav__list">
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
-  <ul class="nav__items" id="category_tag_menu">
-      <!--전체 글 수-->
-      <li>
-            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
-      </li>
-      <li>
-
-            <!--Category Mobile-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                {% if category[0] == "Android" or category[0] == "Flutter" or category[0] == "iOS"  %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/mobile"><span class="nav__sub-title">Mobile ({{total}})</span></a>
-            <ul>
-                {% for category in filter-categories %}
-                    <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
-                {% endfor %}
-            </ul>
-
-
-              <!--Category FE-->
-              {% assign total = 0 %}
-              {% assign filter-categories = "" | split: ',' %}
-              {% for category in site.categories %}
-                    {% if category[0] == "HTML" or category[0] == "React" %}
-                        {% assign total = total | plus: category[1].size %}
-                      {% assign filter-categories = filter-categories | push: category %}
-                  {% endif %}
-              {% endfor %}
-  
-              <a href="/categories/fe"><span class="nav__sub-title">Front End ({{total}})</span></a>
-              <ul>
-                {% for category in filter-categories %}
-                    <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
-                {% endfor %}
-            </ul>
-
-            <!--Category Programing Language-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "Kotlin" or category[0] == "Coroutine" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/pl"><span class="nav__sub-title">Programing Language ({{total}})</span></a>
-            <ul>
-                {% for category in filter-categories %}
-                    <li><a href="/categories/{{category[0] | downcase }}" class="">{{category[0]}} ({{category[1].size}})</a></li>
-                {% endfor %}
-            </ul>
-
-            <!--Category OOP-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "OOP" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/oop"><span class="nav__sub-title">OOP ({{total}})</span></a>
-
-
-            <!--Category Refactoring-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "refactoring" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/refactoring"><span class="nav__sub-title">리팩토링 ({{total}})</span></a>
-
-            <!--Category Book-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "Book" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/book"><span class="nav__sub-title">Book ({{total}})</span></a>
-
-            <!--Category Machine Learning-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "ML" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/ml"><span class="nav__sub-title">Machine Learning ({{total}})</span></a>
-
-            <!--Category Daily Life-->
-            {% assign total = 0 %}
-            {% assign filter-categories = "" | split: ',' %}
-            {% for category in site.categories %}
-                    {% if category[0] == "Daily" %}
-                    {% assign total = total | plus: category[1].size %}
-                    {% assign filter-categories = filter-categories | push: category %}
-                {% endif %}
-            {% endfor %}
-
-            <a href="/categories/daily"><span class="nav__sub-title">Daily Life ({{total}})</span></a>
- 
-      </li>
+  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
+  <ul class="nav__items">
+    <li class="nav__summary">
+      <a href="{{ '/categories/' | relative_url }}"{% if page.url == '/categories/' %} class="active"{% endif %}>전체 글<span class="nav__count">{{ site.posts | size }}</span></a>
+    </li>
+    {%- for group in groups -%}
+      {%- assign parts = group | split: "|" -%}
+      {%- assign items = parts[2] | split: "," -%}
+      {%- assign total = 0 -%}
+      {%- for item in items -%}
+        {%- assign fields = item | split: ":" -%}
+        {%- for category in site.categories -%}
+          {%- if category[0] == fields[0] -%}{%- assign total = total | plus: category[1].size -%}{%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    <li class="nav__group">
+      {%- if parts[1] != "" -%}
+      <a href="{{ parts[1] | relative_url }}" class="nav__sub-title{% if page.url == parts[1] %} active{% endif %}">{{ parts[0] }}<span class="nav__count">{{ total }}</span></a>
+      {%- else -%}
+      <span class="nav__sub-title">{{ parts[0] }}<span class="nav__count">{{ total }}</span></span>
+      {%- endif -%}
+      <ul>
+        {%- for item in items -%}
+          {%- assign fields = item | split: ":" -%}
+          {%- assign label = fields[2] | default: fields[0] -%}
+          {%- assign url = "/categories/" | append: fields[1] -%}
+          {%- assign count = 0 -%}
+          {%- for category in site.categories -%}
+            {%- if category[0] == fields[0] -%}{%- assign count = category[1].size -%}{%- endif -%}
+          {%- endfor -%}
+        <li><a href="{{ url | relative_url }}"{% if page.url == url %} class="active"{% endif %}>{{ label }}<span class="nav__count">{{ count }}</span></a></li>
+        {%- endfor -%}
+      </ul>
+    </li>
+    {%- endfor -%}
   </ul>
 </nav>

@@ -44,14 +44,15 @@
     <ul class="author__urls social-icons">
       {% if author.location %}
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">{{ author.location }}</span>
+          <span itemprop="name">{{ author.location }}</span>
         </li>
       {% endif %}
 
+      {% comment %} 링크는 아이콘만 보이고 라벨은 스크린리더용. 아이콘은 _includes/social-icon.html 의 인라인 SVG {% endcomment %}
       {% if author.links %}
         {% for link in author.links %}
           {% if link.label and link.url %}
-            <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
+            <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer" title="{{ link.label }}">{% include social-icon.html icon=link.icon %}<span class="visually-hidden">{{ link.label }}</span></a></li>
           {% endif %}
         {% endfor %}
       {% endif %}
@@ -66,9 +67,9 @@
 
       {% if author.email %}
         <li>
-          <a href="mailto:{{ author.email }}">
+          <a href="mailto:{{ author.email }}" title="{{ site.data.ui-text[site.locale].email_label | default: "Email" }}">
             <meta itemprop="email" content="{{ author.email }}" />
-            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].email_label | default: "Email" }}
+            {% include social-icon.html icon="email" %}<span class="visually-hidden">{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</span>
           </a>
         </li>
       {% endif %}
