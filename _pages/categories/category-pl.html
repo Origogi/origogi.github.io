@@ -11,7 +11,7 @@ sidebar_main: true
     {% assign posts = group_items[forloop.index0] %}
     <h2 class="archive__subtitle">{{ category }}</h2>
     {% for post in posts %}
-      {% include archive-single.html %}
+      {% include archive-single.html hide_category=true %}
     {% endfor %}
   {% endif %}
 {% endfor %}

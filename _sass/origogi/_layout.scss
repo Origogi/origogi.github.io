@@ -102,34 +102,6 @@
   }
 }
 
-/* 글 목록 */
-.archive__item-title {
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  word-break: keep-all;
-  overflow: visible;
-  white-space: normal;
-
-  a {
-    color: $heading-color;
-
-    &:hover {
-      color: $accent-color;
-    }
-  }
-}
-
-.archive__item-excerpt {
-  color: $muted-text-color;
-  line-height: 1.7;
-}
-
-.archive__subtitle {
-  font-weight: 600;
-  border-bottom-color: $border-color;
-}
-
 /* 태그: Minimal 설정 (#E4E5E6 배경, #444 글자) */
 .page__taxonomy-item {
   padding: 0.25em 0.6em;
@@ -144,48 +116,4 @@
     color: $accent-color;
     background-color: rgba($accent-color, 0.1);
   }
-}
-
-.pagination--pager,
-.pagination ul li a {
-  color: $text-color;
-  border-color: $border-color;
-
-  &:hover {
-    color: $accent-color;
-    background-color: $background-secondary;
-  }
-}
-
-.pagination ul li a.current {
-  color: #fff;
-  background-color: $accent-color;
-  border-color: $accent-color;
-}
-
-/* 푸터 */
-.page__footer {
-  color: $frame-muted-color;
-  background-color: $frame-color;
-
-  a {
-    color: $frame-text-color;
-
-    &:hover {
-      color: #fff;
-    }
-  }
-
-  footer {
-    margin-top: 1.5em;
-  }
-
-  .page__footer-copyright {
-    color: $frame-muted-color;
-  }
-}
-
-.page__footer-follow .social-icons .svg-inline--fa,
-.page__footer-follow .social-icons .fa {
-  color: $frame-text-color;
 }

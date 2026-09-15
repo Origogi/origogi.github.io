@@ -1,0 +1,287 @@
+/* ==========================================================================
+   글 하단 — 태그·공유·이전/다음·관련 글, 그리고 사이트 푸터
+   FontAwesome 킷(403)을 걷어냈으므로 아이콘은 모두 인라인 SVG(.social-icon)다.
+   ========================================================================== */
+
+.page__date {
+  margin: 0 0 1.5rem;
+  color: $muted-text-color;
+  font-size: 0.85em;
+}
+
+/* 태그·카테고리 */
+.page__meta {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  color: $muted-text-color;
+  font-size: 0.85em;
+  border-top: 1px solid $border-color;
+}
+
+.page__taxonomy {
+  margin: 0 0 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page__taxonomy-label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: $muted-text-color;
+  font-weight: 500;
+}
+
+.page__taxonomy-item {
+  display: inline-block;
+  margin: 0 0.3rem 0.4rem 0;
+  padding: 0.2rem 0.55rem;
+  color: $text-color;
+  font-size: 1em;
+  background-color: $tag-background;
+  border: 0;
+  border-radius: 4px;
+  text-decoration: none;
+  -webkit-transition: color 0.15s ease-out, background-color 0.15s ease-out;
+  transition: color 0.15s ease-out, background-color 0.15s ease-out;
+
+  &:hover {
+    color: $accent-color;
+    background-color: rgba($accent-color, 0.1);
+    text-decoration: none;
+  }
+}
+
+/* 공유 */
+.page__share {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}
+
+.page__share-title {
+  margin: 0 0 0.75rem;
+  color: $muted-text-color;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.share-btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0.4rem 0.4rem 0;
+  padding: 0.4rem 0.8rem;
+  color: $muted-text-color;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  -webkit-transition: color 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;
+  transition: color 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;
+
+  &:hover {
+    color: $heading-color;
+    background-color: $background-secondary;
+    border-color: $border-color-strong;
+    text-decoration: none;
+  }
+
+  .social-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-right: 0.4rem;
+    fill: currentColor;
+  }
+}
+
+/* 이전 글 / 다음 글 */
+.pagination--pager {
+  display: inline-block;
+  width: auto;
+  margin: 0 0.4rem 0 0;
+  padding: 0.45rem 0.9rem;
+  color: $muted-text-color;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  -webkit-transition: color 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;
+  transition: color 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;
+
+  &:hover {
+    color: $heading-color;
+    background-color: $background-secondary;
+    border-color: $border-color-strong;
+    text-decoration: none;
+  }
+
+  &.disabled {
+    color: $faint-text-color;
+    border-color: $border-color;
+    opacity: 1;
+    pointer-events: none;
+  }
+}
+
+/* 관련 글 */
+.page__related {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}
+
+.page__related-title {
+  margin: 0 0 1rem;
+  color: $heading-color;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+/* 관련 글은 susy 플로트 대신 그리드로 깔아 카드 높이·위치를 맞춘다 */
+.page__related .grid__wrapper {
+  display: grid;
+  grid-column-gap: 1.25rem;
+  grid-row-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include breakpoint($medium) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include breakpoint($large) {
+    margin-right: 0;
+  }
+
+  @include breakpoint($x-large) {
+    margin-right: 0;
+  }
+}
+
+.page__related .grid__item {
+  float: none;
+  width: auto;
+  margin: 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid $border-color;
+}
+
+.grid__item {
+  margin-bottom: 1.5em;
+
+  .archive__item-title {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    font-size: 0.95em;
+    line-height: 1.45;
+  }
+
+  .archive__item-meta {
+    margin-bottom: 0;
+    font-size: 0.75em;
+  }
+
+  /* 카드 높이를 맞추기 위해 요약은 접는다 — 제목·날짜만으로 충분하다 */
+  .archive__item-excerpt {
+    display: none;
+  }
+
+  /* 대부분의 글에 티저 이미지가 없어 빈 회색 칸만 남는다 — 제목·날짜만 보여준다 */
+  .archive__item-teaser {
+    display: none;
+  }
+
+  &:hover .archive__item-title a {
+    color: $accent-color;
+  }
+}
+
+/* 사이트 푸터 */
+.page__footer {
+  margin-top: 3rem;
+
+  footer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.page__footer-follow {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    vertical-align: middle;
+  }
+
+  strong {
+    margin-right: 0.25rem;
+    color: $frame-muted-color;
+    font-weight: 500;
+  }
+
+  a {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 6px;
+    -webkit-transition: color 0.15s ease-out, background-color 0.15s ease-out;
+    transition: color 0.15s ease-out, background-color 0.15s ease-out;
+
+    &:hover {
+      color: #fff;
+      background-color: mix(#fff, $frame-color, 10%);
+      text-decoration: none;
+    }
+  }
+
+  .social-icon {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+  }
+}
+
+.page__footer-copyright {
+  margin-top: 0.75rem;
+  color: $frame-muted-color;
+  font-size: 0.78rem;
+  line-height: 1.6;
+
+  a {
+    color: $frame-muted-color;
+    text-decoration: underline;
+    text-decoration-color: rgba(#fff, 0.2);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}

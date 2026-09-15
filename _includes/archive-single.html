@@ -20,7 +20,7 @@
           {% else %}
             "{{ teaser | relative_url }}"
           {% endif %}
-          alt="">
+          alt="" loading="lazy" onerror="this.remove()">
       </div>
     {% endif %}
     <h2 class="archive__item-title" itemprop="headline">
@@ -30,8 +30,11 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    {% if post.date %}
-      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ post.date | date: "%B %d %Y" }}</p>
+    {% if post.date or post.categories.size > 0 %}{% comment %} hide_category: 카테고리 페이지처럼 이미 카테고리가 제목인 곳에서 칩을 숨긴다 {% endcomment %}
+      <p class="archive__item-meta">
+        {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %m. %d." }}</time>{% endif %}
+        {% unless include.hide_category %}{% if post.categories.size > 0 %}<span class="archive__item-category">{{ post.categories | first }}</span>{% endif %}{% endunless %}
+      </p>
     {% endif %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
   </article>
