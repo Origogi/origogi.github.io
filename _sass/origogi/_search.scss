@@ -1,0 +1,86 @@
+/* ==========================================================================
+   검색 오버레이 — 마스트헤드 돋보기로 열리는 lunr 검색
+   본문과 같은 폭·같은 행 스타일을 쓴다.
+   ========================================================================== */
+
+.search-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+
+  &__inner-wrap {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    @include breakpoint($large) {
+      max-width: 850px;
+    }
+  }
+
+  /* 테마 기본값은 본문 폭 전체를 쓰는 밑줄 없는 초대형 입력이라 경계가 안 보인다 */
+  .search-input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    color: $heading-color;
+    font-family: $global-font-family;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    background-color: $background-color;
+    border: 1px solid $border-color-strong;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    -webkit-transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+
+    @include breakpoint($large) {
+      font-size: 1.05rem;
+    }
+
+    @include breakpoint($x-large) {
+      font-size: 1.05rem;
+    }
+
+    &::placeholder {
+      color: $faint-text-color;
+    }
+
+    &:focus {
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.12);
+      outline: none;
+    }
+  }
+}
+
+.results {
+  margin-top: 1.5rem;
+
+  /* 테마는 결과 본문을 $large 75% / $x-large 50% 로 좁혀 둔다 — 행 전체 폭을 쓴다 */
+  .archive__item {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* "N 개 결과 발견" 줄 */
+  > p:first-child {
+    margin: 0 0 0.5rem;
+    color: $muted-text-color;
+    font-size: 0.85rem;
+  }
+
+  .archive__item-title {
+    margin-bottom: 0.3rem;
+    font-size: 1.05em;
+  }
+
+  .archive__item-excerpt {
+    margin: 0;
+    color: $muted-text-color;
+    font-size: 0.875em;
+  }
+
+  /* 결과 행에 티저 이미지가 섞여 들어와 줄 높이가 흔들린다 — 제목·요약만 쓴다 */
+  .archive__item-teaser,
+  img {
+    display: none;
+  }
+}

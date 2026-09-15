@@ -207,9 +207,11 @@ $toc-float-expanded: 18rem;
   }
 }
 
-/* 목차가 본문 오른쪽 자리를 쓰지 않으므로 테마가 비워 두던 여백을 돌려준다 */
+/* 목차가 본문 오른쪽 자리를 쓰지 않으므로 테마가 비워 두던 여백을 돌려준다.
+   .archive 는 목차가 없는 목록 화면인데도 같은 여백을 갖고 있었다. */
 .page,
-.page__related {
+.page__related,
+.archive {
   @include breakpoint($large) {
     padding-right: 0;
   }
