@@ -17,8 +17,6 @@ tags:
   - Dart
 comments: true
 header:
-  overlay_image: assets/images/flutter_banner.jpeg
-  overlay_filter: 0.4
   teaser: 
 sitemap :
   changefreq : daily

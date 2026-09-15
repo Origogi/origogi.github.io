@@ -15,8 +15,6 @@ tags:
   - React
 comments: true
 header:
-  overlay_image: assets/images/flutter_dart.png
-  overlay_filter: 0.5
   teaser: https://venturebeat.com/wp-content/uploads/2019/09/google-dart-flutter.png?w=578&strip=all
 sitemap :
   changefreq : daily

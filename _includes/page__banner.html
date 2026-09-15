@@ -1,0 +1,15 @@
+{%- comment -%}
+  글 상단 배너. 예전에는 header.overlay_image 가 전면 hero 로 깔리고 제목이 그 위에 흰 글씨로
+  얹혔는데, 글마다 제목 처리가 갈리고 배경 이미지와 겹쳐 읽기 어려웠다.
+  이제 이미지는 본문 칼럼 안의 배너로 두고 제목은 모든 글에서 같은 스타일을 쓴다.
+{%- endcomment -%}
+{%- assign banner = page.header.image | default: page.header.overlay_image -%}
+{%- if banner -%}
+  {%- if banner contains "://" -%}
+    {%- assign banner_path = banner -%}
+  {%- else -%}
+    {%- assign banner_path = banner | relative_url -%}
+  {%- endif -%}
+  {%- assign banner_alt = page.header.image_description | default: page.title | markdownify | strip_html | strip_newlines | escape_once -%}
+  <img src="{{ banner_path }}" alt="{{ banner_alt }}" class="page__banner" onerror="this.remove()">
+{%- endif -%}

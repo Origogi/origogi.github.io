@@ -2,9 +2,7 @@
 layout: default
 ---
 
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-  {% include page__hero.html %}
-{% elsif page.header.video.id and page.header.video.provider %}
+{% if page.header.video.id and page.header.video.provider %}
   {% include page__hero_video.html %}
 {% endif %}
 
@@ -24,13 +22,15 @@ layout: default
     {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date: "%B %d, %Y" }}">{% endif %}
 
     <div class="page__inner-wrap">
-      {% unless page.header.overlay_color or page.header.overlay_image %}
-        <header>
-          {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
-          {% if page.date %}
-            <p class="page__date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y년 %-m월 %-d일" }}</time></p>          {% endif %}
-        </header>
-      {% endunless %}
+      {% include page__banner.html %}
+
+      <header>
+        {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+        <p class="page__date">
+          {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y년 %-m월 %-d일" }}</time>{% endif %}
+          {% if page.read_time %}<span class="page__read-time">{% include read-time.html %}</span>{% endif %}
+        </p>
+      </header>
 
       {% if page.toc %}
         {% comment %} 오른쪽 가장자리에 접혀 있다가 hover 시 펼쳐지는 목차. 스타일: _sass/origogi/_toc.scss {% endcomment %}

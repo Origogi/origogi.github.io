@@ -18,8 +18,6 @@ tags:
 
 comments: true	
 header:
-  overlay_image: https://coderkube.com/wp-content/uploads/2017/10/iPhone-app-development-banner.png
-  overlay_filter: 0.4
   teaser: https://github.com/Origogi/leetcode/assets/35194820/72f4c4de-3fb2-4e78-89b5-2618594cea7b
 sitemap :	
   changefreq : daily	

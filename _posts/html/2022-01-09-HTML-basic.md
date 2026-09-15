@@ -16,8 +16,6 @@ tags:
   - FE
 comments: true
 header:
-  overlay_image: https://wi.wallpapertip.com/wsimgs/31-312238_html-css-javascript-transparent.png
-  overlay_filter: 0.5
   teaser: https://media.vlpt.us/images/ensi/post/9db78823-6458-4609-a6ec-14014214acc5/htmlcssjs.jpg
 sitemap :
   changefreq : daily

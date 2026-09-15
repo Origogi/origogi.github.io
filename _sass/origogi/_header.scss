@@ -1,0 +1,36 @@
+/* ==========================================================================
+   글 상단 — 배너 이미지와 제목 줄
+   ========================================================================== */
+
+.page__banner {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  margin-bottom: 1.75rem;
+  object-fit: cover;
+  background-color: $background-secondary;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+}
+
+.page__date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 1.75rem;
+  color: $muted-text-color;
+  font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 날짜와 읽는 시간 사이의 가운뎃점 */
+.page__read-time {
+  &:before {
+    content: "·";
+    margin: 0 0.4rem;
+    color: $faint-text-color;
+  }
+}

@@ -18,8 +18,6 @@ tags:
 
 comments: true	
 header:
-  overlay_image: https://github.com/user-attachments/assets/9b9bbd57-859f-473b-81b2-178a9d7d69e6
-  overlay_filter: 0.4
   teaser: https://github.com/user-attachments/assets/9b9bbd57-859f-473b-81b2-178a9d7d69e6
 sitemap :	
   changefreq : daily	

@@ -7,9 +7,6 @@ tags: github
 comments: true
 categories :
  - Test
-header:
-  overlay_image: assets/images/flutter_dart.png
-  overlay_filter: 0.5
 author_profile: false
 read_time: false # read_time을 출력할지 여부 1min read 같은것!
 toc: true #Table Of Contents 목차 보여줌
