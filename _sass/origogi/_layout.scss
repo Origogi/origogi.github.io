@@ -61,8 +61,30 @@
     }
   }
 
+  /* 햄버거: 어두운 마스트헤드 위라 막대를 밝은 색으로.
+     .close 상태에서 가운데 막대를 지워 X 를 만드는 테마 동작은 건드리지 않는다. */
   .greedy-nav__toggle {
-    background-color: $accent-color;
+    background-color: transparent;
+
+    .navicon:before,
+    .navicon:after {
+      background: $frame-text-color;
+    }
+
+    &:not(.close) .navicon {
+      background: $frame-text-color;
+    }
+
+    &:hover {
+      .navicon:before,
+      .navicon:after {
+        background: #fff;
+      }
+
+      &:not(.close) .navicon {
+        background: #fff;
+      }
+    }
   }
 }
 

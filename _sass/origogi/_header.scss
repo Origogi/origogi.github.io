@@ -24,6 +24,12 @@
   color: $muted-text-color;
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
+
+  /* flex 가 라벨과 날짜 사이 공백 텍스트 노드를 지운다 */
+  strong {
+    margin-right: 0.35rem;
+    font-weight: 600;
+  }
 }
 
 /* 날짜와 읽는 시간 사이의 가운뎃점 */
