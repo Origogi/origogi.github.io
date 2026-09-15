@@ -1,17 +1,17 @@
-/* 기준 글자 크기: 테마 기본 18px은 한글에서 과해 17px로 낮춘다 */
+/* Obsidian 설정: 본문 16px, 줄간격 1.7, 문단 간격 1.25rem */
 html {
   font-size: 16px;
 
   @include breakpoint($medium) {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   @include breakpoint($large) {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   @include breakpoint($x-large) {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 
@@ -22,7 +22,6 @@ body {
   /* 한글은 어절 단위로 줄바꿈해야 읽기 편하다 */
   word-break: keep-all;
   overflow-wrap: break-word;
-  letter-spacing: -0.005em;
 }
 
 h1,
@@ -32,23 +31,34 @@ h4,
 h5,
 h6 {
   color: $heading-color;
-  line-height: 1.35;
   letter-spacing: -0.02em;
   word-break: keep-all;
 }
 
 ::-moz-selection {
   color: inherit;
-  background: mix(#fff, $accent-color, 70%);
+  background: rgba($accent-color, 0.22);
 }
 
 ::selection {
   color: inherit;
-  background: mix(#fff, $accent-color, 70%);
+  background: rgba($accent-color, 0.22);
 }
 
 strong,
 b {
-  color: $heading-color;
   font-weight: 700;
+}
+
+/* Minimal 설정: 이탤릭은 기울임 대신 초록으로 구분한다(한글 기울임 회피) */
+em,
+i {
+  font-style: normal;
+  color: $italic-color;
+}
+
+mark {
+  padding: 0 0.15em;
+  background-color: $highlight-color;
+  border-radius: 2px;
 }

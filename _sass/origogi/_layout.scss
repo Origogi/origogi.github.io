@@ -1,26 +1,76 @@
 /* ==========================================================================
-   마스트헤드 · 사이드바 · 목차 · 목록
+   프레임(마스트헤드·푸터)은 Minimal light-contrast처럼 어둡게,
+   사이드바·목차·목록은 본문과 같은 밝은 톤으로
    ========================================================================== */
 
+.masthead {
+  background-color: $frame-color;
+  border-bottom: 0;
+
+  &__inner-wrap {
+    padding: 0.75em 1em;
+  }
+}
+
 .site-title {
-  font-weight: 800;
+  color: #fff;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .site-subtitle {
-  margin-top: 0.15em;
-  color: $muted-text-color;
-  font-size: 0.72em;
+  margin-top: 0.1em;
+  color: $frame-muted-color;
+  font-size: 0.7em;
   letter-spacing: 0;
 }
 
 .greedy-nav {
+  background: $frame-color;
+
   a {
+    color: $frame-text-color;
     font-weight: 500;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
   .visible-links a:before {
     background: $accent-color;
+  }
+
+  .hidden-links {
+    background: $frame-color;
+    border-color: mix(#fff, $frame-color, 15%);
+
+    a {
+      color: $frame-text-color;
+
+      &:hover {
+        color: #fff;
+        background: mix(#fff, $frame-color, 8%);
+      }
+    }
+
+    &:before,
+    &:after {
+      border-color: transparent;
+      border-bottom-color: $frame-color;
+    }
+  }
+
+  .greedy-nav__toggle {
+    background-color: $accent-color;
+  }
+}
+
+.search__toggle {
+  color: $frame-text-color;
+
+  &:hover {
+    color: #fff;
   }
 }
 
@@ -39,35 +89,57 @@
   font-size: 0.9em;
 }
 
+.nav__sub-title {
+  color: $muted-text-color;
+  border-bottom-color: $border-color;
+}
+
+.nav__list .nav__items a {
+  color: $text-color;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
 /* 목차 */
 .toc {
+  border-color: $border-color;
+  box-shadow: none;
+
   .nav__title {
-    padding: 0.6em 0.9em;
+    padding: 0.55em 0.9em;
     color: #fff;
-    font-size: 0.78em;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    background: $heading-color;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0;
+    background: $frame-color;
   }
 
   .active a {
-    color: $link-color-hover;
+    color: $accent-color;
     background-color: $active-color;
   }
 }
 
 .toc__menu {
-  font-size: 0.82em;
+  font-size: 0.85em;
 
   @include breakpoint($large) {
     font-size: 0.8em;
   }
 
   a {
-    padding: 0.45rem 0.9rem;
-    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    color: $muted-text-color;
+    font-weight: 500;
     line-height: 1.5;
     word-break: keep-all;
+    border-bottom-color: $border-color;
+
+    &:hover {
+      color: $text-color;
+    }
   }
 
   li ul > li a {
@@ -76,39 +148,17 @@
   }
 }
 
-/* 글 목록 */
-.archive__item-title {
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  word-break: keep-all;
-  overflow: visible;
-  white-space: normal;
-}
-
-.archive__item-excerpt {
-  color: mix(#fff, $text-color, 15%);
-  line-height: 1.7;
-}
-
-.archive__subtitle {
-  font-weight: 600;
-}
-
-.page__footer {
-  color: $muted-text-color;
-}
-
-/* 본문 안에 인라인으로 렌더링되는 목차(wide 레이아웃)에는 본문 링크·헤딩·리스트 스타일을 적용하지 않는다 */
+/* 본문 안에 인라인으로 렌더링되는 목차(wide 레이아웃) */
 .page__content {
   .toc .nav__title {
     margin: 0;
-    padding: 0.6em 0.9em;
-    font-size: 0.78em;
+    padding: 0.55em 0.9em;
+    font-size: 0.8em;
+    border: 0;
   }
 
   .toc__menu li {
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .toc__menu a {
@@ -121,15 +171,93 @@
   }
 
   .toc .active a {
-    color: $link-color-hover;
+    color: $accent-color;
   }
 }
 
-/* 글 목록 제목은 잉크색, 마우스를 올리면 포인트색 */
-.archive__item-title a {
-  color: $heading-color;
+/* 글 목록 */
+.archive__item-title {
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow: visible;
+  white-space: normal;
+
+  a {
+    color: $heading-color;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+.archive__item-excerpt {
+  color: $muted-text-color;
+  line-height: 1.7;
+}
+
+.archive__subtitle {
+  font-weight: 600;
+  border-bottom-color: $border-color;
+}
+
+/* 태그: Minimal 설정 (#E4E5E6 배경, #444 글자) */
+.page__taxonomy-item {
+  padding: 0.25em 0.6em;
+  color: $text-color;
+  font-size: 0.8em;
+  background-color: $tag-background;
+  border: 0;
+  border-radius: 4px;
+  text-decoration: none;
 
   &:hover {
-    color: $link-color;
+    color: $text-color;
+    background-color: mix(#000, $tag-background, 6%);
   }
+}
+
+.pagination--pager,
+.pagination ul li a {
+  color: $text-color;
+  border-color: $border-color;
+
+  &:hover {
+    color: $accent-color;
+    background-color: $background-secondary;
+  }
+}
+
+.pagination ul li a.current {
+  color: #fff;
+  background-color: $frame-color;
+}
+
+/* 푸터 */
+.page__footer {
+  color: $frame-muted-color;
+  background-color: $frame-color;
+
+  a {
+    color: $frame-text-color;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  footer {
+    margin-top: 1.5em;
+  }
+
+  .page__footer-copyright {
+    color: $frame-muted-color;
+  }
+}
+
+.page__footer-follow .social-icons .svg-inline--fa,
+.page__footer-follow .social-icons .fa {
+  color: $frame-text-color;
 }

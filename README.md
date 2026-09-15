@@ -1,6 +1,6 @@
 # origogi.github.io
 
-Origogi의 개발 블로그. [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) 테마를 포크해 한글 가독성에 맞게 커스텀했다.
+Origogi의 개발 블로그. [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) 테마를 포크해, Obsidian [Minimal](https://github.com/kepano/obsidian-minimal) 테마(light-contrast) 읽기 화면의 서체·색·간격을 옮겨 한글 가독성에 맞게 커스텀했다.
 
 ## 로컬 실행
 
@@ -16,9 +16,9 @@ bundle exec jekyll serve --livereload   # http://127.0.0.1:4000
 | 경로 | 역할 |
 | --- | --- |
 | `assets/css/main.scss` | 진입점. 폰트 스택 → 스킨 → 테마 → 커스텀 순서로 불러온다 |
-| `_sass/minimal-mistakes/skins/_origogi.scss` | 색상 팔레트 (`_config.yml`의 `minimal_mistakes_skin`) |
-| `_sass/origogi/` | 한글 타이포그래피, 본문 헤딩 위계, 콜아웃, 레이아웃 재정의 |
-| `_includes/head/custom.html` | 웹폰트 로딩 (Pretendard, JetBrains Mono) |
+| `_sass/minimal-mistakes/skins/_origogi.scss` | 색상 팔레트 — Obsidian Minimal light 스킴 + 액센트 `#dc4d4f`, 코드 하이라이트(base16) 색 (`_config.yml`의 `minimal_mistakes_skin`) |
+| `_sass/origogi/` | 한글 타이포그래피, 본문 헤딩 위계(1.4/1.2/1.1em, h4 밑줄), outlined 콜아웃, 어두운 프레임(마스트헤드·푸터) |
+| `_includes/head/custom.html` | 시스템 서체가 없는 플랫폼용 Pretendard 폴백 로딩 (macOS는 Apple SD Gothic Neo) |
 
 배포는 GitHub Pages 기본 빌드(Jekyll 3.x)를 쓰므로 SCSS는 `@import` 문법만 사용한다.
 

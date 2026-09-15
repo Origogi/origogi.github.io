@@ -1,15 +1,22 @@
 /* ==========================================================================
-   본문(.page__content) — 헤딩 위계, 문단, 코드, 인용, 표
+   본문(.page__content) — Obsidian Minimal 읽기 화면의 리듬
+   헤딩 크기 1.4/1.3/1.2/1.1em, h4 밑줄(h4-l), 굵기 700, 자간 -0.02em
    ========================================================================== */
 
+/* Obsidian readable line length(850px) */
+.page__inner-wrap {
+  max-width: 850px;
+}
+
 .page__title {
-  font-size: 1.7em;
-  font-weight: 800;
+  font-size: 1.6em;
+  font-weight: 700;
   line-height: 1.3;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
 
   @include breakpoint($medium) {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 
@@ -19,7 +26,7 @@
 }
 
 .page__content {
-  line-height: 1.8;
+  line-height: 1.7;
 
   p,
   li,
@@ -28,121 +35,145 @@
   }
 
   p {
-    margin: 0 0 1.4em;
+    margin: 0 0 1.25rem;
   }
 
-  /* 헤딩 위계: h2는 밑줄, h3는 왼쪽 포인트 바로 한눈에 구분되게 한다 */
-  h2 {
-    margin: 2.8em 0 0.9em;
-    padding-bottom: 0.45em;
-    font-size: 1.55em;
+  h1 {
+    margin: 0 0 1.25rem;
+    font-size: 1.4em;
     font-weight: 700;
-    border-bottom: 1px solid $border-color;
+    line-height: 1.25;
+  }
+
+  /* Obsidian 설정은 h2 1.3em이지만 웹에서는 h3(1.2em)와 구분이 약해 한 단계 키운다 */
+  h2 {
+    margin: 2.5rem 0 1rem;
+    padding: 0;
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.3;
+    border: 0;
   }
 
   h3 {
-    margin: 2.2em 0 0.75em;
-    padding-left: 0.65em;
-    font-size: 1.25em;
+    margin: 2rem 0 0.75rem;
+    font-size: 1.2em;
     font-weight: 700;
-    border-left: 4px solid $accent-color;
+    line-height: 1.35;
   }
 
   h4 {
-    margin: 1.8em 0 0.6em;
-    font-size: 1.08em;
-    font-weight: 700;
+    margin: 1.5rem 0 0.6em;
+    padding-bottom: 0.4em;
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.4;
+    border-bottom: 1px solid $border-color;
   }
 
   h5,
   h6 {
-    margin: 1.6em 0 0.5em;
+    margin: 1.5rem 0 0.5rem;
     font-size: 1em;
     font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h6 {
     color: $muted-text-color;
   }
 
-  h2 + h3,
-  h3 + h4 {
-    margin-top: 1.2em;
+  > h1:first-child,
+  > h2:first-child,
+  > h3:first-child,
+  > h4:first-child {
+    margin-top: 0;
   }
 
+  /* Obsidian: 링크는 본문색 + 밑줄(외부 링크), hover 시 액센트 */
   a:not(.btn) {
-    color: $link-color;
+    color: $text-color;
     text-decoration: underline;
-    text-decoration-color: mix(#fff, $link-color, 60%);
+    text-decoration-color: $border-color-strong;
     text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
+    text-underline-offset: 0.15em;
 
     &:hover {
-      color: $link-color-hover;
-      text-decoration-color: currentColor;
+      color: $accent-color;
+      text-decoration-color: $accent-color;
     }
   }
 
   ul,
   ol {
-    padding-left: 1.4em;
+    padding-left: 1.6em;
   }
 
   li {
-    margin-bottom: 0.45em;
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  li + li {
+    margin-top: 0.25em;
   }
 
   li ul,
   li ol {
-    margin-top: 0.45em;
+    margin-top: 0.25em;
   }
 
-  /* 한글 이탤릭은 가독성이 나빠 인용은 배경으로 구분한다 */
+  /* Minimal: 1px 테두리, 회색 본문, 기울임 없음 */
   blockquote {
-    margin: 1.8em 0;
-    padding: 1em 1.25em;
+    margin: 1.5rem 0;
+    padding: 0 0 0 1.4em;
     font-style: normal;
-    color: mix(#000, $text-color, 10%);
-    background-color: $footer-background-color;
-    border-left: 4px solid $primary-color;
-    border-radius: 0 $border-radius $border-radius 0;
+    color: $muted-text-color;
+    border-left: 1px solid $border-color-strong;
 
     p:last-child {
       margin-bottom: 0;
+    }
+
+    em {
+      color: inherit;
     }
   }
 
   p > img,
   li > img {
     display: block;
-    margin: 1.6em auto;
-    border-radius: $border-radius;
+    margin: 1.5rem auto;
+    border-radius: 4px;
   }
 
   hr {
-    margin: 3em 0;
+    margin: 2rem 0;
+    border-top: 1px solid $border-color;
   }
 
   table {
     display: table;
+    width: auto;
     max-width: 100%;
-    font-size: 0.92em;
+    font-size: 0.875em;
     line-height: 1.6;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
-    overflow: hidden;
+    border: 0;
 
     thead {
-      background-color: $code-background-color;
-      border-bottom: 1px solid $border-color;
+      background: transparent;
+      border-bottom: 1px solid $border-color-strong;
     }
 
     th,
     td {
-      padding: 0.65em 0.9em;
+      padding: 0.35em 0.75em;
       border-bottom: 1px solid $border-color;
     }
 
     th {
       color: $heading-color;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     tr:last-child td {
@@ -150,13 +181,12 @@
     }
   }
 
-  /* 표가 넘치면 표만 가로 스크롤되게 한다 */
   .table-wrapper {
     overflow-x: auto;
   }
 }
 
-/* 인라인 코드: 테마의 nbsp 트릭 대신 패딩으로 여백을 준다 */
+/* 인라인 코드: Obsidian 기본(0.9em, bg2 배경) */
 p > code,
 a > code,
 li > code,
@@ -165,11 +195,11 @@ td > code,
 h2 > code,
 h3 > code,
 h4 > code {
-  padding: 0.15em 0.4em;
-  font-size: 0.86em;
-  color: mix(#000, $primary-color, 20%);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+  color: $text-color;
   background: $code-background-color;
-  border-radius: 5px;
+  border-radius: 4px;
 
   &:before,
   &:after {
@@ -177,17 +207,25 @@ h4 > code {
   }
 }
 
+/* 코드 블록: 밝은 배경, 0.9em, 12px 16px */
 div.highlighter-rouge,
 figure.highlight {
-  margin: 1.6em 0;
-  font-size: 0.84em;
-  line-height: 1.7;
-  border-radius: 10px;
+  margin: 1.5rem 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
 
   > pre,
   pre.highlight {
-    padding: 1.1em 1.25em;
+    padding: 0.75rem 1rem;
   }
+}
+
+.highlight .gutter,
+.highlight .rouge-gutter {
+  color: $faint-text-color;
+  border-right-color: $border-color;
 }
 
 figcaption {

@@ -1,33 +1,74 @@
 /* ==========================================================================
-   Origogi skin — 한글 가독성을 우선한 밝은 팔레트
-   본문은 순흑 대신 잉크 톤, 포인트는 프로필 이미지와 어울리는 앰버 계열.
+   Origogi skin — Obsidian Minimal 테마(light-contrast) 팔레트 이식
+   본문은 흰 배경 + #444 텍스트, 프레임(마스트헤드·푸터)은 어두운 회색,
+   포인트는 Obsidian 액센트 #dc4d4f. 값은 Minimal 기본 light 스킴에서 계산했다.
    ========================================================================== */
 
-/* Colors */
+/* Minimal: bg1 white, bg2 96%, ui1 90%, ui2 84%, ui3 76%, tx1 #444(사용자 설정), tx2 46% */
 $background-color: #ffffff !default;
-$text-color: #2b3138 !default;
-$heading-color: #14171a !default;
-$muted-text-color: #6b7280 !default;
-$border-color: #e6e8eb !default;
-$code-background-color: #f4f5f7 !default;
-$code-background-color-dark: #eceef1 !default;
-$form-background-color: #f4f5f7 !default;
-$footer-background-color: #f8f9fa !default;
+$background-secondary: #f5f5f5 !default;
+$text-color: #444444 !default;
+$heading-color: #333333 !default;
+$muted-text-color: #757575 !default;
+$faint-text-color: #a3a3a3 !default;
+$border-color: #e6e6e6 !default;
+$border-color-strong: #d6d6d6 !default;
+$code-background-color: #f5f5f5 !default;
+$code-background-color-dark: #ececec !default;
+$form-background-color: #f5f5f5 !default;
 
-$primary-color: #b45309 !default;
-$accent-color: #d97706 !default;
-$info-color: #2563eb !default;
-$success-color: #16a34a !default;
-$warning-color: #ea580c !default;
-$danger-color: #dc2626 !default;
+/* light-contrast 프레임: base-l 15% */
+$frame-color: #262626 !default;
+$frame-text-color: #d8d8d8 !default;
+$frame-muted-color: #8c8c8c !default;
+$footer-background-color: $frame-color !default;
 
-$link-color: $primary-color !default;
-$link-color-hover: #92400e !default;
-$link-color-visited: $primary-color !default;
-$masthead-link-color: $heading-color !default;
-$masthead-link-color-hover: $primary-color !default;
-$navicon-link-color-hover: mix(#fff, $primary-color, 85%) !default;
+/* Obsidian 액센트와 기본 팔레트 */
+$accent-color: #dc4d4f !default;
+$primary-color: $accent-color !default;
+$obsidian-red: #e93147 !default;
+$obsidian-orange: #ec7500 !default;
+$obsidian-yellow: #e0ac00 !default;
+$obsidian-green: #08b94e !default;
+$obsidian-cyan: #00bfbc !default;
+$obsidian-blue: #086ddd !default;
+$obsidian-purple: #7852ee !default;
+$obsidian-pink: #d53984 !default;
+$italic-color: #088324 !default;
+$highlight-color: #e7f1ff !default;
+$tag-background: #e4e5e6 !default;
+
+$info-color: $obsidian-blue !default;
+$success-color: $obsidian-green !default;
+$warning-color: $obsidian-orange !default;
+$danger-color: $obsidian-red !default;
+
+/* Obsidian처럼 링크는 본문색, hover 시 액센트 */
+$link-color: $text-color !default;
+$link-color-hover: $accent-color !default;
+$link-color-visited: $text-color !default;
+$masthead-link-color: $frame-text-color !default;
+$masthead-link-color-hover: #ffffff !default;
+$navicon-link-color-hover: mix(#fff, $frame-color, 15%) !default;
 $active-color: mix(#fff, $accent-color, 85%) !default;
 
-$border-radius: 8px !default;
-$box-shadow: 0 1px 2px rgba(20, 23, 26, 0.06) !default;
+$border-radius: 6px !default;
+$box-shadow: none !default;
+
+/* 코드 하이라이트(base16)를 Obsidian light 코드 색으로 */
+$base00: $code-background-color !default;
+$base01: #ececec !default;
+$base02: #e0e0e0 !default;
+$base03: #9a9a9a !default;
+$base04: $muted-text-color !default;
+$base05: $text-color !default;
+$base06: $heading-color !default;
+$base07: #ffffff !default;
+$base08: $obsidian-red !default;
+$base09: $obsidian-orange !default;
+$base0a: #b98c00 !default;
+$base0b: #0a9a43 !default;
+$base0c: #0a9e9b !default;
+$base0d: $obsidian-blue !default;
+$base0e: $obsidian-purple !default;
+$base0f: $obsidian-pink !default;

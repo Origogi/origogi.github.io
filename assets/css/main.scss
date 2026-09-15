@@ -4,11 +4,11 @@
 
 @charset "utf-8";
 
-// 폰트는 _includes/head/custom.html 에서 <link> 로 불러온다.
-$sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-  "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
-$monospace: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Apple Symbols",
-  "Pretendard Variable", monospace;
+// Obsidian(Minimal)과 같은 시스템 서체. macOS는 SF Pro + Apple SD Gothic Neo,
+// 그 외 플랫폼은 Pretendard(웹폰트, _includes/head/custom.html)로 비슷한 인상을 낸다.
+$sans-serif: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+  "Pretendard Variable", Pretendard, "Segoe UI", Roboto, Inter, Ubuntu, sans-serif;
+$monospace: Menlo, SFMono-Regular, Consolas, "Roboto Mono", "Apple Symbols", monospace;
 
 // 스킨 변수는 !default 라서 테마보다 먼저 불러와야 적용된다.
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
