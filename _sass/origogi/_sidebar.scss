@@ -7,6 +7,44 @@
   @include breakpoint($large) {
     /* 테마는 hover 전까지 흐리게(0.75) 두는데, 읽는 데 방해만 된다 */
     opacity: 1;
+
+    /* 테마는 height 를 고정해 내용이 짧아도 스크롤 영역이 생긴다 */
+    &.sticky {
+      height: auto;
+      max-height: calc(100vh - #{$nav-height} - 2em);
+      padding-right: 0.4rem;
+      overscroll-behavior: contain;
+
+      /* 기본 스크롤바가 두껍고 항상 보여 사이드바가 잘린 것처럼 보인다.
+         얇게 만들고 마우스를 올렸을 때만 손잡이를 드러낸다. */
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+      -webkit-transition: scrollbar-color 0.2s ease-out;
+      transition: scrollbar-color 0.2s ease-out;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 3px;
+        -webkit-transition: background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
+      }
+
+      &:hover {
+        scrollbar-color: $border-color-strong transparent;
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $border-color-strong;
+        }
+      }
+    }
   }
 
   > * {
