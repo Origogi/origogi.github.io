@@ -1,3 +1,29 @@
+# origogi.github.io
+
+Origogi의 개발 블로그. [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) 테마를 포크해 한글 가독성에 맞게 커스텀했다.
+
+## 로컬 실행
+
+Ruby 3.4 기준 (`.ruby-version`). Homebrew ruby를 쓴다면 `PATH`에 `/opt/homebrew/opt/ruby/bin`을 앞에 둔다.
+
+```bash
+bundle install
+bundle exec jekyll serve --livereload   # http://127.0.0.1:4000
+```
+
+## 커스텀 스타일 구조
+
+| 경로 | 역할 |
+| --- | --- |
+| `assets/css/main.scss` | 진입점. 폰트 스택 → 스킨 → 테마 → 커스텀 순서로 불러온다 |
+| `_sass/minimal-mistakes/skins/_origogi.scss` | 색상 팔레트 (`_config.yml`의 `minimal_mistakes_skin`) |
+| `_sass/origogi/` | 한글 타이포그래피, 본문 헤딩 위계, 콜아웃, 레이아웃 재정의 |
+| `_includes/head/custom.html` | 웹폰트 로딩 (Pretendard, JetBrains Mono) |
+
+배포는 GitHub Pages 기본 빌드(Jekyll 3.x)를 쓰므로 SCSS는 `@import` 문법만 사용한다.
+
+---
+
 # [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)

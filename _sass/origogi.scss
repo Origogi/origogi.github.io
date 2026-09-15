@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Origogi 커스텀 — 한글 타이포그래피와 컴포넌트 재정의
+   테마(minimal-mistakes) 이후에 불러와 기본 스타일을 덮어쓴다.
+   ========================================================================== */
+
+// 다른 스킨을 쓸 때도 컴파일되도록 스킨 전용 변수의 기본값을 둔다.
+$heading-color: $text-color !default;
+$accent-color: $primary-color !default;
+
+@import "origogi/typography";
+@import "origogi/content";
+@import "origogi/notices";
+@import "origogi/layout";

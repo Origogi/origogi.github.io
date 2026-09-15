@@ -1,0 +1,54 @@
+/* 기준 글자 크기: 테마 기본 18px은 한글에서 과해 17px로 낮춘다 */
+html {
+  font-size: 16px;
+
+  @include breakpoint($medium) {
+    font-size: 17px;
+  }
+
+  @include breakpoint($large) {
+    font-size: 17px;
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 17px;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* 한글은 어절 단위로 줄바꿈해야 읽기 편하다 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.005em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $heading-color;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+::-moz-selection {
+  color: inherit;
+  background: mix(#fff, $accent-color, 70%);
+}
+
+::selection {
+  color: inherit;
+  background: mix(#fff, $accent-color, 70%);
+}
+
+strong,
+b {
+  color: $heading-color;
+  font-weight: 700;
+}

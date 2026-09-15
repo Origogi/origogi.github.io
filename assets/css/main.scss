@@ -1,30 +1,16 @@
---- 
-# Only the main Sass file needs front matter (the dashes are enough) 
---- 
-
-// https://mmistakes.github.io/minimal-mistakes/docs/stylesheets/#customizing
-$sans-serif: 'Noto Sans KR';
-$monospace: 'Ubuntu Mono';
-$type-size-4-5: 1.12em !default; // Ubuntu Mono is a bit small
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
 
 @charset "utf-8";
+
+// 폰트는 _includes/head/custom.html 에서 <link> 로 불러온다.
+$sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+  "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+$monospace: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Apple Symbols",
+  "Pretendard Variable", monospace;
+
+// 스킨 변수는 !default 라서 테마보다 먼저 불러와야 적용된다.
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin	.language-plaintext {
-
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans+KR|Ubuntu+Mono);
-
-html {
-  font-size: 16px; // change to whatever
-  
-  @include breakpoint($medium) {
-    font-size: 18px; // change to whatever
-  }
-
-  @include breakpoint($large) {
-    font-size: 18px; // change to whatever
-  }
-
-  @include breakpoint($x-large) {
-    font-size: 18px; // change to whatever
-  }
-}
+@import "origogi";

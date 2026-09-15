@@ -1,0 +1,74 @@
+/* ==========================================================================
+   콜아웃(.notice) — 본문과 같은 크기, 왼쪽 컬러 바로 종류를 구분
+   첫 문단이 굵은 글씨 한 줄이면 제목으로 취급한다.
+   ========================================================================== */
+
+@mixin origogi-notice($notice-color) {
+  margin: 2em 0 !important;
+  padding: 1.1em 1.3em 1.1em 1.4em;
+  font-size: 0.95em !important;
+  line-height: 1.75;
+  color: $text-color;
+  background-color: mix(#fff, $notice-color, 93%);
+  border-left: 4px solid $notice-color;
+  border-radius: $border-radius;
+  box-shadow: none;
+
+  > p:first-child > strong:only-child {
+    display: block;
+    margin-bottom: 0.4em;
+    color: mix(#000, $notice-color, 15%);
+    font-size: 0.92em;
+    letter-spacing: 0.01em;
+  }
+
+  h4 {
+    margin-top: 0 !important;
+    margin-bottom: 0.5em;
+    color: mix(#000, $notice-color, 15%);
+    font-size: 1em;
+  }
+
+  p:last-child,
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  a {
+    color: mix(#000, $notice-color, 20%);
+    text-decoration-color: mix(#fff, $notice-color, 40%);
+
+    &:hover {
+      color: mix(#000, $notice-color, 40%);
+    }
+  }
+
+  code {
+    background-color: rgba(#000, 0.05);
+  }
+}
+
+.notice {
+  @include origogi-notice($muted-text-color);
+}
+
+.notice--primary {
+  @include origogi-notice($accent-color);
+}
+
+.notice--info {
+  @include origogi-notice($info-color);
+}
+
+.notice--warning {
+  @include origogi-notice($warning-color);
+}
+
+.notice--success {
+  @include origogi-notice($success-color);
+}
+
+.notice--danger {
+  @include origogi-notice($danger-color);
+}

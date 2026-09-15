@@ -1,0 +1,135 @@
+/* ==========================================================================
+   마스트헤드 · 사이드바 · 목차 · 목록
+   ========================================================================== */
+
+.site-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.site-subtitle {
+  margin-top: 0.15em;
+  color: $muted-text-color;
+  font-size: 0.72em;
+  letter-spacing: 0;
+}
+
+.greedy-nav {
+  a {
+    font-weight: 500;
+  }
+
+  .visible-links a:before {
+    background: $accent-color;
+  }
+}
+
+.sidebar .author__name {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.author__bio {
+  color: $muted-text-color;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.author__urls a {
+  font-size: 0.9em;
+}
+
+/* 목차 */
+.toc {
+  .nav__title {
+    padding: 0.6em 0.9em;
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: $heading-color;
+  }
+
+  .active a {
+    color: $link-color-hover;
+    background-color: $active-color;
+  }
+}
+
+.toc__menu {
+  font-size: 0.82em;
+
+  @include breakpoint($large) {
+    font-size: 0.8em;
+  }
+
+  a {
+    padding: 0.45rem 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  li ul > li a {
+    padding-left: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+/* 글 목록 */
+.archive__item-title {
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow: visible;
+  white-space: normal;
+}
+
+.archive__item-excerpt {
+  color: mix(#fff, $text-color, 15%);
+  line-height: 1.7;
+}
+
+.archive__subtitle {
+  font-weight: 600;
+}
+
+.page__footer {
+  color: $muted-text-color;
+}
+
+/* 본문 안에 인라인으로 렌더링되는 목차(wide 레이아웃)에는 본문 링크·헤딩·리스트 스타일을 적용하지 않는다 */
+.page__content {
+  .toc .nav__title {
+    margin: 0;
+    padding: 0.6em 0.9em;
+    font-size: 0.78em;
+  }
+
+  .toc__menu li {
+    margin-bottom: 0;
+  }
+
+  .toc__menu a {
+    color: $muted-text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+
+  .toc .active a {
+    color: $link-color-hover;
+  }
+}
+
+/* 글 목록 제목은 잉크색, 마우스를 올리면 포인트색 */
+.archive__item-title a {
+  color: $heading-color;
+
+  &:hover {
+    color: $link-color;
+  }
+}
